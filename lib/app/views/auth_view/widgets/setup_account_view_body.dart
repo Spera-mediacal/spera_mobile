@@ -4,14 +4,17 @@ import 'package:spera_mobile/app/controllers/auth_controller.dart';
 import 'package:spera_mobile/app/views/auth_view/widgets/blood_type_section.dart';
 import 'package:spera_mobile/app/views/auth_view/widgets/number_picker.dart';
 import 'package:spera_mobile/utils/colors.dart';
+import 'package:spera_mobile/utils/global_widgets/custom_button.dart';
 import 'package:spera_mobile/utils/global_widgets/logo_widget.dart';
 import 'package:spera_mobile/utils/text_styles.dart';
 import 'package:wheel_chooser/wheel_chooser.dart';
 
 import '../../../../utils/size_config.dart';
+import '../../../controllers/setup_account_controller.dart';
 
 class SetupAccountViewBody extends StatelessWidget {
   SetupAccountViewBody({super.key});
+  final SetupAccountController controller = Get.put(SetupAccountController());
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +36,34 @@ class SetupAccountViewBody extends StatelessWidget {
             ),
             BloodTypeSection(),
             (screenHeight(context) * 0.02).sh,
-            const NumberPicker(title: 'Weight', maxValue: 123, minValue: 50, iniValue: 85,),
-            const NumberPicker(title: 'Height', maxValue: 123, minValue: 50, iniValue: 85,),
-            const NumberPicker(title: 'Age', maxValue: 123, minValue: 50, iniValue: 85,),
+      Obx(() => NumberPicker(
+        title: 'Weight',
+        maxValue: 150,
+        minValue: 30,
+        iniValue: controller.selectedWeight.value,
+        onChanged: (value) => controller.updateWeight(value),
+      )),
+      Obx(() => NumberPicker(
+        title: 'Height',
+        maxValue: 250,
+        minValue: 50,
+        iniValue: controller.selectedHeight.value,
+        onChanged: (value) => controller.updateHeight(value),
+      )),
+      Obx(() => NumberPicker(
+        title: 'Age',
+        maxValue: 100,
+        minValue: 18,
+        iniValue: controller.selectedAge.value,
+        onChanged: (value) => controller.updateAge(value),
+      ),),
+        (screenHeight(context) * 0.02).sh,
+            CustomButton(
+              text: 'Finish',
+              onTap: () {},
+              width: screenWidth(context) * 0.6,
+              height: screenHeight(context)*0.08,
+            ),
           ],
         ),
       ),
