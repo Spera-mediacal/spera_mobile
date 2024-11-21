@@ -2,17 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController {
-   final nameController = TextEditingController();
+  final nameController = TextEditingController();
   final emailController = TextEditingController();
   final loginEmailController = TextEditingController();
   final phoneController = TextEditingController();
   final loginPasswordController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
-
+  var isPositive = true.obs; // Stores the Rh factor (true for positive, false for negative)
   var isLoginPasswordObscure = false.obs;
   var isRegisterPasswordObscure = false.obs;
   var isRegisterConfirmPasswordObscure = false.obs;
+
+  var selectedBloodType = ''.obs;
+
+  void selectBloodType(String bloodType) {
+    selectedBloodType.value = bloodType;
+  }
+
+  void toggleSign() {
+    isPositive.value = !isPositive.value;
+  }
 
   toggleLoginPasswordObscure() {
     isLoginPasswordObscure.value = !isLoginPasswordObscure.value;
@@ -23,7 +33,8 @@ class AuthController extends GetxController {
   }
 
   toggleRegisterConfirmPasswordObscure() {
-    isRegisterConfirmPasswordObscure.value = !isRegisterConfirmPasswordObscure.value;
+    isRegisterConfirmPasswordObscure.value =
+        !isRegisterConfirmPasswordObscure.value;
   }
 
   // Validation messages String? Function(String?)?
