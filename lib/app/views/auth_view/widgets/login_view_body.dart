@@ -1,50 +1,84 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:spera_mobile/app/controllers/auth_controller.dart';
 import 'package:spera_mobile/utils/colors.dart';
-import 'package:spera_mobile/utils/constants.dart';
 import 'package:spera_mobile/utils/size_config.dart';
 import 'package:spera_mobile/utils/text_styles.dart';
 
+import '../../../../utils/global_widgets/custom_button.dart';
+import '../../../../utils/global_widgets/custom_text_field.dart';
+import '../../../../utils/global_widgets/logo_widget.dart';
+
 class LoginViewBody extends StatelessWidget {
-  const LoginViewBody({super.key});
+    LoginViewBody({super.key});
+  final authController = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Padding(
-      padding: const EdgeInsets.all(10),
+      padding: EdgeInsets.symmetric(
+          vertical: 10, horizontal: screenWidth(context) * 0.08),
       child: Column(
         children: [
           (screenHeight(context) * 0.1).sh,
-          SvgPicture.asset(
-            AssetsPaths.logoAssetPath,
+          LogoWidget(
             width: screenWidth(context) * 0.4,
             height: screenHeight(context) * 0.25,
           ),
           (screenHeight(context) * 0.1).sh,
-          SizedBox(
-            width: screenWidth(context)*0.85,
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: 'Email',
-                hintStyle: AppTextStyles.textStyle19.copyWith(color: AppColors.whiteColor.withOpacity(0.35)),
-                prefixIcon: const HugeIcon(
-                  icon: HugeIcons.strokeRoundedMail01,
-                  color: AppColors.accentColor,
+          CustomTextField(
+            hintText: 'Email',
+
+            prefixIcon: HugeIcons.strokeRoundedMail01,
+            controller: authController.emailController,
+            validator: authController.validateEmail,
+
+          ),
+          CustomTextField(
+            hintText: 'Password',
+
+            isPassword: true,
+            prefixIcon: HugeIcons.strokeRoundedLockPassword,
+            controller: authController.passwordController,
+            validator: authController.validatePassword,
+          ),
+          (screenHeight(context) * 0.005).sh,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  'Forgot Password ?',
+                  style: AppTextStyles.textStyle15.copyWith(
+                    color: AppColors.accentColor,
+                  ),
                 ),
-                filled: true,
-                fillColor: AppColors.whiteColor.withOpacity(
-                  0.16,
-                ),
-                border: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.circular(15)),
+              ),
+            ],
+          ),
+          (screenHeight(context) * 0.05).sh,
+          CustomButton(
+            text: 'Login',
+            onTap: () {},
+            width: screenWidth(context) * 0.5,
+            height: screenHeight(context) * 0.07,
+          ),
+          (screenHeight(context) * 0.006).sh,
+          TextButton(
+            onPressed: () {},
+            child: Text(
+              'Create New Account',
+              style: AppTextStyles.textStyle19.copyWith(
+
               ),
             ),
-          )
+          ),
         ],
       ),
     ));
   }
 }
+
