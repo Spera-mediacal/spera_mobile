@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:spera_mobile/utils/size_config.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,7 +13,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       home: Scaffold(
-        body: Text('msa'),
+        body: Column(
+          children: [
+            100.sh,
+          ],
+        ),
+
       ),
     );
     // hello
