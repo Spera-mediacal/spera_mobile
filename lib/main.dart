@@ -11,7 +11,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      home: Scaffold(),
+      home: Scaffold(
+        body: Text('data'),
+      ),
     );
     // hello
   }
