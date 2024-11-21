@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       home: Scaffold(
-        body: Text('dataaaaa'),
+        body: Text('msa'),
       ),
     );
     // hello
