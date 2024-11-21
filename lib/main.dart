@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.registerViewPath,
+      initialRoute: AppRoutes.onboardingViewPath,
       getPages: AppRoutes.getRoutes(),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.accentColor,),

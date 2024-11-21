@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:spera_mobile/utils/global_widgets/custom_button.dart';
 
 import '../../../../utils/colors.dart';
 import '../../../../utils/size_config.dart';
@@ -53,22 +54,11 @@ class OnboardingViewBody extends StatelessWidget {
                           textAlign: TextAlign.center,
                         ),
                         (screenHeight(context) * 0.05).sh,
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.accentColor,
-                            padding: EdgeInsets.symmetric(
-                              vertical: screenHeight(context) * 0.03,
-                              horizontal: screenWidth(context) * 0.08,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                          ),
-                          child: Text('Regenerate',
-                              style: AppTextStyles.textStyle24.copyWith(
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.black)),
+                        CustomButton(
+                          text: 'Get Started',
+                          onTap: () {},
+                          width: screenWidth(context) * 0.6,
+                          height: screenHeight(context)*0.08,
                         ),
                       ],
                     ),
