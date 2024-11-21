@@ -9,8 +9,12 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   Scaffold(
-      body: WavesBackground(wavesColor: AppColors.whiteColor,child: LoginViewBody(),),
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: WavesBackground(
+        wavesColor: AppColors.whiteColor,
+        child: LoginViewBody(),
+      ),
     );
   }
 }

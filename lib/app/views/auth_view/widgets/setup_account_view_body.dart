@@ -52,7 +52,7 @@ class SetupAccountViewBody extends StatelessWidget {
       )),
       Obx(() => NumberPicker(
         title: 'Age',
-        maxValue: 100,
+        maxValue: 80,
         minValue: 18,
         iniValue: controller.selectedAge.value,
         onChanged: (value) => controller.updateAge(value),

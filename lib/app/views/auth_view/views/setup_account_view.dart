@@ -8,8 +8,12 @@ class SetupAccountView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   Scaffold(
-      body: WavesBackground(wavesColor: AppColors.accentColor.withOpacity(0.3),child: SetupAccountViewBody(),),
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: WavesBackground(
+        wavesColor: AppColors.accentColor.withOpacity(0.3),
+        child: SetupAccountViewBody(),
+      ),
     );
   }
 }

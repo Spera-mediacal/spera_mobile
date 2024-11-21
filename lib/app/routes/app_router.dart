@@ -3,6 +3,7 @@ import 'package:spera_mobile/app/views/auth_view/views/login_view.dart';
 import 'package:spera_mobile/app/views/auth_view/views/register_view.dart';
 import 'package:spera_mobile/app/views/auth_view/views/setup_account_view.dart';
 
+import '../views/bottom_naviagtoion_bar/views/bottom_navigation_bar_view.dart';
 import '../views/onboarding_view/views/onboarding_view.dart';
 
 class AppRoutes {
@@ -10,6 +11,7 @@ class AppRoutes {
   static String registerViewPath = '/register';
   static String onboardingViewPath = '/onboarding';
   static String setUpViewPath = '/setUp';
+  static String bottomViewPath = '/bottom';
 
   static List<GetPage<dynamic>> getRoutes() {
     return [
@@ -27,6 +29,9 @@ class AppRoutes {
       ),GetPage(
         name: setUpViewPath,
         page: () => const SetupAccountView(),
+      ),GetPage(
+        name: bottomViewPath,
+        page: () =>   BottomNavigationBarView(),
       ),
     ];
   }

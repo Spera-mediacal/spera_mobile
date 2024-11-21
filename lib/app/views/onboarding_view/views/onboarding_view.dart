@@ -10,6 +10,7 @@ class OnboardingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: WavesBackground(
           wavesColor: AppColors.whiteColor,
