@@ -14,10 +14,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.onboardingViewPath,
+      initialRoute: AppRoutes.loginViewPath,
       getPages: AppRoutes.getRoutes(),
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.accentColor,),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: AppColors.accentColor,
+        ),
         fontFamily: 'Manjari',
         scaffoldBackgroundColor: AppColors.bgColor,
       ),

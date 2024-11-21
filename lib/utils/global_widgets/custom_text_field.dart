@@ -37,10 +37,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: screenWidth(context)*0.9,
+      width: screenWidth(context) * 0.9,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 7.0),
         child: TextFormField(
+          style: AppTextStyles.textStyle19,
           controller: widget.controller,
           obscureText: widget.isPassword ? _obscureText : false,
           validator: widget.validator,
@@ -51,22 +52,24 @@ class _CustomTextFieldState extends State<CustomTextField> {
             ),
             prefixIcon: widget.prefixIcon != null
                 ? Icon(
-              widget.prefixIcon,
-              color: AppColors.accentColor,
-            )
+                    widget.prefixIcon,
+                    color: AppColors.accentColor,
+                  )
                 : null,
             suffixIcon: widget.isPassword
                 ? IconButton(
-              icon: Icon(
-                _obscureText ? HugeIcons.strokeRoundedViewOff : HugeIcons.strokeRoundedView,
-                color: AppColors.accentColor,
-              ),
-              onPressed: () {
-                setState(() {
-                  _obscureText = !_obscureText;
-                });
-              },
-            )
+                    icon: Icon(
+                      _obscureText
+                          ? HugeIcons.strokeRoundedViewOff
+                          : HugeIcons.strokeRoundedView,
+                      color: AppColors.accentColor,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _obscureText = !_obscureText;
+                      });
+                    },
+                  )
                 : null,
             filled: true,
             fillColor: AppColors.whiteColor.withOpacity(0.16),

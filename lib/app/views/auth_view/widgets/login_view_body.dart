@@ -9,9 +9,11 @@ import 'package:spera_mobile/utils/text_styles.dart';
 import '../../../../utils/global_widgets/custom_button.dart';
 import '../../../../utils/global_widgets/custom_text_field.dart';
 import '../../../../utils/global_widgets/logo_widget.dart';
+import '../../../routes/app_router.dart';
 
 class LoginViewBody extends StatelessWidget {
-    LoginViewBody({super.key});
+  LoginViewBody({super.key});
+
   final authController = Get.put(AuthController());
 
   @override
@@ -30,15 +32,12 @@ class LoginViewBody extends StatelessWidget {
           (screenHeight(context) * 0.1).sh,
           CustomTextField(
             hintText: 'Email',
-
             prefixIcon: HugeIcons.strokeRoundedMail01,
             controller: authController.emailController,
             validator: authController.validateEmail,
-
           ),
           CustomTextField(
             hintText: 'Password',
-
             isPassword: true,
             prefixIcon: HugeIcons.strokeRoundedLockPassword,
             controller: authController.passwordController,
@@ -68,12 +67,12 @@ class LoginViewBody extends StatelessWidget {
           ),
           (screenHeight(context) * 0.006).sh,
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.offNamed(AppRoutes.registerViewPath);
+            },
             child: Text(
               'Create New Account',
-              style: AppTextStyles.textStyle19.copyWith(
-
-              ),
+              style: AppTextStyles.textStyle19.copyWith(),
             ),
           ),
         ],
@@ -81,4 +80,3 @@ class LoginViewBody extends StatelessWidget {
     ));
   }
 }
-
