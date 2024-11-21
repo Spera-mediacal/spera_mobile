@@ -17,7 +17,9 @@ class MyApp extends StatelessWidget {
       initialRoute: AppRoutes.authViewPath,
       getPages: AppRoutes.getRoutes(),
       theme: ThemeData(
-          fontFamily: 'Manjari', scaffoldBackgroundColor: AppColors.bgColor),
+        fontFamily: 'Manjari',
+        scaffoldBackgroundColor: AppColors.bgColor,
+      ),
     );
     // hello
   }
