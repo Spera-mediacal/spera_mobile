@@ -38,14 +38,14 @@ class SetupAccountViewBody extends StatelessWidget {
             (screenHeight(context) * 0.02).sh,
       Obx(() => NumberPicker(
         title: 'Weight',
-        maxValue: 150,
+        maxValue: 199,
         minValue: 30,
         iniValue: controller.selectedWeight.value,
         onChanged: (value) => controller.updateWeight(value),
       )),
       Obx(() => NumberPicker(
         title: 'Height',
-        maxValue: 250,
+        maxValue: 199,
         minValue: 50,
         iniValue: controller.selectedHeight.value,
         onChanged: (value) => controller.updateHeight(value),
