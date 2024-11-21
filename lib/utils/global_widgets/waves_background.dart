@@ -9,7 +9,6 @@ class WavesBackground extends StatelessWidget {
   const WavesBackground({super.key, required this.child, this.wavesColor});
 
   final Color? wavesColor;
-
   final Widget child;
 
   @override
