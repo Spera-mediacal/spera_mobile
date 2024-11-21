@@ -48,20 +48,29 @@ class RegisterViewBody extends StatelessWidget {
                 controller: authController.phoneController,
                 validator: authController.validatePhone,
               ),
-              CustomTextField(
-                hintText: 'Password',
-                isPassword: true,
-                prefixIcon: HugeIcons.strokeRoundedLockPassword,
-                controller: authController.passwordController,
-                validator: authController.validatePassword,
-              ),
-              CustomTextField(
-                hintText: 'Confirm Password',
-                isPassword: true,
-                prefixIcon: HugeIcons.strokeRoundedValidation,
-                controller: authController.confirmPasswordController,
-                validator: authController.validatePassword,
-              ),
+              Obx((){
+                return CustomTextField(
+                  hintText: 'Password',
+                  isPassword: true,
+                  prefixIcon: HugeIcons.strokeRoundedLockPassword,
+                  controller: authController.passwordController,
+                  validator: authController.validatePassword,
+                  onToggleObscureText: authController.toggleRegisterPasswordObscure,
+                  obscureText: authController.isRegisterPasswordObscure.value,
+                );
+              }),
+              Obx((){
+                return CustomTextField(
+                  hintText: 'Confirm Password',
+                  isPassword: true,
+                  prefixIcon: HugeIcons.strokeRoundedValidation,
+                  controller: authController.confirmPasswordController,
+                  validator: authController.validatePassword,
+                  obscureText: authController.isRegisterConfirmPasswordObscure.value,
+                  onToggleObscureText: authController.toggleRegisterConfirmPasswordObscure,
+                );
+              }),
+
               (screenHeight(context) * 0.05).sh,
               CustomButton(
                 text: 'Register',
@@ -72,7 +81,7 @@ class RegisterViewBody extends StatelessWidget {
               (screenHeight(context) * 0.006).sh,
               TextButton(
                 onPressed: () {
-                  Get.offNamed(AppRoutes.loginViewPath);
+                  Get.toNamed(AppRoutes.loginViewPath);
                 },
                 child: Text(
                   'Already Have An Account',

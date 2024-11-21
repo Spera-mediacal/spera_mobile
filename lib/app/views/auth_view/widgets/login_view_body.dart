@@ -35,16 +35,22 @@ class LoginViewBody extends StatelessWidget {
             CustomTextField(
               hintText: 'Email',
               prefixIcon: HugeIcons.strokeRoundedMail01,
-              controller: authController.emailController,
+              controller: authController.loginEmailController,
               validator: authController.validateEmail,
+
             ),
-            CustomTextField(
-              hintText: 'Password',
-              isPassword: true,
-              prefixIcon: HugeIcons.strokeRoundedLockPassword,
-              controller: authController.passwordController,
-              validator: authController.validatePassword,
-            ),
+            Obx((){
+              return CustomTextField(
+                hintText: 'Password',
+                isPassword: true,
+                prefixIcon: HugeIcons.strokeRoundedLockPassword,
+                controller: authController.loginPasswordController,
+                validator: authController.validatePassword,
+                obscureText: authController.isLoginPasswordObscure.value,
+                onToggleObscureText: authController.toggleLoginPasswordObscure,
+              );
+            }),
+
             (screenHeight(context) * 0.005).sh,
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -70,7 +76,7 @@ class LoginViewBody extends StatelessWidget {
             (screenHeight(context) * 0.006).sh,
             TextButton(
               onPressed: () {
-                Get.offNamed(AppRoutes.registerViewPath);
+                Get.toNamed(AppRoutes.registerViewPath);
               },
               child: Text(
                 'Create New Account',

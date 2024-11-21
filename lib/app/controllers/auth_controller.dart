@@ -5,9 +5,27 @@ class AuthController extends GetxController {
   // Text Editing Controllers
   final nameController = TextEditingController();
   final emailController = TextEditingController();
+  final loginEmailController = TextEditingController();
   final phoneController = TextEditingController();
+  final loginPasswordController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+
+  var isLoginPasswordObscure = false.obs;
+  var isRegisterPasswordObscure = false.obs;
+  var isRegisterConfirmPasswordObscure = false.obs;
+
+  toggleLoginPasswordObscure() {
+    isLoginPasswordObscure.value = !isLoginPasswordObscure.value;
+  }
+
+  toggleRegisterPasswordObscure() {
+    isRegisterPasswordObscure.value = !isRegisterPasswordObscure.value;
+  }
+
+  toggleRegisterConfirmPasswordObscure() {
+    isRegisterConfirmPasswordObscure.value = !isRegisterConfirmPasswordObscure.value;
+  }
 
   // Validation messages String? Function(String?)?
   String? validateEmail(String? value) {
