@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spera_mobile/app/routes/app_router.dart';
+import 'package:spera_mobile/utils/colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,8 +13,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialRoute: AppRoutes.onboardingViewPath,
+      debugShowCheckedModeBanner: false,
+      initialRoute: AppRoutes.authViewPath,
       getPages: AppRoutes.getRoutes(),
+      theme: ThemeData(
+          fontFamily: 'Manjari', scaffoldBackgroundColor: AppColors.bgColor),
     );
     // hello
   }
