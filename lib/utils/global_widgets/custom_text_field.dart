@@ -14,6 +14,7 @@ class CustomTextField extends StatelessWidget {
   final bool obscureText;
   final VoidCallback? onToggleObscureText;
   final double? width;
+  final double? height;
 
   const CustomTextField({
     super.key,
@@ -23,13 +24,15 @@ class CustomTextField extends StatelessWidget {
     this.controller,
     this.validator,
     this.obscureText = true,
-    this.onToggleObscureText, this.width,
+    this.onToggleObscureText,
+    this.width,
+    this.height,
   });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width:width?? screenWidth(context) * 0.9,
+      width: width ?? screenWidth(context) * 0.9,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 7.0),
         child: TextFormField(
@@ -38,26 +41,29 @@ class CustomTextField extends StatelessWidget {
           obscureText: isPassword ? obscureText : false,
           validator: validator,
           decoration: InputDecoration(
+           // floatingLabelBehavior: FloatingLabelBehavior.always, m4 3arf eh lzmtha
             hintText: hintText,
+            contentPadding:
+                EdgeInsets.symmetric(vertical: height ?? 16, horizontal: 12.0),
             hintStyle: AppTextStyles.textStyle19.copyWith(
               color: AppColors.whiteColor.withOpacity(0.35),
             ),
             prefixIcon: prefixIcon != null
                 ? Icon(
-              prefixIcon,
-              color: AppColors.accentColor,
-            )
+                    prefixIcon,
+                    color: AppColors.accentColor,
+                  )
                 : null,
             suffixIcon: isPassword
                 ? IconButton(
-              icon: Icon(
-                obscureText
-                    ? HugeIcons.strokeRoundedViewOff
-                    : HugeIcons.strokeRoundedView,
-                color: AppColors.accentColor,
-              ),
-              onPressed: onToggleObscureText,
-            )
+                    icon: Icon(
+                      obscureText
+                          ? HugeIcons.strokeRoundedViewOff
+                          : HugeIcons.strokeRoundedView,
+                      color: AppColors.accentColor,
+                    ),
+                    onPressed: onToggleObscureText,
+                  )
                 : null,
             filled: true,
             fillColor: AppColors.whiteColor.withOpacity(0.16),
