@@ -13,6 +13,7 @@ class CustomTextField extends StatelessWidget {
   final String? Function(String?)? validator;
   final bool obscureText;
   final VoidCallback? onToggleObscureText;
+  final double? width;
 
   const CustomTextField({
     super.key,
@@ -22,13 +23,13 @@ class CustomTextField extends StatelessWidget {
     this.controller,
     this.validator,
     this.obscureText = true,
-    this.onToggleObscureText,
+    this.onToggleObscureText, this.width,
   });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: screenWidth(context) * 0.9,
+      width:width?? screenWidth(context) * 0.9,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 7.0),
         child: TextFormField(

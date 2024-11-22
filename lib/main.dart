@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
     );
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.bottomViewPath,
+      initialRoute: AppRoutes.speraBotViewPath,
       getPages: AppRoutes.getRoutes(),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(

@@ -7,12 +7,12 @@ class GlowContainer extends StatefulWidget {
   final bool isAnimating;
 
   const GlowContainer({
-    super.key,
+    Key? key,
     required this.bottomPosition,
     required this.rightPosition,
     required this.color,
     this.isAnimating = false,
-  });
+  }) : super(key: key);
 
   @override
   _GlowContainerState createState() => _GlowContainerState();
@@ -67,12 +67,12 @@ class _GlowContainerState extends State<GlowContainer> with SingleTickerProvider
           child: Transform.scale(
             scale: _animation.value,
             child: Container(
-              width: 900,
-              height: 900,
+              width: 700,
+              height: 700,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
-                  radius: 2, // old value = 1.2
+                  radius: 1.2,
                   center: Alignment.center,
                   colors: [
                     widget.color,
