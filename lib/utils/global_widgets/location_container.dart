@@ -8,16 +8,16 @@ import '../text_styles.dart';
 class LocationContainer extends StatelessWidget {
   const LocationContainer({
     super.key,
-    required this.name,
-    required this.number,
-    this.colorName,
-    this.colorNumber,
+    required this.title,
+    required this.subTitle,
+    this.colorTitle,
+    this.colorSubTitle,
   });
 
-  final String name;
-  final String number;
-  final Color? colorName;
-  final Color? colorNumber;
+  final String title;
+  final String subTitle;
+  final Color? colorTitle;
+  final Color? colorSubTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -38,15 +38,15 @@ class LocationContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                name,
+                title,
                 style: AppTextStyles.textStyle24.copyWith(
-                  color: colorName ?? AppColors.accentColor,
+                  color: colorTitle ?? AppColors.accentColor,
                 ),
               ),
               Text(
-                '$number km',
+                '$subTitle km',
                 style: AppTextStyles.textStyle24.copyWith(
-                  color: colorNumber ?? AppColors.whiteColor,
+                  color: colorSubTitle ?? AppColors.whiteColor,
                 ),
               ),
             ],
