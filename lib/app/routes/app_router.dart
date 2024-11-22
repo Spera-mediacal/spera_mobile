@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:spera_mobile/app/views/auth_view/views/login_view.dart';
 import 'package:spera_mobile/app/views/auth_view/views/register_view.dart';
 import 'package:spera_mobile/app/views/auth_view/views/setup_account_view.dart';
+import 'package:spera_mobile/app/views/home_view/views/medicines_view.dart';
 import 'package:spera_mobile/app/views/home_view/views/spera_bot_view.dart';
 
 import '../views/bottom_naviagtoion_bar/views/bottom_navigation_bar_view.dart';
@@ -14,6 +15,7 @@ class AppRoutes {
   static String setUpViewPath = '/setUp';
   static String bottomViewPath = '/bottom';
   static String speraBotViewPath = '/speraBot';
+  static String medicinesViewPath = '/medicines';
 
   static List<GetPage<dynamic>> getRoutes() {
     return [
@@ -40,6 +42,9 @@ class AppRoutes {
       GetPage(
         name: speraBotViewPath,
         page: () => const SperaBotView(),
+      ),GetPage(
+        name: medicinesViewPath,
+        page: () => const MedicinesView(),
       ),
     ];
   }

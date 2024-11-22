@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:spera_mobile/app/routes/app_router.dart';
 
-import '../../../../utils/colors.dart';
-import '../../../../utils/size_config.dart';
-import 'home_container_button.dart';
+import '../colors.dart';
+import '../size_config.dart';
+import '../../app/views/home_view/widgets/home_container_button.dart';
 
 class HomeContainersSection extends StatelessWidget {
   const HomeContainersSection({
@@ -30,7 +32,9 @@ class HomeContainersSection extends StatelessWidget {
               text: 'Spera Bot',
               width: screenWidth(context) * 0.45,
               height: screenHeight(context) * 0.120,
-              onTap: () {},
+              onTap: () {
+                Get.toNamed(AppRoutes.speraBotViewPath);
+              },
               color: AppColors.secAccentColor,
               fontSize: 20,
               iconData: HugeIcons.strokeRoundedChatBot,
@@ -40,7 +44,10 @@ class HomeContainersSection extends StatelessWidget {
               text: 'Medicines',
               width: screenWidth(context) * 0.45,
               height: screenHeight(context) * 0.120,
-              onTap: () {},
+              onTap: () {
+                Get.toNamed(AppRoutes.medicinesViewPath);
+
+              },
               color: AppColors.thirdAccentColor,
               fontSize: 20,
               iconData: HugeIcons.strokeRoundedMedicalMask,

@@ -5,7 +5,7 @@ import 'package:spera_mobile/app/views/home_view/widgets/welcome_text.dart';
 import 'package:spera_mobile/utils/size_config.dart';
 import 'doctor_item.dart';
 import 'home_app_bar.dart';
-import 'home_containers_section.dart';
+import '../../../../utils/global_widgets/home_containers_section.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});

@@ -6,7 +6,7 @@ import '../../../../utils/colors.dart';
 import '../../../../utils/size_config.dart';
 import '../../../../utils/text_styles.dart';
 import 'blood_donation_section.dart';
-import 'custom_info_container.dart';
+import '../../../../utils/global_widgets/custom_info_container.dart';
 
 class BloodDonationViewBody extends StatelessWidget {
   const BloodDonationViewBody({super.key});
