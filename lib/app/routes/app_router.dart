@@ -2,15 +2,17 @@ import 'package:get/get.dart';
 import 'package:spera_mobile/app/views/auth_view/views/login_view.dart';
 import 'package:spera_mobile/app/views/auth_view/views/register_view.dart';
 import 'package:spera_mobile/app/views/auth_view/views/setup_account_view.dart';
+import 'package:spera_mobile/app/views/blood_donation_view/view/blood_donate_qr_result_view.dart';
+import 'package:spera_mobile/app/views/blood_donation_view/view/blood_donate_qr_view.dart';
 import 'package:spera_mobile/app/views/home_view/views/doctors_view.dart';
 import 'package:spera_mobile/app/views/home_view/views/medicines_view.dart';
 import 'package:spera_mobile/app/views/home_view/views/profile_view.dart';
 import 'package:spera_mobile/app/views/home_view/views/spera_bot_view.dart';
 import 'package:spera_mobile/app/views/home_view/views/x_ray_view.dart';
 
+import '../views/blood_donation_view/view/stations_views.dart';
 import '../views/bottom_naviagtoion_bar/views/bottom_navigation_bar_view.dart';
 import '../views/onboarding_view/views/onboarding_view.dart';
-import '../views/blood_donation_view/view/stations_views.dart';
 
 class AppRoutes {
   static String loginViewPath = '/login';
@@ -23,7 +25,9 @@ class AppRoutes {
   static String doctorsViewPath = '/doctors';
   static String xRayViewPath = '/xRay';
   static String profielViewPath = '/profile';
-  static String stationsView = '/stationView';
+  static String stationsViewPath = '/stationView';
+  static String bloodDonateQrViewPath = '/DonateQrView';
+  static String bloodDonateQrResultViewAuth = '/QrResultViewAuth';
 
   static List<GetPage<dynamic>> getRoutes() {
     return [
@@ -67,7 +71,18 @@ class AppRoutes {
         name: profielViewPath,
         page: () => const ProfileView(),
       ),
-      GetPage(name: stationsView, page: () => const StationsView(),),
+      GetPage(
+        name: stationsViewPath,
+        page: () => const StationsView(),
+      ),
+      GetPage(
+        name: bloodDonateQrViewPath,
+        page: () => const BloodDonateQrView(),
+      ),
+      GetPage(
+        name: bloodDonateQrResultViewAuth,
+        page: () => const BloodDonateQrResultView(),
+      )
     ];
   }
 }

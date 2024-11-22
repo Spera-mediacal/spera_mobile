@@ -18,7 +18,9 @@ class BloodDonationSection extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         HomeContainerButton(
-            onTap: () {},
+            onTap: () {
+              Get.toNamed(AppRoutes.bloodDonateQrViewPath);
+            },
             text: 'Donate',
             fontSize: 18,
             width: screenWidth(context) * 0.45,
@@ -27,7 +29,7 @@ class BloodDonationSection extends StatelessWidget {
             color: AppColors.secAccentColor),
         HomeContainerButton(
             onTap: () {
-              Get.toNamed(AppRoutes.stationsView);
+              Get.toNamed(AppRoutes.stationsViewPath);
             },
             text: 'Donation Station',
             fontSize: 18,

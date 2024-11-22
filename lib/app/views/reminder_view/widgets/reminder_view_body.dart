@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:spera_mobile/utils/global_widgets/custom_button.dart';
 import 'package:spera_mobile/utils/global_widgets/custom_text_field.dart';
 
 import '../../../../utils/colors.dart';
@@ -54,21 +55,12 @@ class ReminderViewBody extends StatelessWidget {
                                 prefixIcon: HugeIcons.strokeRoundedProfile,
                               ),
                               const Spacer(),
-                              ElevatedButton(
-                                onPressed: () {},
-                                style: ElevatedButton.styleFrom(
-                                    minimumSize: Size(screenWidth(context) * 1,
-                                        screenHeight(context) * 0.05),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    backgroundColor: AppColors.accentColor),
-                                child: Text(
-                                  'Add',
-                                  style: AppTextStyles.textStyle24.copyWith(
-                                      color: AppColors.bgColor,
-                                      fontWeight: FontWeight.w500),
-                                ),
+                              CustomButton(
+                                text: 'Add',
+                                onTap: () {},
+                                width: (screenWidth(context) * 1),
+                                height: (screenHeight(context) * 0.03),
+                                borderRadius: 12,
                               ),
                             ],
                           ),
