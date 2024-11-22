@@ -15,7 +15,7 @@ class GlassContainer extends StatelessWidget {
     this.horMargin,
     this.onTap,
     this.align,
-    this.color, this.border,
+    this.color, this.border, this.borderRadiusGeometry,
   });
 
   final double height;
@@ -34,6 +34,7 @@ class GlassContainer extends StatelessWidget {
   final AlignmentGeometry? align;
   final Color? color;
   final BoxBorder? border;
+  final BorderRadiusGeometry? borderRadiusGeometry;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,7 @@ class GlassContainer extends StatelessWidget {
       padding:  EdgeInsets.symmetric(
           vertical: virMargin ?? 0, horizontal: horMargin ?? 0),
       child: ClipRRect(
-        borderRadius: BorderRadius.all(Radius.circular(borderRadius ?? 15)),
+        borderRadius: borderRadiusGeometry ?? BorderRadius.all(Radius.circular(borderRadius ?? 15)),
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
           child: Container(
@@ -53,7 +54,7 @@ class GlassContainer extends StatelessWidget {
             height: height,
             decoration: BoxDecoration(
               color: color ?? Colors.grey.withOpacity(0.2),
-              borderRadius: BorderRadius.all(
+              borderRadius: borderRadiusGeometry ?? BorderRadius.all(
                 Radius.circular(borderRadius ?? 15),
               ),
               border: border,
