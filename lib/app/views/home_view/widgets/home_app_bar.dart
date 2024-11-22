@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:spera_mobile/app/routes/app_router.dart';
 import 'package:spera_mobile/utils/size_config.dart';
 
 import '../../../../utils/colors.dart';
@@ -21,44 +23,57 @@ class HomeAppBar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        CircleAvatar(radius: 20, backgroundImage: NetworkImage(imageUrl)),
-        Container(
-          alignment: Alignment.center,
-          padding: const EdgeInsets.symmetric(horizontal: 9),
-          width: screenWidth(context) * 0.23,
-          height: screenHeight(context) * 0.05,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: AppColors.whiteColor.withOpacity(0.1),
-            border: Border.all(
-              color: AppColors.whiteColor.withOpacity(0.1),
-            ),
+        InkWell(
+          onTap: () {
+            Get.toNamed(AppRoutes.profielViewPath);
+          },
+          child: CircleAvatar(
+            radius: 20,
+            backgroundImage: NetworkImage(imageUrl),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    AssetsPaths.coinAssetPath,
-                    width: 25,
-                    height: 25,
-                  ),
-                ],
+        ),
+        InkWell(
+          onTap: () {
+            Get.toNamed(AppRoutes.profielViewPath);
+          },
+          child: Container(
+            alignment: Alignment.center,
+            padding: const EdgeInsets.symmetric(horizontal: 9),
+            width: screenWidth(context) * 0.23,
+            height: screenHeight(context) * 0.05,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: AppColors.whiteColor.withOpacity(0.1),
+              border: Border.all(
+                color: AppColors.whiteColor.withOpacity(0.1),
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  6.sh,
-                  Text(
-                    "$points",
-                    style: AppTextStyles.textStyle24
-                        .copyWith(color: AppColors.accentColor),
-                  ),
-                ],
-              )
-            ],
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      AssetsPaths.coinAssetPath,
+                      width: 25,
+                      height: 25,
+                    ),
+                  ],
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    6.sh,
+                    Text(
+                      "$points",
+                      style: AppTextStyles.textStyle24
+                          .copyWith(color: AppColors.accentColor),
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
         )
       ],
