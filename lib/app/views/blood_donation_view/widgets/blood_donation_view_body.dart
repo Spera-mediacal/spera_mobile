@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hugeicons/hugeicons.dart';
-import 'package:spera_mobile/app/views/home_view/widgets/home_container_button.dart';
 
 import '../../../../utils/colors.dart';
 import '../../../../utils/size_config.dart';
@@ -40,22 +38,28 @@ class BloodDonationViewBody extends StatelessWidget {
               const CustomInfoContainer(
                 title: 'Rehab Branch',
                 desc: '22/2/2024',
-              ),const CustomInfoContainer(
+              ),
+              const CustomInfoContainer(
                 title: 'Nasr City Branch',
                 desc: '22/2/2024',
-              ),const CustomInfoContainer(
+              ),
+              const CustomInfoContainer(
                 title: 'Nasr City Branch',
                 desc: '22/2/2024',
-              ),const CustomInfoContainer(
+              ),
+              const CustomInfoContainer(
                 title: 'Nasr City Branch',
                 desc: '22/2/2024',
-              ),const CustomInfoContainer(
+              ),
+              const CustomInfoContainer(
                 title: 'Nasr City Branch',
                 desc: '22/2/2024',
-              ),const CustomInfoContainer(
+              ),
+              const CustomInfoContainer(
                 title: 'Nasr City Branch',
                 desc: '22/2/2024',
-              ),const CustomInfoContainer(
+              ),
+              const CustomInfoContainer(
                 title: 'Nasr City Branch',
                 desc: '22/2/2024',
               ),
