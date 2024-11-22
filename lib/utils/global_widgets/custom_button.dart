@@ -11,32 +11,36 @@ class CustomButton extends StatelessWidget {
     required this.onTap,
     required this.width,
     required this.height,
+    this.isEnabled = true,  // Add this to handle disabled state
   });
 
   final String text;
   final Color? color;
-  final Function() onTap;
+  final Function()? onTap;  // Make it nullable to handle disabled state
   final double width;
   final double height;
+  final bool isEnabled;  // Add this to handle disabled state
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ButtonStyle(
-        fixedSize: WidgetStatePropertyAll(
-          Size(
-            width,
-            height,
-          ),
+        fixedSize: WidgetStateProperty.all(
+          Size(width, height),
         ),
-        backgroundColor: const WidgetStatePropertyAll(AppColors.accentColor),
-        shape: WidgetStatePropertyAll(
+        backgroundColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.disabled)) {
+            return AppColors.accentColor.withOpacity(0.5); // Disabled color
+          }
+          return color ?? AppColors.accentColor; // Normal color
+        }),
+        shape: WidgetStateProperty.all(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(17),
           ),
         ),
       ),
-      onPressed: () {},
+      onPressed: isEnabled ? onTap : null,  // Use the passed onTap function
       child: Text(
         text,
         style: AppTextStyles.textStyle24.copyWith(
