@@ -102,7 +102,7 @@ class ProfileViewBody extends StatelessWidget {
       children: [
         _buildGlassCard(
           context,
-          height: screenHeight(context) * 0.32,
+          height: screenHeight(context) * 0.28,
           width: screenWidth(context) * 0.44,
           title: 'BMI',
           value: '24',
@@ -111,7 +111,7 @@ class ProfileViewBody extends StatelessWidget {
         const SizedBox(height: 16),
         _buildGlassCard(
           context,
-          height: screenHeight(context) * 0.32,
+          height: screenHeight(context) * 0.28,
           width: screenWidth(context) * 0.44,
           title: 'Blood',
           value: 'A+',
@@ -190,7 +190,7 @@ class ProfileViewBody extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          width: 70,
+          width: 100,
           child: Text(
             title,
             textAlign: TextAlign.center,
