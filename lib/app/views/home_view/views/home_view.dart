@@ -16,8 +16,8 @@ class HomeView extends StatelessWidget {
         rightP: -screenWidth(context) * 1.5,
         wavesColor: AppColors.whiteColor,
         externalWidget:   GlowContainer(
-          bottomPosition: screenHeight(context)*0.4,
-          rightPosition: screenWidth(context)*0.1,
+          bottomPosition: screenHeight(context)*0.3,
+          rightPosition: -screenWidth(context)*0.3,
           color: AppColors.accentColor.withOpacity(0.2),
         ),
         child: const HomeViewBody(),

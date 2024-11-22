@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:spera_mobile/app/controllers/auth_controller.dart';
 import 'package:spera_mobile/app/views/auth_view/widgets/blood_type_section.dart';
 import 'package:spera_mobile/app/views/auth_view/widgets/number_picker.dart';
 import 'package:spera_mobile/utils/colors.dart';
 import 'package:spera_mobile/utils/global_widgets/custom_button.dart';
 import 'package:spera_mobile/utils/global_widgets/logo_widget.dart';
 import 'package:spera_mobile/utils/text_styles.dart';
-import 'package:wheel_chooser/wheel_chooser.dart';
-
 import '../../../../utils/size_config.dart';
 import '../../../controllers/setup_account_controller.dart';
 

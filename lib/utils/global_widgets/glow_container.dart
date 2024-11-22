@@ -67,12 +67,12 @@ class _GlowContainerState extends State<GlowContainer> with SingleTickerProvider
           child: Transform.scale(
             scale: _animation.value,
             child: Container(
-              width: 700,
-              height: 700,
+              width: 900,
+              height: 900,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
-                  radius: 1.2,
+                  radius: 2, // old value = 1.2
                   center: Alignment.center,
                   colors: [
                     widget.color,
