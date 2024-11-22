@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../utils/colors.dart';
+import '../../../../utils/global_widgets/custom_appbar.dart';
 import '../../../../utils/global_widgets/glow_container.dart';
 import '../../../../utils/global_widgets/waves_background.dart';
 import '../../../../utils/size_config.dart';
-import '../widgets/nearest_pharm_view_body.dart';
+import '../widgets/stations_view_body.dart';
 
-class NearestPharmView extends StatelessWidget {
-  const NearestPharmView({super.key});
+class StationsView extends StatelessWidget {
+  const StationsView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppBar(
+        title: 'Stations',
+        onTap: () {
+          Get.back();
+        },
+      ),
       body: WavesBackground(
         bottomP: screenHeight(context) * 0.6,
         rightP: -screenWidth(context) * 1.5,
@@ -21,7 +29,7 @@ class NearestPharmView extends StatelessWidget {
           rightPosition: -screenWidth(context) * 0.9,
           color: AppColors.accentColor.withOpacity(0.2),
         ),
-        child: NearestPharmViewBody(),
+        child: const StationsViewBody(),
       ),
     );
   }

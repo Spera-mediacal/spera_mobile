@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
 
 import '../../../../utils/colors.dart';
 import '../../../../utils/size_config.dart';
+import '../../../routes/app_router.dart';
 import '../../home_view/widgets/home_container_button.dart';
 
 class BloodDonationSection extends StatelessWidget {
@@ -14,7 +16,6 @@ class BloodDonationSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
       children: [
         HomeContainerButton(
             onTap: () {},
@@ -25,7 +26,9 @@ class BloodDonationSection extends StatelessWidget {
             iconData: HugeIcons.strokeRoundedQrCode,
             color: AppColors.secAccentColor),
         HomeContainerButton(
-            onTap: () {},
+            onTap: () {
+              Get.toNamed(AppRoutes.stationsView);
+            },
             text: 'Donation Station',
             fontSize: 18,
             width: screenWidth(context) * 0.45,

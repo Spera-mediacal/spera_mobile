@@ -53,7 +53,7 @@ class ReminderViewBody extends StatelessWidget {
                                 hintText: 'details',
                                 prefixIcon: HugeIcons.strokeRoundedProfile,
                               ),
-                              Spacer(),
+                              const Spacer(),
                               ElevatedButton(
                                 onPressed: () {},
                                 style: ElevatedButton.styleFrom(
@@ -81,9 +81,10 @@ class ReminderViewBody extends StatelessWidget {
                       titleStyle: AppTextStyles.textStyle24,
                     );
                   },
-                  child: const Text(
+                  child: Text(
                     'Add reminder',
-                    style: AppTextStyles.textStyle19,
+                    style: AppTextStyles.textStyle19
+                        .copyWith(color: AppColors.accentColor),
                   ),
                 ),
               ],

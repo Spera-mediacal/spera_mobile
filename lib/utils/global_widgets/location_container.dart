@@ -44,7 +44,7 @@ class LocationContainer extends StatelessWidget {
                 ),
               ),
               Text(
-                '$subTitle km',
+                subTitle,
                 style: AppTextStyles.textStyle24.copyWith(
                   color: colorSubTitle ?? AppColors.whiteColor,
                 ),

@@ -10,6 +10,7 @@ import 'package:spera_mobile/app/views/home_view/views/x_ray_view.dart';
 
 import '../views/bottom_naviagtoion_bar/views/bottom_navigation_bar_view.dart';
 import '../views/onboarding_view/views/onboarding_view.dart';
+import '../views/blood_donation_view/view/stations_views.dart';
 
 class AppRoutes {
   static String loginViewPath = '/login';
@@ -22,6 +23,7 @@ class AppRoutes {
   static String doctorsViewPath = '/doctors';
   static String xRayViewPath = '/xRay';
   static String profielViewPath = '/profile';
+  static String stationsView = '/stationView';
 
   static List<GetPage<dynamic>> getRoutes() {
     return [
@@ -48,19 +50,24 @@ class AppRoutes {
       GetPage(
         name: speraBotViewPath,
         page: () => const SperaBotView(),
-      ),GetPage(
+      ),
+      GetPage(
         name: medicinesViewPath,
         page: () => const MedicinesView(),
-      ),GetPage(
+      ),
+      GetPage(
         name: doctorsViewPath,
         page: () => const DoctorsView(),
-      ),GetPage(
+      ),
+      GetPage(
         name: xRayViewPath,
         page: () => const XRayView(),
-      ),GetPage(
+      ),
+      GetPage(
         name: profielViewPath,
         page: () => const ProfileView(),
       ),
+      GetPage(name: stationsView, page: () => const StationsView(),),
     ];
   }
 }
