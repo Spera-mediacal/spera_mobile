@@ -12,7 +12,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: WavesBackground(
-        bottomP: screenHeight(context) * 0.5,
+        bottomP: screenHeight(context) * 0.6,
         rightP: -screenWidth(context) * 1.5,
         wavesColor: AppColors.whiteColor,
         externalWidget:   GlowContainer(

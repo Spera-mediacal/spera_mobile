@@ -13,15 +13,15 @@ class BloodDonationView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: WavesBackground(
-        bottomP: -screenHeight(context) * 3, // high value to hide the lines
-        rightP: -screenWidth(context) * 3,
+        bottomP: screenHeight(context) * 0.6,
+        rightP: -screenWidth(context) * 1.5,
         wavesColor: AppColors.whiteColor,
         externalWidget:   GlowContainer(
           bottomPosition: -screenHeight(context)*0.3,
           rightPosition: -screenWidth(context)*0.9,
           color: AppColors.accentColor.withOpacity(0.2),
         ),
-        child: BloodDonationViewBody(),
+        child: const BloodDonationViewBody(),
       ),
     );
   }
