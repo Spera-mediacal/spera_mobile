@@ -21,7 +21,9 @@ class HomeContainersSection extends StatelessWidget {
           text: 'Check\nYour\nX-Rays',
           width: screenWidth(context) * 0.45,
           height: screenHeight(context) * 0.25,
-          onTap: () {},
+          onTap: () {
+            Get.toNamed(AppRoutes.xRayViewPath);
+          },
           color: AppColors.accentColor,
           fontSize: 30,
           iconData: HugeIcons.strokeRoundedPulse01,
