@@ -2,14 +2,99 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:path_provider/path_provider.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:spera_mobile/utils/colors.dart';
 import 'package:spera_mobile/utils/global_widgets/glass_container.dart';
 import 'package:spera_mobile/utils/global_widgets/logo_widget.dart';
 import 'package:spera_mobile/utils/size_config.dart';
 import 'package:spera_mobile/utils/text_styles.dart';
+import 'dart:io';
 
-class ProfileViewBody extends StatelessWidget {
+import '../../../services/shared_pref_service/sahred_pref_service.dart';
+
+class ProfileViewBody extends StatefulWidget {
   const ProfileViewBody({super.key});
+
+  @override
+  State<ProfileViewBody> createState() => _ProfileViewBodyState();
+}
+
+class _ProfileViewBodyState extends State<ProfileViewBody> {
+  String? userName;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserName();
+  }
+
+  Future<void> _loadUserName() async {
+    final name = await SharedPreferencesHelper.getName();
+    setState(() {
+      userName = name ?? 'Guest';
+    });
+  }
+
+  Future<void> _createAndSharePDF() async {
+    final pdf = pw.Document();
+
+    pdf.addPage(
+      pw.Page(
+        pageFormat: PdfPageFormat.a4,
+        build: (pw.Context context) {
+          return pw.Column(
+            crossAxisAlignment: pw.CrossAxisAlignment.start,
+            children: [
+              pw.Center(
+                child: pw.Text(
+                  'Profile Information',
+                  style: pw.TextStyle(
+                    fontSize: 24,
+                    fontWeight: pw.FontWeight.bold,
+                  ),
+                ),
+              ),
+              pw.SizedBox(height: 20),
+              pw.Text('Name: $userName',
+                  style: const pw.TextStyle(fontSize: 16)),
+              pw.SizedBox(height: 10),
+              pw.Text('Personal Information:',
+                  style: pw.TextStyle(
+                      fontSize: 18, fontWeight: pw.FontWeight.bold)),
+              pw.SizedBox(height: 10),
+              pw.Text('Age: 22', style: const pw.TextStyle(fontSize: 16)),
+              pw.Text('Points: 22', style: const pw.TextStyle(fontSize: 16)),
+              pw.Text('Donations: 22', style: const pw.TextStyle(fontSize: 16)),
+              pw.SizedBox(height: 20),
+              pw.Text('Health Information:',
+                  style: pw.TextStyle(
+                      fontSize: 18, fontWeight: pw.FontWeight.bold)),
+              pw.SizedBox(height: 10),
+              pw.Text('BMI: 24 (Over Weight)',
+                  style: const pw.TextStyle(fontSize: 16)),
+              pw.Text('Blood Type: A+',
+                  style: const pw.TextStyle(fontSize: 16)),
+              pw.Text('Height: 180 cm',
+                  style: const pw.TextStyle(fontSize: 16)),
+              pw.Text('Weight: 90 kg', style: const pw.TextStyle(fontSize: 16)),
+            ],
+          );
+        },
+      ),
+    );
+
+    final directory = await getApplicationDocumentsDirectory();
+    final file = File('${directory.path}/profile.pdf');
+    await file.writeAsBytes(await pdf.save());
+
+    await Share.shareFiles(
+      [file.path],
+      text: 'My Profile Information',
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +121,39 @@ class ProfileViewBody extends StatelessWidget {
         child: Column(
           children: [
             _buildAppBar(context),
-            SizedBox(height: screenHeight(context) * 0.03),
-            const CircleAvatar(
-              radius: 70,
-              backgroundImage: NetworkImage(
-                'https://example.com/profile.jpg', // Replace with a safe, default image
+            SizedBox(height: screenHeight(context) * 0.02),
+            if (userName != null)
+              Text(
+                userName!,
+                style: AppTextStyles.textStyle35.copyWith(
+                  color: AppColors.whiteColor.withOpacity(0.8),
+                ),
               ),
+            SizedBox(height: screenHeight(context) * 0.02),
+            Stack(
+              alignment: Alignment.bottomRight,
+              children: [
+                const CircleAvatar(
+                  radius: 70,
+                  backgroundImage: NetworkImage(
+                    'https://example.com/profile.jpg',
+                  ),
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                    color: AppColors.accentColor,
+                    shape: BoxShape.circle,
+                  ),
+                  child: IconButton(
+                    onPressed: _createAndSharePDF,
+                    icon: const HugeIcon(
+                      icon: HugeIcons.strokeRoundedShare01,
+                      color: AppColors.whiteColor,
+                      size: 24,
+                    ),
+                  ),
+                ),
+              ],
             ),
             SizedBox(height: screenHeight(context) * 0.03),
             _buildStatsRow(context),
@@ -146,13 +258,13 @@ class ProfileViewBody extends StatelessWidget {
   }
 
   Widget _buildGlassCard(
-      BuildContext context, {
-        required double height,
-        required double width,
-        required String title,
-        required String value,
-        required String subtitle,
-      }) {
+    BuildContext context, {
+    required double height,
+    required double width,
+    required String title,
+    required String value,
+    required String subtitle,
+  }) {
     return GlassContainer(
       height: height,
       width: width,

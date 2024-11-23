@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../routes/app_router.dart';
+import '../services/shared_pref_service/sahred_pref_service.dart';
 
 class AuthController extends GetxController {
   final nameController = TextEditingController();
@@ -21,6 +22,12 @@ class AuthController extends GetxController {
 
   // Get Supabase instance
   final supabase = Supabase.instance.client;
+
+
+  Future<void> saveUserData({required String name,required String phone}) async {
+    await SharedPreferencesHelper.saveName(nameController.text);
+    await SharedPreferencesHelper.savePhone(phoneController.text);
+  }
 
   // Toggle obscure password
   toggleLoginPasswordObscure() {
@@ -109,6 +116,7 @@ class AuthController extends GetxController {
 
         // If signup successful, store additional user data
         if (response.user != null) {
+          await saveUserData(name: nameController.text,phone: phoneController.text);
           Get.toNamed(AppRoutes.loginViewPath);
           Get.snackbar(
             'Success',
@@ -154,7 +162,7 @@ class AuthController extends GetxController {
         );
 
         if (response.user != null) {
-          Get.snackbar(
+           Get.snackbar(
             'Success',
             'Logged in successfully!',
             backgroundColor: Colors.green,

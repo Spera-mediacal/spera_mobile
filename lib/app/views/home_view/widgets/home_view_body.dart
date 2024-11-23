@@ -30,7 +30,7 @@ class HomeViewBody extends StatelessWidget {
             ),
             (screenHeight(context) * 0.035).sh,
             const WelcomeText(
-              name: 'Aburaya',
+
             ),
             (screenHeight(context) * 0.035).sh,
             const HomeContainersSection(),
