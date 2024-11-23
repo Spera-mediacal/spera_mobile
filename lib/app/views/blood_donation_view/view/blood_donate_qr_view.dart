@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:spera_mobile/utils/global_widgets/custom_appbar.dart';
 
 import '../../../../utils/colors.dart';
 import '../../../../utils/global_widgets/glow_container.dart';
@@ -14,12 +12,7 @@ class BloodDonateQrView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
-        title: 'Donate',
-        onTap: () {
-          Get.back();
-        },
-      ),
+
       body: WavesBackground(
         bottomP: screenHeight(context) * 0.6,
         rightP: -screenWidth(context) * 1.5,

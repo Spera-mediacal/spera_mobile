@@ -1,10 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:spera_mobile/app/routes/app_router.dart';
 import 'package:spera_mobile/utils/colors.dart';
+import 'package:timezone/data/latest.dart' as tz;
+ import 'app/services/notification_helper.dart';
 
-void main() {
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  tz.initializeTimeZones();
+
+  const AndroidInitializationSettings initializationSettingsAndroid =
+  AndroidInitializationSettings('@mipmap/ic_launcher');
+
+  const InitializationSettings initializationSettings =
+  InitializationSettings(android: initializationSettingsAndroid);
+
+  await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+
   runApp(const MyApp());
 }
 
@@ -31,6 +47,7 @@ class MyApp extends StatelessWidget {
         ),
         fontFamily: 'Manjari',
         scaffoldBackgroundColor: AppColors.bgColor,
+
       ),
     );
     // hello

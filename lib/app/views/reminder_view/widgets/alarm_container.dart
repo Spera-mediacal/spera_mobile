@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
 
 import '../../../../utils/colors.dart';
 import '../../../../utils/size_config.dart';
 import '../../../../utils/text_styles.dart';
-import '../../../controllers/alarm_controller.dart';
+import '../../../controllers/remider_controller.dart';
 
 class AlarmContainer extends StatelessWidget {
-  const AlarmContainer({super.key, required this.name, required this.count});
+  const AlarmContainer({super.key, required this.name, required this.details});
 
   final String name;
-  final int count;
+  final String details;
 
   @override
   Widget build(BuildContext context) {
-    final AlarmController controller = Get.put(AlarmController());
 
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 5),
@@ -47,7 +45,7 @@ class AlarmContainer extends StatelessWidget {
                 style: AppTextStyles.textStyle24,
               ),
               Text(
-                '$count pill per day', // String subTitle
+                details, // String subTitle
                 style: AppTextStyles.textStyle15.copyWith(
                   color: AppColors.accentColor.withOpacity(0.5),
                 ),
@@ -56,16 +54,15 @@ class AlarmContainer extends StatelessWidget {
           ),
           const Spacer(),
           GestureDetector(
-            onTap: controller.toggleIconColor,
-            child: Obx(
-              () => Center(
+            onTap: (){},
+            child: const Center(
                 child: Icon(
                   HugeIcons.strokeRoundedAlarmClock,
                   size: 32,
-                  color: controller.iconColor.value,
+                  color: AppColors.accentColor,
                 ),
               ),
-            ),
+
           ),
         ],
       ),

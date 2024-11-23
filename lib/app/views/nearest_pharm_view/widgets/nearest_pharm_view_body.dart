@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:spera_mobile/app/controllers/location_controller.dart';
 import 'package:spera_mobile/utils/colors.dart';
 
 import '../../../../utils/global_widgets/dash_vertical_line.dart';
@@ -7,10 +9,14 @@ import '../../../../utils/size_config.dart';
 import '../../../../utils/text_styles.dart';
 
 class NearestPharmViewBody extends StatelessWidget {
-  const NearestPharmViewBody({super.key});
+    NearestPharmViewBody({super.key});
+  final LocationController locationController = Get.put(LocationController());
 
   @override
   Widget build(BuildContext context) {
+    locationController.getLocation();
+    print(locationController.latitude.value);
+    print(locationController.longitude.value);
     return SafeArea(
         child: Padding(
       padding: const EdgeInsets.all(

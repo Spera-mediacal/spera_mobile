@@ -24,8 +24,9 @@ android {
         applicationId = "com.example.spera_mobile"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
+        minSdkVersion 21
+        targetSdkVersion 33  // Update this to 33
+        compileSdkVersion 34 // Add this line if not present
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
