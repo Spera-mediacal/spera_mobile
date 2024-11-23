@@ -203,7 +203,7 @@ class AuthController extends GetxController {
     try {
       isLoading.value = true;
       await supabase.auth.signOut();
-      Get.offAllNamed('/login'); // Replace with your login route
+      Get.offAllNamed(AppRoutes.loginViewPath); // Replace with your login route
       Get.snackbar(
         'Success',
         'Logged out successfully',
