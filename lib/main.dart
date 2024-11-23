@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:spera_mobile/app/routes/app_router.dart';
 import 'package:spera_mobile/utils/colors.dart';
 import 'package:timezone/data/latest.dart' as tz;
- import 'app/services/notification_helper.dart';
+ import 'app/services/notification_service/notification_helper.dart';
 
 
 void main() async {

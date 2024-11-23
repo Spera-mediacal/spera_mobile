@@ -21,7 +21,7 @@ class StationsView extends StatelessWidget {
           rightPosition: -screenWidth(context) * 0.9,
           color: AppColors.accentColor.withOpacity(0.2),
         ),
-        child: const StationsViewBody(),
+        child:   StationsViewBody(),
       ),
     );
   }

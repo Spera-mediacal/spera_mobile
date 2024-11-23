@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../../data/local_database_helper/database_helper.dart';
 import '../models/reminder.dart';
-import '../services/notification_helper.dart';
+import '../services/notification_service/notification_helper.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
