@@ -16,8 +16,7 @@ class LoginViewBody extends StatelessWidget {
 
   final authController = Get.put(AuthController());
 
-//hello
-  @override
+   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Padding(
@@ -69,14 +68,16 @@ class LoginViewBody extends StatelessWidget {
             (screenHeight(context) * 0.05).sh,
             CustomButton(
               text: 'Login',
-              onTap: () {},
+              onTap: () {
+              authController.login();
+              },
               width: screenWidth(context) * 0.5,
               height: screenHeight(context) * 0.07,
             ),
             (screenHeight(context) * 0.006).sh,
             TextButton(
               onPressed: () {
-                Get.toNamed(AppRoutes.registerViewPath);
+                Get.offNamed(AppRoutes.registerViewPath);
               },
               child: Text(
                 'Create New Account',

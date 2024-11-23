@@ -48,40 +48,44 @@ class RegisterViewBody extends StatelessWidget {
                 controller: authController.phoneController,
                 validator: authController.validatePhone,
               ),
-              Obx((){
+              Obx(() {
                 return CustomTextField(
                   hintText: 'Password',
                   isPassword: true,
-                  prefixIcon: HugeIcons.strokeRoundedLockPassword,
+                  prefixIcon: HugeIcons.strokeRoundedSquareLock01,
                   controller: authController.passwordController,
                   validator: authController.validatePassword,
-                  onToggleObscureText: authController.toggleRegisterPasswordObscure,
+                  onToggleObscureText:
+                      authController.toggleRegisterPasswordObscure,
                   obscureText: authController.isRegisterPasswordObscure.value,
                 );
               }),
-              Obx((){
+              Obx(() {
                 return CustomTextField(
                   hintText: 'Confirm Password',
                   isPassword: true,
-                  prefixIcon: HugeIcons.strokeRoundedValidation,
+                  prefixIcon: HugeIcons.strokeRoundedSquareLockCheck01,
                   controller: authController.confirmPasswordController,
                   validator: authController.validatePassword,
-                  obscureText: authController.isRegisterConfirmPasswordObscure.value,
-                  onToggleObscureText: authController.toggleRegisterConfirmPasswordObscure,
+                  obscureText:
+                      authController.isRegisterConfirmPasswordObscure.value,
+                  onToggleObscureText:
+                      authController.toggleRegisterConfirmPasswordObscure,
                 );
               }),
-
               (screenHeight(context) * 0.05).sh,
               CustomButton(
                 text: 'Register',
-                onTap: () {},
+                onTap: () {
+                  authController.register();
+                },
                 width: screenWidth(context) * 0.5,
                 height: screenHeight(context) * 0.07,
               ),
               (screenHeight(context) * 0.006).sh,
               TextButton(
                 onPressed: () {
-                  Get.toNamed(AppRoutes.loginViewPath);
+                  Get.offNamed(AppRoutes.loginViewPath);
                 },
                 child: Text(
                   'Already Have An Account',

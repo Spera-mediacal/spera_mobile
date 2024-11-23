@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:spera_mobile/app/controllers/setup_account_controller.dart';
 
 import '../../../../utils/colors.dart';
 import '../../../../utils/size_config.dart';
 import '../../../../utils/text_styles.dart';
-import '../../../controllers/auth_controller.dart';
 
 class BloodTypeSection extends StatelessWidget {
   BloodTypeSection({super.key});
-  final AuthController controller = Get.put(AuthController());
+  final SetupAccountController controller = Get.put(SetupAccountController());
 
   @override
   Widget build(BuildContext context) {

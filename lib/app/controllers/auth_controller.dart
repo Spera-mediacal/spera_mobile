@@ -9,20 +9,12 @@ class AuthController extends GetxController {
   final loginPasswordController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
-  var isPositive = true.obs; // Stores the Rh factor (true for positive, false for negative)
   var isLoginPasswordObscure = false.obs;
   var isRegisterPasswordObscure = false.obs;
   var isRegisterConfirmPasswordObscure = false.obs;
 
-  var selectedBloodType = ''.obs;
 
-  void selectBloodType(String bloodType) {
-    selectedBloodType.value = bloodType;
-  }
 
-  void toggleSign() {
-    isPositive.value = !isPositive.value;
-  }
 
   toggleLoginPasswordObscure() {
     isLoginPasswordObscure.value = !isLoginPasswordObscure.value;
@@ -37,7 +29,6 @@ class AuthController extends GetxController {
         !isRegisterConfirmPasswordObscure.value;
   }
 
-  // Validation messages String? Function(String?)?
   String? validateEmail(String? value) {
     if (value == null || value.isEmpty) {
       return 'Please enter your email';
@@ -72,7 +63,6 @@ class AuthController extends GetxController {
     return null;
   }
 
-  // Register logic
   void register() {
     final emailError = validateEmail(emailController.text);
     final passwordError = validatePassword(passwordController.text);
@@ -94,7 +84,6 @@ class AuthController extends GetxController {
     }
   }
 
-  // Login logic
   void login() {
     final emailError = validateEmail(emailController.text);
     final passwordError = validatePassword(passwordController.text);

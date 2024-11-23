@@ -57,7 +57,7 @@ class CustomTextField extends StatelessWidget {
             suffixIcon: isPassword
                 ? IconButton(
                     icon: Icon(
-                      obscureText
+                      !obscureText
                           ? HugeIcons.strokeRoundedViewOff
                           : HugeIcons.strokeRoundedView,
                       color: AppColors.accentColor,
