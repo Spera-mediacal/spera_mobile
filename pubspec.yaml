@@ -51,7 +51,8 @@ dependencies:
   dio: ^5.7.0
   geocoding: ^3.0.0
   envied: ^1.0.0
-  supabase_flutter: ^2.8.1
+  supabase_flutter: ^2.6.0
+  shared_preferences: ^2.3.3
 
 dev_dependencies:
   flutter_test:

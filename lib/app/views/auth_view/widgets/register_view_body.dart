@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:spera_mobile/app/routes/app_router.dart';
-
 import '../../../../utils/global_widgets/custom_button.dart';
 import '../../../../utils/global_widgets/custom_text_field.dart';
 import '../../../../utils/global_widgets/logo_widget.dart';
@@ -14,88 +13,112 @@ class RegisterViewBody extends StatelessWidget {
   RegisterViewBody({super.key});
 
   final authController = Get.put(AuthController());
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
         padding: EdgeInsets.symmetric(
-            vertical: 10, horizontal: screenWidth(context) * 0.08),
+          vertical: 10,
+          horizontal: screenWidth(context) * 0.08,
+        ),
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              (screenHeight(context) * 0.1).sh,
-              LogoWidget(
-                width: screenWidth(context) * 0.3,
-                height: screenHeight(context) * 0.15,
-              ),
-              (screenHeight(context) * 0.03).sh,
-              CustomTextField(
-                hintText: 'Name',
-                prefixIcon: HugeIcons.strokeRoundedUserSharing,
-                controller: authController.nameController,
-                validator: authController.validateName,
-              ),
-              CustomTextField(
-                hintText: 'Email',
-                prefixIcon: HugeIcons.strokeRoundedMail01,
-                controller: authController.emailController,
-                validator: authController.validateName,
-              ),
-              CustomTextField(
-                hintText: 'Phone',
-                prefixIcon: HugeIcons.strokeRoundedCallPaused02,
-                controller: authController.phoneController,
-                validator: authController.validatePhone,
-              ),
-              Obx(() {
-                return CustomTextField(
-                  hintText: 'Password',
-                  isPassword: true,
-                  prefixIcon: HugeIcons.strokeRoundedSquareLock01,
-                  controller: authController.passwordController,
-                  validator: authController.validatePassword,
-                  onToggleObscureText:
-                      authController.toggleRegisterPasswordObscure,
-                  obscureText: authController.isRegisterPasswordObscure.value,
-                );
-              }),
-              Obx(() {
-                return CustomTextField(
-                  hintText: 'Confirm Password',
-                  isPassword: true,
-                  prefixIcon: HugeIcons.strokeRoundedSquareLockCheck01,
-                  controller: authController.confirmPasswordController,
-                  validator: authController.validatePassword,
-                  obscureText:
-                      authController.isRegisterConfirmPasswordObscure.value,
-                  onToggleObscureText:
-                      authController.toggleRegisterConfirmPasswordObscure,
-                );
-              }),
-              (screenHeight(context) * 0.05).sh,
-              CustomButton(
-                text: 'Register',
-                onTap: () {
-                  authController.register();
-                },
-                width: screenWidth(context) * 0.5,
-                height: screenHeight(context) * 0.07,
-              ),
-              (screenHeight(context) * 0.006).sh,
-              TextButton(
-                onPressed: () {
-                  Get.offNamed(AppRoutes.loginViewPath);
-                },
-                child: Text(
-                  'Already Have An Account',
-                  style: AppTextStyles.textStyle19.copyWith(),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                (screenHeight(context) * 0.1).sh,
+                LogoWidget(
+                  width: screenWidth(context) * 0.3,
+                  height: screenHeight(context) * 0.15,
                 ),
-              ),
-            ],
+                (screenHeight(context) * 0.03).sh,
+                CustomTextField(
+                  hintText: 'Name',
+                  prefixIcon: HugeIcons.strokeRoundedUserSharing,
+                  controller: authController.nameController,
+                  validator: authController.validateName,
+                  textInputAction: TextInputAction.next,
+                ),
+                CustomTextField(
+                  hintText: 'Email',
+                  prefixIcon: HugeIcons.strokeRoundedMail01,
+                  controller: authController.emailController,
+                  validator: authController.validateEmail,
+                  keyboardType: TextInputType.emailAddress,
+                  textInputAction: TextInputAction.next,
+                ),
+                CustomTextField(
+                  hintText: 'Phone',
+                  prefixIcon: HugeIcons.strokeRoundedCallPaused02,
+                  controller: authController.phoneController,
+                  validator: authController.validatePhone,
+                  keyboardType: TextInputType.phone,
+                  textInputAction: TextInputAction.next,
+                ),
+                Obx(() {
+                  return CustomTextField(
+                    hintText: 'Password',
+                    isPassword: true,
+                    prefixIcon: HugeIcons.strokeRoundedSquareLock01,
+                    controller: authController.passwordController,
+                    validator: authController.validatePassword,
+                    onToggleObscureText: authController.toggleRegisterPasswordObscure,
+                    obscureText: authController.isRegisterPasswordObscure.value,
+                    textInputAction: TextInputAction.next,
+                  );
+                }),
+                Obx(() {
+                  return CustomTextField(
+                    hintText: 'Confirm Password',
+                    isPassword: true,
+                    prefixIcon: HugeIcons.strokeRoundedSquareLockCheck01,
+                    controller: authController.confirmPasswordController,
+                    validator: (value) {
+                      if (value != authController.passwordController.text) {
+                        return 'Passwords do not match';
+                      }
+                      return authController.validatePassword(value);
+                    },
+                    obscureText: authController.isRegisterConfirmPasswordObscure.value,
+                    onToggleObscureText: authController.toggleRegisterConfirmPasswordObscure,
+                    textInputAction: TextInputAction.done,
+                    onFieldSubmitted: (_) => _handleRegister(),
+                  );
+                }),
+                (screenHeight(context) * 0.05).sh,
+                Obx(() {
+                  return authController.isLoading.value
+                      ? const CircularProgressIndicator()
+                      : CustomButton(
+                    text: 'Register',
+                    onTap: _handleRegister,
+                    width: screenWidth(context) * 0.5,
+                    height: screenHeight(context) * 0.07,
+                  );
+                }),
+                (screenHeight(context) * 0.006).sh,
+                TextButton(
+                  onPressed: () {
+                    Get.offNamed(AppRoutes.loginViewPath);
+                  },
+                  child: const Text(
+                    'Already Have An Account',
+                    style: AppTextStyles.textStyle19,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
+  }
+
+  void _handleRegister() {
+    if (_formKey.currentState?.validate() ?? false) {
+      authController.register();
+    }
   }
 }

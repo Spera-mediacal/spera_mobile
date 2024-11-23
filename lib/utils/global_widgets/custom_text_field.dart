@@ -15,6 +15,9 @@ class CustomTextField extends StatelessWidget {
   final VoidCallback? onToggleObscureText;
   final double? width;
   final double? height;
+  final TextInputType? keyboardType;
+  final TextInputAction? textInputAction;
+  final Function(String)? onFieldSubmitted;
 
   const CustomTextField({
     super.key,
@@ -26,7 +29,7 @@ class CustomTextField extends StatelessWidget {
     this.obscureText = true,
     this.onToggleObscureText,
     this.width,
-    this.height,
+    this.height, this.keyboardType, this.textInputAction, this.onFieldSubmitted,
   });
 
   @override
@@ -40,6 +43,9 @@ class CustomTextField extends StatelessWidget {
           controller: controller,
           obscureText: isPassword ? obscureText : false,
           validator: validator,
+          keyboardType: keyboardType,
+          textInputAction: textInputAction,
+          onFieldSubmitted: onFieldSubmitted,
           decoration: InputDecoration(
            // floatingLabelBehavior: FloatingLabelBehavior.always, m4 3arf eh lzmtha
             hintText: hintText,
