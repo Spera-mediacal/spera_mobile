@@ -1,12 +1,10 @@
+import 'package:alarm/alarm.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
+
 import '../../data/local_database_helper/database_helper.dart';
 import '../models/reminder.dart';
-import '../services/notification_service/notification_helper.dart';
-import 'package:timezone/data/latest.dart' as tz;
-import 'package:timezone/timezone.dart' as tz;
 
 class ReminderController extends GetxController {
   final TextEditingController medicineName = TextEditingController();
@@ -18,6 +16,7 @@ class ReminderController extends GetxController {
   void onInit() {
     super.onInit();
     fetchReminders();
+    Alarm.init();
   }
 
   Future<void> fetchReminders() async {
@@ -36,11 +35,10 @@ class ReminderController extends GetxController {
     }
   }
 
-  Future<void> scheduleNotification(
-      String title, String body, TimeOfDay time) async {
+  Future<void> scheduleAlarm(String title, String body, TimeOfDay time) async {
     final now = DateTime.now();
 
-    final scheduledDate = DateTime(
+    var scheduledDateTime = DateTime(
       now.year,
       now.month,
       now.day,
@@ -48,22 +46,28 @@ class ReminderController extends GetxController {
       time.minute,
     );
 
-    await flutterLocalNotificationsPlugin.zonedSchedule(
-      0,
-      title,
-      body,
-      tz.TZDateTime.from(scheduledDate, tz.local),
-      const NotificationDetails(
-        android: AndroidNotificationDetails(
-          'reminder_channel',
-          'Reminders',
-          channelDescription: 'Reminder Notifications',
-        ),
+    if (scheduledDateTime.isBefore(now)) {
+      scheduledDateTime = scheduledDateTime.add(const Duration(days: 1));
+    }
+
+    final alarmSettings = AlarmSettings(
+      id: reminders.length,
+      dateTime: scheduledDateTime,
+      assetAudioPath: 'assets/media/audio/alarm.mp3',
+      loopAudio: true,
+      vibrate: true,
+      volume: 0.8,
+      fadeDuration: 3.0,
+      androidFullScreenIntent: true,
+      notificationSettings: NotificationSettings(
+        title: title,
+        body: body,
+        stopButton: 'Stop Alarm',
+        icon: 'notification_icon',
       ),
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
-      androidScheduleMode: AndroidScheduleMode.alarmClock,
     );
+
+    await Alarm.set(alarmSettings: alarmSettings);
   }
 
   Future<void> pickTime(BuildContext context) async {
@@ -75,14 +79,13 @@ class ReminderController extends GetxController {
       final formattedTime = picked.format(context);
       selectedTime.value = formattedTime;
 
-      await scheduleNotification(
+      await scheduleAlarm(
         'Medicine Reminder',
         'It\'s time to take your medicine!',
         picked,
       );
     }
   }
-
 
   @override
   void onClose() {

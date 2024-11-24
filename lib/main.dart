@@ -1,3 +1,4 @@
+import 'package:alarm/alarm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -17,6 +18,9 @@ void main() async {
     await SharedPreferences.getInstance();
 
     tz.initializeTimeZones();
+
+
+    await Alarm.init();
 
     const AndroidInitializationSettings initializationSettingsAndroid =
     AndroidInitializationSettings('@mipmap/ic_launcher');

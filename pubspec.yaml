@@ -56,6 +56,7 @@ dependencies:
   pdf: ^3.10.8
   path_provider: ^2.1.2
   share_plus: ^7.2.2
+  alarm: ^4.0.12
 
 dev_dependencies:
   flutter_test:
@@ -86,6 +87,7 @@ flutter:
     - assets/media/
     - assets/media/onboarding/
     - assets/data/pharmacies.json
+    - assets/media/audio/alarm.mp3
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
