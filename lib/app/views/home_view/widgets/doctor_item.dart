@@ -21,7 +21,7 @@ class DoctorItem extends StatelessWidget {
       radius: 50,
       splashColor: AppColors.accentColor,
       onTap: () {
-        // Handle call action (e.g., launch phone dialer)
+
       },
       child: Container(
         alignment: Alignment.center,

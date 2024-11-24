@@ -31,7 +31,7 @@ class BloodTypeSection extends StatelessWidget {
               return Column(
                 children: [
                   InkWell(
-                    onTap: controller.toggleSign, // Toggle to negative
+                    onTap: controller.toggleSign,
                     child: CircleAvatar(
                       radius: 15,
                       backgroundColor: !controller.isPositive.value
@@ -47,7 +47,7 @@ class BloodTypeSection extends StatelessWidget {
                   ),
                   (screenHeight(context) * 0.01).sh,
                   InkWell(
-                    onTap: controller.toggleSign, // Toggle to negative
+                    onTap: controller.toggleSign,
                     child: CircleAvatar(
 
                       radius: 15,

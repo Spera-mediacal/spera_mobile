@@ -31,8 +31,7 @@ class XRayController extends GetxController {
 
     try {
       _isAnalyzing.value = true;
-      // Add your image analysis logic here
-      await Future.delayed(const Duration(seconds: 2)); // Simulated delay
+      await Future.delayed(const Duration(seconds: 2));
       Get.snackbar(
         'Success',
         'Image analyzed successfully',

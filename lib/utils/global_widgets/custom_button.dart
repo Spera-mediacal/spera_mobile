@@ -12,15 +12,15 @@ class CustomButton extends StatelessWidget {
     required this.width,
     required this.height,
     this.isEnabled = true,
-    this.borderRadius, // Add this to handle disabled state
+    this.borderRadius,
   });
 
   final String text;
   final Color? color;
-  final Function()? onTap; // Make it nullable to handle disabled state
+  final Function()? onTap;
   final double width;
   final double height;
-  final bool isEnabled; // Add this to handle disabled state
+  final bool isEnabled;
   final double? borderRadius;
 
   @override
@@ -32,9 +32,9 @@ class CustomButton extends StatelessWidget {
         ),
         backgroundColor: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.disabled)) {
-            return AppColors.accentColor.withOpacity(0.5); // Disabled color
+            return AppColors.accentColor.withOpacity(0.5);
           }
-          return color ?? AppColors.accentColor; // Normal color
+          return color ?? AppColors.accentColor;
         }),
         shape: WidgetStateProperty.all(
           RoundedRectangleBorder(
@@ -42,7 +42,7 @@ class CustomButton extends StatelessWidget {
           ),
         ),
       ),
-      onPressed: isEnabled ? onTap : null, // Use the passed onTap function
+      onPressed: isEnabled ? onTap : null,
       child: Text(
         text,
         style: AppTextStyles.textStyle24.copyWith(

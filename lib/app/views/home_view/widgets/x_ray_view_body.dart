@@ -69,7 +69,7 @@ class XRayViewBody extends StatelessWidget {
                 onTap: controller.pickImage,
                 width: screenWidth(context) * 0.5,
                 height: screenHeight(context) * 0.06,
-                isEnabled: !controller.isAnalyzing, // Disable during analysis
+                isEnabled: !controller.isAnalyzing,
               ),
               SizedBox(height: screenHeight(context) * 0.02),
               Obx(

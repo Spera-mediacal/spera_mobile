@@ -6,7 +6,6 @@ import '../size_config.dart';
 import '../text_styles.dart';
 
 class CustomInfoContainer extends StatelessWidget {
-  // reusable widget in another view
   const CustomInfoContainer({
     super.key,
     required this.title,

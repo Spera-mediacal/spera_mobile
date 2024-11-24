@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import '../colors.dart';
 
 class DashedVerticalLine extends StatelessWidget {
-  final double dashHeight; // Height of each dash
-  final double dashSpace; // Space between dashes
-  final Color lineColor; // Line color
+  final double dashHeight;
+  final double dashSpace;
+  final Color lineColor;
 
-  // Constructor
   DashedVerticalLine({
     this.dashHeight = 5,
     this.dashSpace = 12,
@@ -17,7 +16,7 @@ class DashedVerticalLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      size: const Size(2, 70), // Vertical line with small width
+      size: const Size(2, 70),
       painter: _DashedVerticalLinePainter(dashHeight, dashSpace, lineColor),
     );
   }
@@ -39,7 +38,6 @@ class _DashedVerticalLinePainter extends CustomPainter {
 
     double startY = 0;
 
-    // Draw dashes vertically
     while (startY < size.height) {
       canvas.drawLine(Offset(0, startY), Offset(0, startY + dashHeight), paint);
       startY += dashHeight + dashSpace;

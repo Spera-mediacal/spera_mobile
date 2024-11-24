@@ -2,7 +2,7 @@ class Reminder {
   final int? id;
   final String name;
   final String details;
-  final String time; // New field for storing time
+  final String time;
 
   Reminder({
     this.id,

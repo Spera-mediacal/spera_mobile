@@ -6,7 +6,7 @@ class LocationController extends GetxController {
   var latitude = 0.0.obs;
   var longitude = 0.0.obs;
   var cityName = "Unknown".obs;
-  var isLoading = true.obs; // To show/hide progress indicator
+  var isLoading = true.obs;
 
   @override
   void onInit() {
@@ -55,6 +55,6 @@ class LocationController extends GetxController {
       stationLat,
       stationLon,
     ) /
-        1000; // Convert meters to kilometers
+        1000;
   }
 }

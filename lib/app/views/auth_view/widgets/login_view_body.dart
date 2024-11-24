@@ -62,7 +62,7 @@ class LoginViewBody extends StatelessWidget {
                   children: [
                     TextButton(
                       onPressed: () {
-                        // TODO: Implement forgot password
+
                       },
                       child: Text(
                         'Forgot Password ?',

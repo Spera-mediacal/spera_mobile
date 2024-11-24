@@ -17,10 +17,8 @@ class AuthController extends GetxController {
   var isRegisterPasswordObscure = false.obs;
   var isRegisterConfirmPasswordObscure = false.obs;
 
-  // Loading state
   var isLoading = false.obs;
 
-  // Get Supabase instance
   final supabase = Supabase.instance.client;
 
 
@@ -29,7 +27,6 @@ class AuthController extends GetxController {
     await SharedPreferencesHelper.savePhone(phoneController.text);
   }
 
-  // Toggle obscure password
   toggleLoginPasswordObscure() {
     isLoginPasswordObscure.value = !isLoginPasswordObscure.value;
   }
@@ -43,7 +40,6 @@ class AuthController extends GetxController {
         !isRegisterConfirmPasswordObscure.value;
   }
 
-  // Validation methods
   String? validateEmail(String? value) {
     if (value == null || value.isEmpty) {
       return 'Please enter your email';
@@ -76,7 +72,6 @@ class AuthController extends GetxController {
     return null;
   }
 
-  // Clear all controllers
   void clearControllers() {
     nameController.clear();
     emailController.clear();
@@ -87,7 +82,6 @@ class AuthController extends GetxController {
     confirmPasswordController.clear();
   }
 
-  // Register a new user
   Future<void> register() async {
     try {
       final emailError = validateEmail(emailController.text);
@@ -105,7 +99,7 @@ class AuthController extends GetxController {
           passwordController.text == confirmPasswordController.text) {
         isLoading.value = true;
 
-        // Sign up user with Supabase
+
         final response = await supabase.auth.signUp(
             email: emailController.text.trim(),
             password: passwordController.text,
@@ -114,7 +108,6 @@ class AuthController extends GetxController {
               'phoneNumber': phoneController.text,
             });
 
-        // If signup successful, store additional user data
         if (response.user != null) {
           await saveUserData(name: nameController.text,phone: phoneController.text);
           Get.toNamed(AppRoutes.loginViewPath);
@@ -125,7 +118,7 @@ class AuthController extends GetxController {
             colorText: Colors.white,
           );
 
-          // Clear controllers
+
           clearControllers();
         }
       } else {
@@ -169,11 +162,10 @@ class AuthController extends GetxController {
             colorText: Colors.white,
           );
 
-          // Clear controllers
+
           clearControllers();
 
-          // Navigate to home screen or dashboard
-          Get.offAllNamed(AppRoutes.bottomViewPath); // Replace with your route
+          Get.offAllNamed(AppRoutes.bottomViewPath);
         }
       } else {
         print('object object object objectobjectobjectobjectobject3');
@@ -211,7 +203,7 @@ class AuthController extends GetxController {
     try {
       isLoading.value = true;
       await supabase.auth.signOut();
-      Get.offAllNamed(AppRoutes.loginViewPath); // Replace with your login route
+      Get.offAllNamed(AppRoutes.loginViewPath);
       Get.snackbar(
         'Success',
         'Logged out successfully',

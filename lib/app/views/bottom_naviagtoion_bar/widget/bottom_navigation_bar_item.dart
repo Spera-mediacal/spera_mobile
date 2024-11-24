@@ -29,7 +29,7 @@ class CustomBottomNavigationBarItem extends StatelessWidget {
         padding: const EdgeInsets.all(5),
         child: IconButton(
           onPressed: () => controller.changeIndex(newIndex: index),
-          // Fixed callback
+
           icon: HugeIcon(
             icon: icon,
             color: AppColors.whiteColor,

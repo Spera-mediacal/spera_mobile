@@ -11,7 +11,7 @@ import 'package:timezone/timezone.dart' as tz;
 class ReminderController extends GetxController {
   final TextEditingController medicineName = TextEditingController();
   final TextEditingController details = TextEditingController();
-  final RxString selectedTime = ''.obs; // Observable for time selection
+  final RxString selectedTime = ''.obs;
   final RxList<Reminder> reminders = <Reminder>[].obs;
 
   @override
@@ -40,7 +40,6 @@ class ReminderController extends GetxController {
       String title, String body, TimeOfDay time) async {
     final now = DateTime.now();
 
-    // Convert TimeOfDay to a DateTime for scheduling
     final scheduledDate = DateTime(
       now.year,
       now.month,
@@ -50,7 +49,7 @@ class ReminderController extends GetxController {
     );
 
     await flutterLocalNotificationsPlugin.zonedSchedule(
-      0, // Notification ID
+      0,
       title,
       body,
       tz.TZDateTime.from(scheduledDate, tz.local),
@@ -76,7 +75,6 @@ class ReminderController extends GetxController {
       final formattedTime = picked.format(context);
       selectedTime.value = formattedTime;
 
-      // Schedule a notification
       await scheduleNotification(
         'Medicine Reminder',
         'It\'s time to take your medicine!',

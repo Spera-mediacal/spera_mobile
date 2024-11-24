@@ -22,7 +22,6 @@ class NearestPharmViewBody extends StatelessWidget {
         padding: const EdgeInsets.all(15),
         child: SingleChildScrollView(
           child: Obx(() {
-            // Display CircularProgressIndicator while loading
             if (locationController.isLoading.value) {
               return const Center(
                 child: CircularProgressIndicator(
@@ -31,7 +30,6 @@ class NearestPharmViewBody extends StatelessWidget {
               );
             }
 
-            // When loading is complete, show the content
             return Column(
               children: [
                 const Text(

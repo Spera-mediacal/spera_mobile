@@ -22,7 +22,7 @@ class _WelcomeTextState extends State<WelcomeText> {
   Future<void> _loadUserName() async {
     final name = await SharedPreferencesHelper.getName();
     setState(() {
-      userName = name ?? 'Guest'; // Default to 'Guest' if no name is stored
+      userName = name ?? 'Guest';
     });
   }
 
@@ -34,7 +34,7 @@ class _WelcomeTextState extends State<WelcomeText> {
     return Row(
       children: [
         if (userName == null)
-          const CircularProgressIndicator() // Show loading indicator while fetching name
+          const CircularProgressIndicator()
         else
           Text(
             '$greeting,\n$userName',

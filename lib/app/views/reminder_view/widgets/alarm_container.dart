@@ -41,11 +41,11 @@ class AlarmContainer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                name, // String title
+                name,
                 style: AppTextStyles.textStyle24,
               ),
               Text(
-                details, // String subTitle
+                details,
                 style: AppTextStyles.textStyle15.copyWith(
                   color: AppColors.accentColor.withOpacity(0.5),
                 ),

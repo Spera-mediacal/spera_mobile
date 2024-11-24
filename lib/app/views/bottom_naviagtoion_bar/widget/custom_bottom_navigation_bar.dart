@@ -35,7 +35,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          // Changed to spaceEvenly
+
           children: [
             CustomBottomNavigationBarItem(
               controller: bottomNavigationBarController,
@@ -54,7 +54,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
             ),
             CustomBottomNavigationBarItem(
               controller: bottomNavigationBarController,
-              index: 3, // Fixed duplicate index
+              index: 3,
               icon: HugeIcons.strokeRoundedAlarmClock,
             ),
           ],

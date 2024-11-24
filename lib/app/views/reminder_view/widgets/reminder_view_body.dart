@@ -94,7 +94,7 @@ class ReminderViewBody extends StatelessWidget {
                                 );
 
                                 reminderController.addReminder(reminder);
-                                Get.back(); // Close the dialog
+                                Get.back();
                               },
                               width: (screenWidth(context) * 1),
                               height: (screenHeight(context) * 0.03),

@@ -4,7 +4,7 @@ import 'package:hugeicons/hugeicons.dart';
 import '../../../../utils/colors.dart';
 import '../../../../utils/text_styles.dart';
 
-class HomeContainerButton extends StatelessWidget { // reusable widget in another view
+class HomeContainerButton extends StatelessWidget {
   const HomeContainerButton({
     super.key,
     required this.onTap,

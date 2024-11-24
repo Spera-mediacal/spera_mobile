@@ -47,7 +47,6 @@ class CustomTextField extends StatelessWidget {
           textInputAction: textInputAction,
           onFieldSubmitted: onFieldSubmitted,
           decoration: InputDecoration(
-           // floatingLabelBehavior: FloatingLabelBehavior.always, m4 3arf eh lzmtha
             hintText: hintText,
             contentPadding:
                 EdgeInsets.symmetric(vertical: height ?? 16, horizontal: 12.0),

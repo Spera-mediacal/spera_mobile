@@ -62,9 +62,8 @@ class BotMessage extends StatelessWidget {
           width: 35,
           height: 35,
         ),
-        const SizedBox(width: 10), // Space between the icon and the message.
+        const SizedBox(width: 10),
         Flexible(
-          // Ensures the message adjusts within the available space.
           child: Container(
             alignment: Alignment.topLeft,
             margin: const EdgeInsets.symmetric(vertical: 10),
@@ -76,8 +75,8 @@ class BotMessage extends StatelessWidget {
             child: Text(
               message,
               style: AppTextStyles.textStyle15,
-              overflow: TextOverflow.ellipsis, // Truncate long messages.
-              maxLines: 5, // Limit to 5 lines.
+              overflow: TextOverflow.ellipsis,
+              maxLines: 5,
             ),
           ),
         ),
