@@ -1,6 +1,7 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class LocationController extends GetxController {
   var latitude = 0.0.obs;
@@ -16,19 +17,46 @@ class LocationController extends GetxController {
 
   Future<void> getLocation() async {
     isLoading.value = true;
-    try {
-      Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high,
-      );
-      latitude.value = position.latitude;
-      longitude.value = position.longitude;
 
-      await fetchCityName();
-    } catch (e) {
-      cityName.value = "Error retrieving location";
-    } finally {
-      isLoading.value = false;
+    // Check location permission
+    if (await checkLocationPermission()) {
+      try {
+        // Get current position
+        Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high,
+        );
+        latitude.value = position.latitude;
+        longitude.value = position.longitude;
+
+        // Fetch city name
+        await fetchCityName();
+      } catch (e) {
+        print(e);
+        cityName.value = "Error retrieving location";
+      }
+    } else {
+      cityName.value = "Permission Denied";
     }
+
+    isLoading.value = false;
+  }
+
+  Future<bool> checkLocationPermission() async {
+    var status = await Permission.locationWhenInUse.status;
+
+    if (status.isGranted) {
+      return true;
+    } else if (status.isDenied) {
+      // Request permission
+      status = await Permission.locationWhenInUse.request();
+      return status.isGranted;
+    } else if (status.isPermanentlyDenied) {
+      // Redirect user to app settings
+      await openAppSettings();
+      return false;
+    }
+
+    return false;
   }
 
   Future<void> fetchCityName() async {
@@ -44,6 +72,7 @@ class LocationController extends GetxController {
         cityName.value = "Unknown";
       }
     } catch (e) {
+      print(e);
       cityName.value = "Error retrieving city";
     }
   }

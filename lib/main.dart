@@ -111,7 +111,7 @@ class MyApp extends StatelessWidget {
           seedColor: AppColors.accentColor,
         ),
         fontFamily: 'Manjari',
-        scaffoldBackgroundColor: AppColors.whiteColor,
+        scaffoldBackgroundColor: AppColors.bgColor,
       ),
     );
   }

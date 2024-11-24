@@ -4,7 +4,6 @@ import 'package:hugeicons/hugeicons.dart';
 import '../../../../utils/colors.dart';
 import '../../../../utils/size_config.dart';
 import '../../../../utils/text_styles.dart';
-import '../../../controllers/remider_controller.dart';
 
 class AlarmContainer extends StatelessWidget {
   const AlarmContainer({super.key, required this.name, required this.details});
