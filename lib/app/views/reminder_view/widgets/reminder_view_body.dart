@@ -88,6 +88,7 @@ class ReminderViewBody extends StatelessWidget {
                                 }
 
                                 final reminder = Reminder(
+                                  id: DateTime.now().millisecondsSinceEpoch, // temporary id generation
                                   name: reminderController.medicineName.text,
                                   details: reminderController.details.text,
                                   time: reminderController.selectedTime.value,
@@ -116,6 +117,7 @@ class ReminderViewBody extends StatelessWidget {
                 action: "Add Reminder",
               ),
               (screenHeight(context) * 0.04).sh,
+
               Obx(() {
                 final reminders = reminderController.reminders;
                 return ListView.builder(
@@ -124,9 +126,46 @@ class ReminderViewBody extends StatelessWidget {
                   itemCount: reminders.length,
                   itemBuilder: (context, index) {
                     final reminder = reminders[index];
-                    return AlarmContainer(
-                      name: reminder.name,
-                      details: '${reminder.details} | Time: ${reminder.time}',
+                    return Dismissible(
+                      key: Key(reminder.id.toString()), // Make sure Reminder model has an id field
+                      background: Container(
+                        color: Colors.red,
+                        alignment: Alignment.centerRight,
+                        padding: const EdgeInsets.only(right: 20),
+                        child: const Icon(
+                          Icons.delete,
+                          color: Colors.white,
+                        ),
+                      ),
+                      direction: DismissDirection.endToStart,
+                      confirmDismiss: (direction) async {
+                        return await Get.dialog<bool>(
+                          AlertDialog(
+                            title: const Text('Delete Reminder'),
+                            content: const Text('Are you sure you want to delete this reminder?'),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Get.back(result: false),
+                                child: const Text('Cancel'),
+                              ),
+                              TextButton(
+                                onPressed: () => Get.back(result: true),
+                                child: const Text(
+                                  'Delete',
+                                  style: TextStyle(color: Colors.red),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ) ?? false;
+                      },
+                      onDismissed: (direction) {
+                        reminderController.deleteReminder(reminder.id ?? 1, index);
+                      },
+                      child: AlarmContainer(
+                        name: reminder.name,
+                        details: '${reminder.details} | Time: ${reminder.time}',
+                      ),
                     );
                   },
                 );

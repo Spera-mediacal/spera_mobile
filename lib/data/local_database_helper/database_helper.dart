@@ -45,4 +45,20 @@ class DatabaseHelper {
     final reminders = await db.query('reminders');
     return reminders.map((e) => Reminder.fromMap(e)).toList();
   }
+
+  // Add delete reminder method
+  Future<int> deleteReminder(int id) async {
+    final db = await database;
+    return await db.delete(
+      'reminders',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
+
+  // Add method to delete all reminders
+  Future<int> deleteAllReminders() async {
+    final db = await database;
+    return await db.delete('reminders');
+  }
 }

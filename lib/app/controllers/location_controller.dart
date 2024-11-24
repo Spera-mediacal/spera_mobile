@@ -12,34 +12,8 @@ class LocationController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    getLocation();
   }
 
-  Future<void> getLocation() async {
-    isLoading.value = true;
-
-    // Check location permission
-    if (await checkLocationPermission()) {
-      try {
-        // Get current position
-        Position position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high,
-        );
-        latitude.value = position.latitude;
-        longitude.value = position.longitude;
-
-        // Fetch city name
-        await fetchCityName();
-      } catch (e) {
-        print(e);
-        cityName.value = "Error retrieving location";
-      }
-    } else {
-      cityName.value = "Permission Denied";
-    }
-
-    isLoading.value = false;
-  }
 
   Future<bool> checkLocationPermission() async {
     var status = await Permission.locationWhenInUse.status;

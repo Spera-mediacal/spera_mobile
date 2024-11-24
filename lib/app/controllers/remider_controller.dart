@@ -19,6 +19,57 @@ class ReminderController extends GetxController {
     Alarm.init();
   }
 
+
+  Future<void> deleteReminder(int id, int alarmId) async {
+    try {
+      await DatabaseHelper().deleteReminder(id);
+
+      await Alarm.stop(alarmId);
+
+      await fetchReminders();
+
+      Get.snackbar(
+        'Success',
+        'Reminder deleted successfully',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.green,
+        colorText: Colors.white,
+      );
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        'Failed to delete reminder',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
+  }
+
+  Future<void> deleteAllReminders() async {
+    try {
+      await DatabaseHelper().deleteAllReminders();
+
+      for (var reminder in reminders) {
+        await Alarm.stop(reminder.id ?? 1);
+      }
+
+      await fetchReminders();
+
+      Get.snackbar(
+        'Success',
+        'All reminders deleted successfully',
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        'Failed to delete reminders',
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
+  }
+
   Future<void> fetchReminders() async {
     final data = await DatabaseHelper().getReminders();
     reminders.value = data;
@@ -26,7 +77,7 @@ class ReminderController extends GetxController {
 
   Future<void> addReminder(Reminder reminder) async {
     await DatabaseHelper().insertReminder(reminder);
-    fetchReminders();
+    await fetchReminders();
   }
 
   Future<void> requestNotificationPermission() async {

@@ -4,10 +4,10 @@ import '../../../../utils/colors.dart';
 import '../../../../utils/global_widgets/glow_container.dart';
 import '../../../../utils/global_widgets/waves_background.dart';
 import '../../../../utils/size_config.dart';
-import '../widgets/nearest_pharm_view_body.dart';
+import '../widgets/medical_news_view_body.dart';
 
-class NearestPharmView extends StatelessWidget {
-  const NearestPharmView({super.key});
+class MedicalNewsView extends StatelessWidget {
+  const MedicalNewsView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class NearestPharmView extends StatelessWidget {
           rightPosition: -screenWidth(context) * 0.9,
           color: AppColors.accentColor.withOpacity(0.2),
         ),
-        child: NearestPharmViewBody(),
+        child: MedicalNewsViewBody(),
       ),
     );
   }
