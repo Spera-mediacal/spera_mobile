@@ -57,6 +57,7 @@ dependencies:
   path_provider: ^2.1.2
   share_plus: ^7.2.2
   alarm: ^4.0.12
+  mobile_scanner:
 
 dev_dependencies:
   flutter_test:

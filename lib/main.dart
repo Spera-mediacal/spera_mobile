@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:spera_mobile/app/routes/app_router.dart';
 import 'package:spera_mobile/app/services/envied_service/env.dart';
@@ -11,6 +12,30 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'app/services/notification_service/notification_helper.dart';
 
+Future<void> checkPermissions() async {
+  final cameraPermission = await Permission.camera.status;
+  final locationPermission = await Permission.location.status;
+  final notificationPermission = await Permission.notification.status;
+
+  if (cameraPermission.isDenied || cameraPermission.isPermanentlyDenied) {
+    await Permission.camera.request();
+  }
+
+  if (locationPermission.isDenied || locationPermission.isPermanentlyDenied) {
+    await Permission.location.request();
+  }
+
+  if (notificationPermission.isDenied || notificationPermission.isPermanentlyDenied) {
+    await Permission.notification.request();
+  }
+
+   if (await Permission.camera.isPermanentlyDenied ||
+      await Permission.location.isPermanentlyDenied ||
+      await Permission.notification.isPermanentlyDenied) {
+    openAppSettings(); // Redirect user to app settings
+  }
+}
+
 void main() async {
   try {
     WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +43,6 @@ void main() async {
     await SharedPreferences.getInstance();
 
     tz.initializeTimeZones();
-
 
     await Alarm.init();
 
@@ -43,6 +67,8 @@ void main() async {
       debugPrint('Supabase initialization error: $e');
       rethrow;
     }
+
+    await checkPermissions(); // Add the permission check here
 
     runApp(const MyApp());
   } catch (e, stackTrace) {
