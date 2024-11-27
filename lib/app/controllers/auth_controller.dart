@@ -21,10 +21,157 @@ class AuthController extends GetxController {
 
   final supabase = Supabase.instance.client;
 
+  Future<void> saveUserData(
+      {required String name, required String phone, required String id}) async {
+    await SharedPreferencesHelper.saveName(name);
+    await SharedPreferencesHelper.savePhone(phone);
+    await SharedPreferencesHelper.saveId(id);
+  }
 
-  Future<void> saveUserData({required String name,required String phone}) async {
-    await SharedPreferencesHelper.saveName(nameController.text);
-    await SharedPreferencesHelper.savePhone(phoneController.text);
+  Future<void> register() async {
+    try {
+      final emailError = validateEmail(emailController.text);
+      final passwordError = validatePassword(passwordController.text);
+      final confirmPasswordError =
+          validatePassword(confirmPasswordController.text);
+      final nameError = validateName(nameController.text);
+      final phoneError = validatePhone(phoneController.text);
+
+      if (emailError == null &&
+          passwordError == null &&
+          confirmPasswordError == null &&
+          nameError == null &&
+          phoneError == null &&
+          passwordController.text == confirmPasswordController.text) {
+        isLoading.value = true;
+
+        final response = await supabase.auth.signUp(
+          email: emailController.text.trim(),
+          password: passwordController.text,
+          data: {
+            'name': nameController.text,
+            'phoneNumber': phoneController.text,
+          },
+        );
+
+        if (response.user != null) {
+          final userId = response.user!.id; // Extract user ID
+          await saveUserData(
+            name: nameController.text,
+            phone: phoneController.text,
+            id: userId,
+          );
+
+          Get.toNamed(AppRoutes.loginViewPath);
+          Get.snackbar(
+            'Success',
+            'Account created successfully! Please verify your email.',
+            backgroundColor: Colors.green,
+            colorText: Colors.white,
+          );
+
+          clearControllers();
+        }
+      } else {
+        Get.snackbar(
+          'Error',
+          'Please correct the errors in the form',
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      }
+    } on AuthException catch (e) {
+      Get.snackbar(
+        'Error',
+        e.message,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  Future<void> login() async {
+    try {
+      final emailError = validateEmail(loginEmailController.text);
+      final passwordError = validatePassword(loginPasswordController.text);
+
+      if (emailError == null && passwordError == null) {
+        isLoading.value = true;
+
+        final response = await supabase.auth.signInWithPassword(
+          email: loginEmailController.text.trim(),
+          password: loginPasswordController.text,
+        );
+
+        if (response.user != null) {
+          final userId = response.user!.id; // Extract user ID
+          await saveUserData(
+            name: response.user!.userMetadata?['name'] ?? 'Unknown',
+            phone: response.user!.userMetadata?['phoneNumber'] ?? 'Unknown',
+            id: userId,
+          );
+
+          Get.snackbar(
+            'Success',
+            'Logged in successfully!',
+            backgroundColor: Colors.green,
+            colorText: Colors.white,
+          );
+
+          clearControllers();
+          Get.offAllNamed(AppRoutes.bottomViewPath);
+        }
+      } else {
+        Get.snackbar(
+          'Error',
+          'Please correct the errors in the form',
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      }
+    } on AuthException catch (e) {
+      Get.snackbar(
+        'Error',
+        e.message,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        'An unexpected error occurred',
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  Future<void> logout() async {
+    try {
+      isLoading.value = true;
+      clearControllers();
+      await supabase.auth.signOut();
+      Get.offAllNamed(AppRoutes.loginViewPath);
+      Get.snackbar(
+        'Success',
+        'Logged out successfully',
+        backgroundColor: Colors.green,
+        colorText: Colors.white,
+      );
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        'Failed to logout',
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    } finally {
+      isLoading.value = false;
+    }
   }
 
   toggleLoginPasswordObscure() {
@@ -81,148 +228,6 @@ class AuthController extends GetxController {
     passwordController.clear();
     confirmPasswordController.clear();
   }
-
-  Future<void> register() async {
-    try {
-      final emailError = validateEmail(emailController.text);
-      final passwordError = validatePassword(passwordController.text);
-      final confirmPasswordError =
-          validatePassword(confirmPasswordController.text);
-      final nameError = validateName(nameController.text);
-      final phoneError = validatePhone(phoneController.text);
-
-      if (emailError == null &&
-          passwordError == null &&
-          confirmPasswordError == null &&
-          nameError == null &&
-          phoneError == null &&
-          passwordController.text == confirmPasswordController.text) {
-        isLoading.value = true;
-
-
-        final response = await supabase.auth.signUp(
-            email: emailController.text.trim(),
-            password: passwordController.text,
-            data: {
-              'name': nameController.text,
-              'phoneNumber': phoneController.text,
-            });
-
-        if (response.user != null) {
-          await saveUserData(name: nameController.text,phone: phoneController.text);
-          Get.toNamed(AppRoutes.loginViewPath);
-          Get.snackbar(
-            'Success',
-            'Account created successfully! Please verify your email.',
-            backgroundColor: Colors.green,
-            colorText: Colors.white,
-          );
-
-
-          clearControllers();
-        }
-      } else {
-        Get.snackbar(
-          'Error',
-          'Please correct the errors in the form',
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-        );
-      }
-    } on AuthException catch (e) {
-      Get.snackbar(
-        'Error',
-        e.message,
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-      );
-    } finally {
-      isLoading.value = false;
-    }
-  }
-
-  Future<void> login() async {
-    try {
-      final emailError = validateEmail(loginEmailController.text);
-      final passwordError = validatePassword(loginPasswordController.text);
-
-      if (emailError == null && passwordError == null) {
-        isLoading.value = true;
-
-        final response = await supabase.auth.signInWithPassword(
-          email: loginEmailController.text.trim(),
-          password: loginPasswordController.text,
-        );
-
-        if (response.user != null) {
-           Get.snackbar(
-            'Success',
-            'Logged in successfully!',
-            backgroundColor: Colors.green,
-            colorText: Colors.white,
-          );
-
-
-          clearControllers();
-
-          Get.offAllNamed(AppRoutes.bottomViewPath);
-        }
-      } else {
-        print('object object object objectobjectobjectobjectobject3');
-
-        Get.snackbar(
-          'Error',
-          'Please correct the errors in the form',
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-        );
-      }
-    } on AuthException catch (e) {
-      print('object object object objectobjectobjectobjectobject2');
-      Get.snackbar(
-        'Error',
-        e.message,
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-      );
-    } catch (e) {
-      print('object object object objectobjectobjectobjectobject1');
-
-      Get.snackbar(
-        'Error',
-        'An unexpected error occurred',
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-      );
-    } finally {
-      isLoading.value = false;
-    }
-  }
-
-  Future<void> logout() async {
-    try {
-      isLoading.value = true;
-      clearControllers();
-      await supabase.auth.signOut();
-      Get.offAllNamed(AppRoutes.loginViewPath);
-      Get.snackbar(
-        'Success',
-        'Logged out successfully',
-        backgroundColor: Colors.green,
-        colorText: Colors.white,
-      );
-    } catch (e) {
-      Get.snackbar(
-        'Error',
-        'Failed to logout',
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-      );
-    } finally {
-      isLoading.value = false;
-    }
-  }
-
 
   @override
   void onClose() {

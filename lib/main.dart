@@ -7,7 +7,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:spera_mobile/app/routes/app_router.dart';
 import 'package:spera_mobile/app/services/envied_service/env.dart';
- import 'package:spera_mobile/utils/colors.dart';
+import 'package:spera_mobile/utils/colors.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'app/services/notification_service/notification_helper.dart';
@@ -80,7 +80,7 @@ void main() async {
 
 class ErrorApp extends StatelessWidget {
   const ErrorApp({super.key});
-//
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

@@ -55,7 +55,7 @@ class HomeAppBar extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SvgPicture.asset(
-                      AssetsPaths.coinAssetPath,
+                      Constants.coinAssetPath,
                       width: 25,
                       height: 25,
                     ),

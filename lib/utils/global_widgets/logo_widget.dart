@@ -19,7 +19,7 @@ class LogoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SvgPicture.asset(
-      AssetsPaths.logoAssetPath,
+      Constants.logoAssetPath,
       colorFilter: ColorFilter.mode(
         color ?? AppColors.accentColor,
         BlendMode.srcIn,

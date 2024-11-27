@@ -30,7 +30,7 @@ class WavesBackground extends StatelessWidget {
             width: screenWidth(context),
             height: screenHeight(context),
             fit: BoxFit.cover,
-            AssetsPaths.wavesAssetPath,
+            Constants.wavesAssetPath,
           ),
         ),
         externalWidget ?? const SizedBox.shrink(),
