@@ -57,7 +57,7 @@ class SetupAccountViewBody extends StatelessWidget {
         (screenHeight(context) * 0.02).sh,
             CustomButton(
               text: 'Finish',
-              onTap: () {},
+              onTap: () => controller.finishSetup(),
               width: screenWidth(context) * 0.6,
               height: screenHeight(context)*0.08,
             ),

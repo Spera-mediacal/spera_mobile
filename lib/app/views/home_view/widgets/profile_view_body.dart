@@ -14,10 +14,11 @@ import 'package:spera_mobile/utils/size_config.dart';
 import 'package:spera_mobile/utils/text_styles.dart';
 import 'dart:io';
 
+import '../../../../data/local_database_helper/database_helper.dart';
 import '../../../services/shared_pref_service/sahred_pref_service.dart';
 
 class ProfileViewBody extends StatefulWidget {
-   ProfileViewBody({super.key});
+  ProfileViewBody({super.key});
 
   @override
   State<ProfileViewBody> createState() => _ProfileViewBodyState();
@@ -25,17 +26,27 @@ class ProfileViewBody extends StatefulWidget {
 
 class _ProfileViewBodyState extends State<ProfileViewBody> {
   String? userName;
+  Map<String, dynamic>? userSetupData;
 
   @override
   void initState() {
     super.initState();
     _loadUserName();
+    _loadUserSetup();
   }
 
   Future<void> _loadUserName() async {
     final name = await SharedPreferencesHelper.getName();
     setState(() {
       userName = name ?? 'Guest';
+    });
+  }
+
+  Future<void> _loadUserSetup() async {
+    final dbHelper = DatabaseHelper();
+    final data = await dbHelper.getUserSetup();
+    setState(() {
+      userSetupData = data;
     });
   }
 
@@ -113,7 +124,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
   Widget _buildTopSection(BuildContext context) {
     final AuthController controller = Get.put(AuthController());
     return GlassContainer(
-      height: screenHeight(context)*0.55,
+      height: screenHeight(context) * 0.55,
       width: screenWidth(context),
       borderRadiusGeometry: const BorderRadius.vertical(
         bottom: Radius.circular(50),
@@ -163,11 +174,10 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
             OutlinedButton(
               style: ButtonStyle(
                   fixedSize: WidgetStatePropertyAll(
-                Size(screenWidth(context) * 0.8, screenHeight(context)*0.02),
+                Size(screenWidth(context) * 0.8, screenHeight(context) * 0.02),
               )),
               onPressed: () {
                 controller.logout();
-
               },
               child: Text(
                 'Logout',
@@ -206,7 +216,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        _buildStatColumn('Age', 22),
+        _buildStatColumn('Age', userSetupData?['age'] ?? 'N/A'),
         _buildVerticalDivider(context),
         _buildStatColumn('Points', 22),
         _buildVerticalDivider(context),
@@ -228,6 +238,21 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
     );
   }
 
+  String _getBMICategory(double? weight, double? height) {
+    if (weight == null || height == null || height == 0) return 'N/A';
+
+    final bmi = weight / ((height / 100) * (height / 100));
+    if (bmi < 18.5) {
+      return 'Underweight';
+    } else if (bmi < 24.9) {
+      return 'Normal weight';
+    } else if (bmi < 29.9) {
+      return 'Overweight';
+    } else {
+      return 'Obese';
+    }
+  }
+
   Widget _buildLeftColumn(BuildContext context) {
     return Column(
       children: [
@@ -236,8 +261,17 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
           height: screenHeight(context) * 0.28,
           width: screenWidth(context) * 0.44,
           title: 'BMI',
-          value: '24',
-          subtitle: 'Over Weight',
+          value: userSetupData != null &&
+                  userSetupData?['weight'] != null &&
+                  userSetupData?['height'] != null &&
+                  userSetupData?['height'] != 0
+              ? (userSetupData!['weight'].toDouble() /
+                      ((userSetupData!['height'].toDouble() / 100) *
+                          (userSetupData!['height'].toDouble() / 100)))
+                  .toStringAsFixed(1)
+              : 'N/A',
+          subtitle: _getBMICategory(userSetupData?['weight']?.toDouble(),
+              userSetupData?['height']?.toDouble()),
         ),
         const SizedBox(height: 16),
         _buildGlassCard(
@@ -245,8 +279,9 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
           height: screenHeight(context) * 0.28,
           width: screenWidth(context) * 0.44,
           title: 'Blood',
-          value: 'A+',
-          subtitle: 'Blood Type',
+          value: userSetupData?['blood_type'] ?? 'N/A',
+          subtitle:
+              userSetupData?['is_positive'] == 1 ? 'Positive' : 'Negative',
         ),
       ],
     );
@@ -260,7 +295,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
           height: screenHeight(context) * 0.32,
           width: screenWidth(context) * 0.44,
           title: 'Height',
-          value: '180',
+          value: userSetupData?['weight'].toString() ?? 'N/A',
           subtitle: 'cm',
         ),
         const SizedBox(height: 16),
@@ -268,7 +303,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
           context,
           height: screenHeight(context) * 0.24,
           width: screenWidth(context) * 0.44,
-          title: 'Weight',
+          title: userSetupData?['weight'].toString() ?? 'N/A',
           value: '90',
           subtitle: 'kg',
         ),

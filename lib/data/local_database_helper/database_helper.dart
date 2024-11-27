@@ -20,21 +20,35 @@ class DatabaseHelper {
   Future<Database> _initDB() async {
     final dbPath = await getDatabasesPath();
     return await openDatabase(
-      join(dbPath, 'reminders.db'),
-      onCreate: (db, version) {
-        return db.execute('''
-          CREATE TABLE reminders(
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT,
-            details TEXT,
-            time TEXT
-          )
-        ''');
+      join(dbPath, 'spera_database.db'),
+      onCreate: (db, version) async {
+        // Create reminders table
+        await db.execute('''
+        CREATE TABLE reminders(
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          name TEXT,
+          details TEXT,
+          time TEXT
+        )
+      ''');
+
+        // Create user_setup table
+        await db.execute('''
+        CREATE TABLE user_setup(
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          blood_type TEXT,
+          is_positive INTEGER,
+          weight INTEGER,
+          height INTEGER,
+          age INTEGER
+        )
+      ''');
       },
       version: 1,
     );
   }
 
+  // Reminder Methods
   Future<int> insertReminder(Reminder reminder) async {
     final db = await database;
     return await db.insert('reminders', reminder.toMap());
@@ -46,7 +60,6 @@ class DatabaseHelper {
     return reminders.map((e) => Reminder.fromMap(e)).toList();
   }
 
-  // Add delete reminder method
   Future<int> deleteReminder(int id) async {
     final db = await database;
     return await db.delete(
@@ -56,9 +69,32 @@ class DatabaseHelper {
     );
   }
 
-  // Add method to delete all reminders
   Future<int> deleteAllReminders() async {
     final db = await database;
     return await db.delete('reminders');
+  }
+
+  // User Setup Methods
+  Future<int> saveUserSetup({
+    required String bloodType,
+    required bool isPositive,
+    required int weight,
+    required int height,
+    required int age,
+  }) async {
+    final db = await database;
+    return await db.insert('user_setup', {
+      'blood_type': bloodType,
+      'is_positive': isPositive ? 1 : 0,
+      'weight': weight,
+      'height': height,
+      'age': age,
+    });
+  }
+
+  Future<Map<String, dynamic>?> getUserSetup() async {
+    final db = await database;
+    final results = await db.query('user_setup', limit: 1);
+    return results.isNotEmpty ? results.first : null;
   }
 }
