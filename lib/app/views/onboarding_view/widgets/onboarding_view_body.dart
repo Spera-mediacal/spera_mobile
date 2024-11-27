@@ -58,7 +58,7 @@ class OnboardingViewBody extends StatelessWidget {
                         CustomButton(
                           text: 'Get Started',
                           onTap: () {
-                            Get.toNamed(AppRoutes.setUpViewPath);
+                            Get.toNamed(AppRoutes.loginViewPath);
                           },
                           width: screenWidth(context) * 0.6,
                           height: screenHeight(context)*0.08,

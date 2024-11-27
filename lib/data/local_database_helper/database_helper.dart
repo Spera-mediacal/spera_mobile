@@ -5,6 +5,7 @@ import '../../app/models/reminder.dart';
 
 class DatabaseHelper {
   static final DatabaseHelper _instance = DatabaseHelper._internal();
+
   factory DatabaseHelper() => _instance;
 
   static Database? _database;
@@ -34,15 +35,18 @@ class DatabaseHelper {
 
         // Create user_setup table
         await db.execute('''
-        CREATE TABLE user_setup(
-          id INTEGER PRIMARY KEY AUTOINCREMENT,
-          blood_type TEXT,
-          is_positive INTEGER,
-          weight INTEGER,
-          height INTEGER,
-          age INTEGER
-        )
-      ''');
+CREATE TABLE user_setup(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  full_name TEXT,
+  phone_number TEXT,
+  user_id TEXT,
+  blood_type TEXT,
+  is_positive INTEGER,
+  weight INTEGER,
+  height INTEGER,
+  age INTEGER
+)
+''');
       },
       version: 1,
     );
@@ -76,6 +80,9 @@ class DatabaseHelper {
 
   // User Setup Methods
   Future<int> saveUserSetup({
+    required String fullName,
+    required String phoneNumber,
+    required String userId,
     required String bloodType,
     required bool isPositive,
     required int weight,
@@ -84,6 +91,9 @@ class DatabaseHelper {
   }) async {
     final db = await database;
     return await db.insert('user_setup', {
+      'full_name': fullName,
+      'phone_number': phoneNumber,
+      'user_id': userId,
       'blood_type': bloodType,
       'is_positive': isPositive ? 1 : 0,
       'weight': weight,
@@ -91,6 +101,7 @@ class DatabaseHelper {
       'age': age,
     });
   }
+
 
   Future<Map<String, dynamic>?> getUserSetup() async {
     final db = await database;

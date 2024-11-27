@@ -106,7 +106,7 @@ class AuthController extends GetxController {
         );
 
         if (response.user != null) {
-          final userId = response.user!.id; // Extract user ID
+          final userId = response.user!.id;
           await saveUserData(
             name: response.user!.userMetadata?['name'] ?? 'Unknown',
             phone: response.user!.userMetadata?['phoneNumber'] ?? 'Unknown',
@@ -121,7 +121,7 @@ class AuthController extends GetxController {
           );
 
           clearControllers();
-          Get.offAllNamed(AppRoutes.bottomViewPath);
+          Get.offAllNamed(AppRoutes.setUpViewPath);
         }
       } else {
         Get.snackbar(

@@ -1,3 +1,4 @@
+
 class User {
   final String fullName;
   final String id;
@@ -22,4 +23,16 @@ class User {
     return weight / (heightInMeters * heightInMeters);
   }
 
+  Map<String, dynamic> toJson() {
+    return {
+      "id": id,
+      "name": fullName,
+      "phone": phoneNumber,
+      "bloodType": bloodType,
+      "weight": weight,
+      "hight": height,
+      "bmi": calculateBMI(),
+      "age": age,
+    };
+  }
 }
