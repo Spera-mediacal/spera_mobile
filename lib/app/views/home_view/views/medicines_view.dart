@@ -23,7 +23,7 @@ class MedicinesView extends StatelessWidget {
         firstColor: AppColors.accentColor.withOpacity(0.1),
         bottomPosition: screenHeight(context) * 0.1,
         rightPosition: screenWidth(context) * 0.1,
-        child: const MedicinesViewBody(),
+        child:   MedicinesViewBody(),
       ),
     );
   }

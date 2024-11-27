@@ -44,10 +44,15 @@ class CustomInfoContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                title,
-                style: AppTextStyles.textStyle24.copyWith(
-                  color: AppColors.bgColor.withOpacity(0.8),
+              SizedBox(
+                width: screenWidth(context)*0.4,
+                child: Text(
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                  title,
+                  style: AppTextStyles.textStyle24.copyWith(
+                    color: AppColors.bgColor.withOpacity(0.8),
+                  ),
                 ),
               ),
               SizedBox(
@@ -71,7 +76,7 @@ class CustomInfoContainer extends StatelessWidget {
               ? screenWidth(context).sh
               : Text(
                   '${price!.toInt()} LE',
-                  style: AppTextStyles.textStyle24.copyWith(
+                  style: AppTextStyles.textStyle19.copyWith(
                     fontWeight: FontWeight.bold,
                     color: AppColors.bgColor,
                   ),
