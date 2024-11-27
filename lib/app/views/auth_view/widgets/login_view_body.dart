@@ -13,7 +13,7 @@ import '../../../routes/app_router.dart';
 class LoginViewBody extends StatelessWidget {
   LoginViewBody({super.key});
 
-  final authController = Get.put(AuthController());
+  final authController = Get.put(AuthController(), permanent: true);
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -103,6 +103,7 @@ class LoginViewBody extends StatelessWidget {
   }
 
   void _handleLogin() {
+    FocusManager.instance.primaryFocus?.unfocus();
     if (_formKey.currentState?.validate() ?? false) {
       authController.login();
     }

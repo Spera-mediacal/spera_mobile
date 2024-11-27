@@ -202,6 +202,7 @@ class AuthController extends GetxController {
   Future<void> logout() async {
     try {
       isLoading.value = true;
+      clearControllers();
       await supabase.auth.signOut();
       Get.offAllNamed(AppRoutes.loginViewPath);
       Get.snackbar(
@@ -221,6 +222,7 @@ class AuthController extends GetxController {
       isLoading.value = false;
     }
   }
+
 
   @override
   void onClose() {

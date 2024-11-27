@@ -6,6 +6,7 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:spera_mobile/app/controllers/auth_controller.dart';
 import 'package:spera_mobile/utils/colors.dart';
 import 'package:spera_mobile/utils/global_widgets/glass_container.dart';
 import 'package:spera_mobile/utils/global_widgets/logo_widget.dart';
@@ -16,7 +17,7 @@ import 'dart:io';
 import '../../../services/shared_pref_service/sahred_pref_service.dart';
 
 class ProfileViewBody extends StatefulWidget {
-  const ProfileViewBody({super.key});
+   ProfileViewBody({super.key});
 
   @override
   State<ProfileViewBody> createState() => _ProfileViewBodyState();
@@ -110,8 +111,9 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
   }
 
   Widget _buildTopSection(BuildContext context) {
+    final AuthController controller = Get.put(AuthController());
     return GlassContainer(
-      height: screenHeight(context) * 0.4,
+      height: screenHeight(context)*0.55,
       width: screenWidth(context),
       borderRadiusGeometry: const BorderRadius.vertical(
         bottom: Radius.circular(50),
@@ -155,8 +157,25 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                 ),
               ],
             ),
-            SizedBox(height: screenHeight(context) * 0.03),
+            (screenHeight(context) * 0.03).sh,
             _buildStatsRow(context),
+            (screenHeight(context) * 0.03).sh,
+            OutlinedButton(
+              style: ButtonStyle(
+                  fixedSize: WidgetStatePropertyAll(
+                Size(screenWidth(context) * 0.8, screenHeight(context)*0.02),
+              )),
+              onPressed: () {
+                controller.logout();
+
+              },
+              child: Text(
+                'Logout',
+                style: AppTextStyles.textStyle19.copyWith(
+                  color: Colors.red,
+                ),
+              ),
+            )
           ],
         ),
       ),

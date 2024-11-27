@@ -20,7 +20,7 @@ class   ProfileView extends StatelessWidget {
           rightPosition: -screenWidth(context)*0.3,
           color: AppColors.accentColor.withOpacity(0.2),
         ),
-        child: const ProfileViewBody(),
+        child:   ProfileViewBody(),
       ),
     );
   }
