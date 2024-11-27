@@ -16,7 +16,7 @@ Future<void> checkPermissions() async {
   final cameraPermission = await Permission.camera.status;
   final locationPermission = await Permission.location.status;
   final notificationPermission = await Permission.notification.status;
-
+  // hello World
   if (cameraPermission.isDenied || cameraPermission.isPermanentlyDenied) {
     await Permission.camera.request();
   }
