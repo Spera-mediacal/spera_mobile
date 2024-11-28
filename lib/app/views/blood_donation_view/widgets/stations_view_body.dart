@@ -13,21 +13,13 @@ class StationsViewBody extends StatelessWidget {
 
   final LocationController locationController = Get.put(LocationController());
 
-  final List<Map<String, dynamic>> stations = [
-    {"name": "Badr City", "lat": 30.134640, "lon": 31.729019},
-    {"name": "Nasr City", "lat": 30.016893, "lon": 31.377033},
-    {"name": "Alexandria", "lat": 31.165120, "lon": 29.874938},
-    {"name": "Suez", "lat": 29.972171, "lon": 32.536963},
-    {"name": "Al-Shourok City", "lat": 30.129636, "lon": 31.617834},
-    {"name": "Alf-Maskan", "lat": 30.137824, "lon": 31.388967},
-  ];
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 30),
         child: Obx(() {
+          // Show loading spinner while fetching data
           if (locationController.isLoading.value) {
             return const Center(
               child: CircularProgressIndicator(
@@ -36,6 +28,7 @@ class StationsViewBody extends StatelessWidget {
             );
           }
 
+          // Display station data
           return SingleChildScrollView(
             child: Column(
               children: [
@@ -66,21 +59,21 @@ class StationsViewBody extends StatelessWidget {
                   ),
                 ),
                 (screenHeight(context) * 0.03).sh,
-                ...stations.map((station) {
+                 ...locationController.stations.map((station) {
                   double distance = locationController.calculateDistance(
-                    station['lat'],
-                    station['lon'],
+                    station.lat,
+                    station.lon,
                   );
                   return Column(
                     children: [
                       LocationContainer(
-                        address: station['name'],
-                        distance: '${distance.toStringAsFixed(1)} km',
+                        address: station.name,
+                        distance: '${distance.toStringAsFixed(1)} km', // Distance
                       ),
                       DashedVerticalLine(),
                     ],
                   );
-                }).toList(),
+                }),
               ],
             ),
           );

@@ -16,6 +16,7 @@ import 'dart:io';
 
 import '../../../../data/local_database_helper/database_helper.dart';
 import '../../../../utils/constants.dart';
+import '../../../controllers/donation_controller.dart';
 import '../../../services/shared_pref_service/sahred_pref_service.dart';
 
 class ProfileViewBody extends StatefulWidget {
@@ -26,12 +27,28 @@ class ProfileViewBody extends StatefulWidget {
 }
 
 class _ProfileViewBodyState extends State<ProfileViewBody> {
+
+  final donationController = Get.put(DonationController());
+  String userId = '';
+  bool isLoading = true;
+
+
+  Future<void> _loadInitialData() async {
+    final id = await SharedPreferencesHelper.getId();
+    setState(() {
+      userId = id ?? "000000"; // Assign the user ID
+      isLoading = false; // Mark loading as complete
+    });
+    donationController.fetchDonationHistory(userId); // Fetch donation history
+  }
+
   String? userName;
   Map<String, dynamic>? userSetupData;
 
   @override
   void initState() {
     super.initState();
+    _loadInitialData();
     _loadUserName();
     _loadUserSetup();
   }
@@ -111,6 +128,8 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
 
   @override
   Widget build(BuildContext context) {
+    print('donationController.donationHistory.length');
+    print(donationController.donationHistory.length);
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -219,9 +238,9 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
       children: [
         _buildStatColumn('Age', userSetupData?['age'] ?? 'N/A'),
         _buildVerticalDivider(context),
-        _buildStatColumn('Points', 22),
+        _buildStatColumn('Points', donationController.donationHistory.length*10),
         _buildVerticalDivider(context),
-        _buildStatColumn('Donations', 22),
+        _buildStatColumn('Donations', donationController.donationHistory.length),
       ],
     );
   }

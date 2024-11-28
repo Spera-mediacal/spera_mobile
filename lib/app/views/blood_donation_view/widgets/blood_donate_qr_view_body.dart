@@ -86,6 +86,8 @@ class _BloodDonateQrViewBodyState extends State<BloodDonateQrViewBody> {
             Text("Phone: ${scannedData!['phone']}", style: AppTextStyles.textStyle24),
             const SizedBox(height: 10),
             Text("Location: ${scannedData!['location']}", style: AppTextStyles.textStyle24),
+            const SizedBox(height: 10),
+            Text("Quantity: ${scannedData!['quantity']}", style: AppTextStyles.textStyle24),
           ],
         ),
       ),
