@@ -7,7 +7,6 @@ import '../../../../utils/global_widgets/glow_container.dart';
 import '../../../../utils/global_widgets/waves_background.dart';
 import '../../../../utils/size_config.dart';
 import '../widgets/blood_donate_qr_result_view_body.dart';
-import '../widgets/blood_donate_qr_view_body.dart';
 
 class BloodDonateQrResultView extends StatelessWidget {
   const BloodDonateQrResultView({super.key});

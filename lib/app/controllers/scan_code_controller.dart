@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -13,25 +15,27 @@ class ScanCodeController extends GetxController {
   final RxList<Barcode> barcodes = <Barcode>[].obs;
   final Rx<Uint8List?> scannedImage = Rx<Uint8List?>(null);
 
-  void onBarcodeDetected(BarcodeCapture capture) {
-    barcodes.assignAll(capture.barcodes);
-    scannedImage.value = capture.image;
+  void onBarcodeDetected(BarcodeCapture capture) async {
+    if (capture.barcodes.isNotEmpty) {
+      barcodes.assignAll(capture.barcodes);
+      scannedImage.value = capture.image;
 
-    if (barcodes.isNotEmpty) {
-      Get.dialog(
-        AlertDialog(
-          title: Text(barcodes.first.rawValue ?? ""),
-          content: scannedImage.value != null
-              ? Image.memory(scannedImage.value!)
-              : const Text("No image available"),
-          actions: [
-            TextButton(
-              onPressed: () => Get.back(),
-              child: const Text("Close"),
-            ),
-          ],
-        ),
-      );
+      // Wait for 3 seconds before navigating back
+      await Future.delayed(const Duration(seconds: 3));
+
+      // Navigate back with the scanned data
+      final rawValue = barcodes.first.rawValue;
+      if (rawValue != null) {
+        try {
+          // Parse the JSON string into a Map
+          final Map<String, dynamic> data = jsonDecode(rawValue);
+          Get.back(result: data);
+        } catch (e) {
+          Get.snackbar("Error", "Invalid QR Code format: ${e.toString()}");
+        }
+      } else {
+        Get.snackbar("Error", "No data found in the QR Code");
+      }
     }
   }
 

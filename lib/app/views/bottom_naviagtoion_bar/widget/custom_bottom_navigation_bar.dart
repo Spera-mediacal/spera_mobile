@@ -50,7 +50,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
             CustomBottomNavigationBarItem(
               controller: bottomNavigationBarController,
               index: 2,
-              icon: HugeIcons.strokeRoundedNavigation03,
+              icon: HugeIcons.strokeRoundedAppleNews,
             ),
             CustomBottomNavigationBarItem(
               controller: bottomNavigationBarController,

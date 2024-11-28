@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:spera_mobile/app/views/blood_donation_view/widgets/scan_code.dart';
 import '../../../../utils/colors.dart';
 import '../../../../utils/global_widgets/custom_button.dart';
 import '../../../../utils/size_config.dart';
 import '../../../../utils/text_styles.dart';
-import '../../../controllers/scan_code_controller.dart';
 
-class BloodDonateQrViewBody extends StatelessWidget {
+class BloodDonateQrViewBody extends StatefulWidget {
   const BloodDonateQrViewBody({super.key});
+
+  @override
+  State<BloodDonateQrViewBody> createState() => _BloodDonateQrViewBodyState();
+}
+
+class _BloodDonateQrViewBodyState extends State<BloodDonateQrViewBody> {
+  Map<String, dynamic>? scannedData;
 
   @override
   Widget build(BuildContext context) {
@@ -38,15 +44,24 @@ class BloodDonateQrViewBody extends StatelessWidget {
               ],
             ),
             (screenHeight(context) * 0.15).sh,
-            const Icon(
+            scannedData == null
+                ? const Icon(
               Icons.qr_code_2,
               color: AppColors.accentColor,
               size: 256,
-            ),
+            )
+                : _buildScannedDataCard(),
             (screenHeight(context) * 0.15).sh,
             CustomButton(
-              text: 'Camera',
-              onTap: () => Get.to(ScanCodePage()), // Navigate to scanner
+              text: 'Scan',
+              onTap: () async {
+                final result = await Get.to(const ScanCodePage());
+                if (result != null && result is Map<String, dynamic>) {
+                  setState(() {
+                    scannedData = result;
+                  });
+                }
+              },
               width: (screenWidth(context) * 0.8),
               height: (screenHeight(context) * 0.07),
             ),
@@ -55,33 +70,24 @@ class BloodDonateQrViewBody extends StatelessWidget {
       ),
     );
   }
-}
 
-
-
-
-class ScanCodePage extends StatelessWidget {
-  const ScanCodePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final ScanCodeController controller = Get.put(ScanCodeController());
-
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Scan QR Code'),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Get.offNamed("/generate");
-            },
-            icon: const Icon(Icons.qr_code),
-          ),
-        ],
-      ),
-      body: MobileScanner(
-        controller: controller.mobileScannerController,
-        onDetect: controller.onBarcodeDetected,
+  Widget _buildScannedDataCard() {
+    return Card(
+      color: AppColors.bgColor,
+      child: Padding(
+        padding: const EdgeInsets.all(15),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("Name: ${scannedData!['name']}", style: AppTextStyles.textStyle24),
+            const SizedBox(height: 10),
+            Text("Admin ID: ${scannedData!['admin_id']}", style: AppTextStyles.textStyle24),
+            const SizedBox(height: 10),
+            Text("Phone: ${scannedData!['phone']}", style: AppTextStyles.textStyle24),
+            const SizedBox(height: 10),
+            Text("Location: ${scannedData!['location']}", style: AppTextStyles.textStyle24),
+          ],
+        ),
       ),
     );
   }
