@@ -15,6 +15,7 @@ import 'package:spera_mobile/utils/text_styles.dart';
 import 'dart:io';
 
 import '../../../../data/local_database_helper/database_helper.dart';
+import '../../../../utils/constants.dart';
 import '../../../services/shared_pref_service/sahred_pref_service.dart';
 
 class ProfileViewBody extends StatefulWidget {
@@ -149,7 +150,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                 const CircleAvatar(
                   radius: 70,
                   backgroundImage: NetworkImage(
-                    'https://example.com/profile.jpg',
+                    Constants.avatarImage,
                   ),
                 ),
                 Container(
