@@ -1,6 +1,6 @@
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:geocoding/geocoding.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class LocationController extends GetxController {
@@ -12,8 +12,25 @@ class LocationController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    initializeLocation();
   }
 
+  Future<void> initializeLocation() async {
+    isLoading.value = true;
+
+      try {
+        Position position = await Geolocator.getCurrentPosition(
+            desiredAccuracy: LocationAccuracy.high);
+        latitude.value = position.latitude;
+        longitude.value = position.longitude;
+        await fetchCityName();
+      } catch (e) {
+        cityName.value = "Error retrieving location";
+        print(e);
+      }
+
+    isLoading.value = false;
+  }
 
   Future<bool> checkLocationPermission() async {
     var status = await Permission.locationWhenInUse.status;
@@ -21,15 +38,12 @@ class LocationController extends GetxController {
     if (status.isGranted) {
       return true;
     } else if (status.isDenied) {
-      // Request permission
       status = await Permission.locationWhenInUse.request();
       return status.isGranted;
     } else if (status.isPermanentlyDenied) {
-      // Redirect user to app settings
       await openAppSettings();
       return false;
     }
-
     return false;
   }
 
@@ -57,7 +71,6 @@ class LocationController extends GetxController {
       longitude.value,
       stationLat,
       stationLon,
-    ) /
-        1000;
+    ) / 1000;
   }
 }
