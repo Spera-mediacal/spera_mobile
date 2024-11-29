@@ -95,7 +95,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                   style: pw.TextStyle(
                       fontSize: 18, fontWeight: pw.FontWeight.bold)),
               pw.SizedBox(height: 10),
-              pw.Text('Age: 22', style: const pw.TextStyle(fontSize: 16)),
+              pw.Text('profAge: 22', style: const pw.TextStyle(fontSize: 16)),
               pw.Text('Points: 22', style: const pw.TextStyle(fontSize: 16)),
               pw.Text('Donations: 22', style: const pw.TextStyle(fontSize: 16)),
               pw.SizedBox(height: 20),

@@ -60,6 +60,14 @@ class local implements Translations{
       "noTime" : "لم يتم تحديد الوقت",
       "Add" : "إضافة",
       "selectedTime" : "الوقت المحدد",
+      // "profAge" : "العمر",
+      // "profPoints" : "النقاط",
+      // "profDonations" : "التبرعات",
+      // "Logout" : "تسجيل الخروج",
+      // "profBloodType" : "فصيلة الدم",
+      // "profHeight" : "الطول",
+      // "profWeight" : "الوزن",
+      //
 
 
 
@@ -132,6 +140,16 @@ class local implements Translations{
       "noTime" : "No time selected",
       "Add" : "Add",
       "selectedTime" : "Selected time",
+      // "profAge" : "Age",
+      // "profPoints" : "Points",
+      // "profDonations" : "Donations",
+      // "Logout" : "Logout",
+      // "profBloodType" : "Blood Type",
+      // "profHeight" : "Height",
+      // "profWeight" : "Weight",
+
+
+
 
 
 
