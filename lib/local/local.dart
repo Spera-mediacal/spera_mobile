@@ -28,6 +28,12 @@ class local implements Translations{
       "regPassconfirm" : "تأكيد كلمة المرور",
       "regButton" : "تسجيل الحساب",
       "HaveAccount" : "لدي حساب بالفعل",
+      "setAccount" : "إعداد حسابك",
+      "BloodTyp" : "فصيلة الدم",
+      "Weight" : "الوزن",
+      "Height" : "الطول",
+      "Age" : "العمر",
+      "finishButton" : "إتمام",
 
 
 
@@ -66,6 +72,19 @@ class local implements Translations{
       "regPassconfirm" : "Confirm Password",
       "regButton" : "Register",
       "HaveAccount" : "Already Have An Account",
+      "setAccount" : "Setup Your Account",
+      "BloodTyp" : "Blood Type",
+      "Weight" : "Weight",
+      "Height" : "Height",
+      "Age" : "Age",
+      "finishButton" : "Finish",
+
+
+
+
+
+
+
 
 
 

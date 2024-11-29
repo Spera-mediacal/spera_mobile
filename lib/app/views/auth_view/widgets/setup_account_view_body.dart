@@ -26,7 +26,7 @@ class SetupAccountViewBody extends StatelessWidget {
                 height: screenHeight(context) * 0.05),
             (screenHeight(context) * 0.03).sh,
             Text(
-              'Setup Your Account',
+              'setAccount'.tr,
               style: AppTextStyles.textStyle35.copyWith(
                 color: AppColors.accentColor,
               ),
@@ -34,21 +34,21 @@ class SetupAccountViewBody extends StatelessWidget {
             BloodTypeSection(),
             (screenHeight(context) * 0.02).sh,
       Obx(() => NumberPicker(
-        title: 'Weight',
+        title: 'Weight'.tr,
         maxValue: 199,
         minValue: 30,
         iniValue: controller.selectedWeight.value,
         onChanged: (value) => controller.updateWeight(value),
       )),
       Obx(() => NumberPicker(
-        title: 'Height',
+        title: 'Height'.tr,
         maxValue: 199,
         minValue: 50,
         iniValue: controller.selectedHeight.value,
         onChanged: (value) => controller.updateHeight(value),
       )),
       Obx(() => NumberPicker(
-        title: 'Age',
+        title: 'Age'.tr,
         maxValue: 80,
         minValue: 18,
         iniValue: controller.selectedAge.value,
@@ -56,7 +56,7 @@ class SetupAccountViewBody extends StatelessWidget {
       ),),
         (screenHeight(context) * 0.02).sh,
             CustomButton(
-              text: 'Finish',
+              text: 'finishButton'.tr,
               onTap: () => controller.finishSetup(),
               width: screenWidth(context) * 0.6,
               height: screenHeight(context)*0.08,

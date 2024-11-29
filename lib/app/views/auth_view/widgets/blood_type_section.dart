@@ -15,8 +15,8 @@ class BloodTypeSection extends StatelessWidget {
     return   Column(
       children: [
         (screenHeight(context) * 0.02).sh,
-        const Text(
-          'Blood Type',
+         Text(
+          'BloodTyp'.tr,
           style: AppTextStyles.textStyle35,
         ),
         (screenHeight(context) * 0.01).sh,
