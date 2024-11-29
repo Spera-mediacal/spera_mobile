@@ -21,6 +21,13 @@ class local implements Translations{
       "password" : "كلمة المرور",
       "forget" : "هل نسيت كلمة المرور؟",
       "createAcc" : "إنشاء حساب جديد",
+      "regName" : "الاسم",
+      "regEmail" : "البريد الإلكتروني",
+      "regPhone" : "رقم الهاتف",
+      "regPassword" : "كلمة المرور",
+      "regPassconfirm" : "تأكيد كلمة المرور",
+      "regButton" : "تسجيل الحساب",
+      "HaveAccount" : "لدي حساب بالفعل",
 
 
 
@@ -52,6 +59,20 @@ class local implements Translations{
       "password" : "Password",
       "forget" : "Forget password?",
       "createAcc" : "Create New Acount",
+      "regName" : "Name",
+      "regEmail" : "Email",
+      "regPhone" : "Phone number",
+      "regPassword" : "Password",
+      "regPassconfirm" : "Confirm Password",
+      "regButton" : "Register",
+      "HaveAccount" : "Already Have An Account",
+
+
+
+
+
+
+
 
 
 

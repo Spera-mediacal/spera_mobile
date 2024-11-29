@@ -35,14 +35,14 @@ class RegisterViewBody extends StatelessWidget {
                 ),
                 (screenHeight(context) * 0.03).sh,
                 CustomTextField(
-                  hintText: 'Name',
+                  hintText: 'regName'.tr,
                   prefixIcon: HugeIcons.strokeRoundedUserSharing,
                   controller: authController.nameController,
                   validator: authController.validateName,
                   textInputAction: TextInputAction.next,
                 ),
                 CustomTextField(
-                  hintText: 'Email',
+                  hintText: 'regEmail'.tr,
                   prefixIcon: HugeIcons.strokeRoundedMail01,
                   controller: authController.emailController,
                   validator: authController.validateEmail,
@@ -50,7 +50,7 @@ class RegisterViewBody extends StatelessWidget {
                   textInputAction: TextInputAction.next,
                 ),
                 CustomTextField(
-                  hintText: 'Phone',
+                  hintText: 'regPhone'.tr,
                   prefixIcon: HugeIcons.strokeRoundedCallPaused02,
                   controller: authController.phoneController,
                   validator: authController.validatePhone,
@@ -59,7 +59,7 @@ class RegisterViewBody extends StatelessWidget {
                 ),
                 Obx(() {
                   return CustomTextField(
-                    hintText: 'Password',
+                    hintText: 'regPassword'.tr,
                     isPassword: true,
                     prefixIcon: HugeIcons.strokeRoundedSquareLock01,
                     controller: authController.passwordController,
@@ -71,7 +71,7 @@ class RegisterViewBody extends StatelessWidget {
                 }),
                 Obx(() {
                   return CustomTextField(
-                    hintText: 'Confirm Password',
+                    hintText: 'regPassconfirm'.tr,
                     isPassword: true,
                     prefixIcon: HugeIcons.strokeRoundedSquareLockCheck01,
                     controller: authController.confirmPasswordController,
@@ -92,7 +92,7 @@ class RegisterViewBody extends StatelessWidget {
                   return authController.isLoading.value
                       ? const CircularProgressIndicator()
                       : CustomButton(
-                    text: 'Register',
+                    text: 'regButton'.tr,
                     onTap: _handleRegister,
                     width: screenWidth(context) * 0.5,
                     height: screenHeight(context) * 0.07,
@@ -103,8 +103,8 @@ class RegisterViewBody extends StatelessWidget {
                   onPressed: () {
                     Get.offNamed(AppRoutes.loginViewPath);
                   },
-                  child: const Text(
-                    'Already Have An Account',
+                  child:  Text(
+                    'HaveAccount'.tr,
                     style: AppTextStyles.textStyle19,
                   ),
                 ),
