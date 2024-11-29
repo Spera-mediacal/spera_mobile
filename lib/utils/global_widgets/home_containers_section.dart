@@ -18,7 +18,7 @@ class HomeContainersSection extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         HomeContainerButton(
-          text: 'Check\nYour\nX-Rays',
+          text: 'xRay'.tr,
           width: screenWidth(context) * 0.45,
           height: screenHeight(context) * 0.25,
           onTap: () {
@@ -31,7 +31,7 @@ class HomeContainersSection extends StatelessWidget {
         Column(
           children: [
             HomeContainerButton(
-              text: 'Spera Bot',
+              text: 'chatBot'.tr,
               width: screenWidth(context) * 0.45,
               height: screenHeight(context) * 0.120,
               onTap: () {
@@ -43,7 +43,7 @@ class HomeContainersSection extends StatelessWidget {
             ),
             (screenHeight(context) * 0.01).sh,
             HomeContainerButton(
-              text: 'Medicines',
+              text: 'Medic'.tr,
               width: screenWidth(context) * 0.45,
               height: screenHeight(context) * 0.120,
               onTap: () {

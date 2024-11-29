@@ -34,6 +34,14 @@ class local implements Translations{
       "Height" : "الطول",
       "Age" : "العمر",
       "finishButton" : "إتمام",
+      "Guest" : "زائر",
+      "GoodNight" : "تصبح على خير",
+      "GoodMorning" : "صباح الخير",
+      "Doctors" : "الأطباء",
+      "viewAll" : "عرض الكل",
+      "xRay" : "فحص الأشعة\nالسينية الخاصة\nبك",
+      "chatBot" : "سبيرا بوت",
+      "Medic" : "الأدوية",
 
 
 
@@ -78,6 +86,19 @@ class local implements Translations{
       "Height" : "Height",
       "Age" : "Age",
       "finishButton" : "Finish",
+      "Guest" : "Guest",
+      "GoodNight" : "Good night",
+      "GoodMorning" : "Good morning",
+      "Doctors" : "Doctors",
+      "viewAll" : "View All",
+      "xRay" : "Check\nYour\nX-Rays",
+      "chatBot" : "Spera Bot",
+      "Medic" : "Medicines",
+
+
+
+
+
 
 
 

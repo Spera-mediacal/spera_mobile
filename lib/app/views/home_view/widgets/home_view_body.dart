@@ -39,8 +39,8 @@ class HomeViewBody extends StatelessWidget {
               onTap: () {
                 Get.toNamed(AppRoutes.doctorsViewPath);
               },
-              title: "Doctors",
-              action: "View All",
+              title: "Doctors".tr,
+              action: "viewAll".tr,
             ),
             const DoctorsHomeList(),
             (screenHeight(context) * 0.1).sh,

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_common/get_reset.dart';
 import '../../../../utils/colors.dart';
 import '../../../../utils/text_styles.dart';
 import '../../../services/shared_pref_service/sahred_pref_service.dart';
@@ -22,14 +24,14 @@ class _WelcomeTextState extends State<WelcomeText> {
   Future<void> _loadUserName() async {
     final name = await SharedPreferencesHelper.getName();
     setState(() {
-      userName = name ?? 'Guest';
+      userName = name ?? 'Guest'.tr;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     int now = DateTime.now().hour;
-    String greeting = now > 12 ? 'Good night' : 'Good morning';
+    String greeting = now > 12 ? 'GoodNight'.tr : 'GoodMorning';
 
     return Row(
       children: [
