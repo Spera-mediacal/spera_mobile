@@ -37,8 +37,8 @@ class _BloodDonateQrViewBodyState extends State<BloodDonateQrViewBody> {
                   ),
                 ),
                 (screenWidth(context) * 0.15).sw,
-                const Text(
-                  "Donate",
+                 Text(
+                  "qrDonate".tr,
                   style: AppTextStyles.textStyle40,
                 ),
               ],
@@ -53,7 +53,7 @@ class _BloodDonateQrViewBodyState extends State<BloodDonateQrViewBody> {
                 : _buildScannedDataCard(),
             (screenHeight(context) * 0.15).sh,
             CustomButton(
-              text: 'Scan',
+              text: 'scanButton'.tr,
               onTap: () async {
                 final result = await Get.to(const ScanCodePage());
                 if (result != null && result is Map<String, dynamic>) {

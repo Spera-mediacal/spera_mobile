@@ -47,6 +47,8 @@ class local implements Translations{
       "noDonation" : "لا يوجد سجل للتبرعات",
       "donate" : "تبرع",
       "donationStation" : "محطة التبرع",
+      "qrDonate" : "تبرع",
+      "scanButton" : "مسح",
 
 
 
@@ -104,6 +106,10 @@ class local implements Translations{
       "noDonation" : "No donation history available",
       "donate" : "Donate",
       "donationStation" : "Donation Station",
+      "qrDonate" : "Donate",
+      "scanButton" : "Scan",
+
+
 
 
 
