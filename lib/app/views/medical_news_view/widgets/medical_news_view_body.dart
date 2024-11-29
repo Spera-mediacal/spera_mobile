@@ -23,9 +23,9 @@ class MedicalNewsViewBody extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Center(
+               Center(
                 child: Text(
-                  'Medical News',
+                  'medicalNews'.tr,
                   style: AppTextStyles.textStyle35,
                 ),
               ),

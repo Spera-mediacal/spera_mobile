@@ -46,14 +46,14 @@ class StationsViewBody extends StatelessWidget {
                       ),
                     ),
                     (screenWidth(context) * 0.15).sw,
-                    const Text(
-                      "Stations",
+                     Text(
+                      "Stations".tr,
                       style: AppTextStyles.textStyle40,
                     ),
                   ],
                 ),
                 Text(
-                  'Your Location is (${locationController.cityName.value})',
+                  'Stationslocation(${locationController.cityName.value})'.tr,
                   style: AppTextStyles.textStyle24.copyWith(
                     color: AppColors.whiteColor.withOpacity(0.5),
                   ),

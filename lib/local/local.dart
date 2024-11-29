@@ -49,6 +49,9 @@ class local implements Translations{
       "donationStation" : "محطة التبرع",
       "qrDonate" : "تبرع",
       "scanButton" : "مسح",
+      "Stations" : "المحطات",
+      "Stationslocation" : "موقعك هو",
+      "medicalNews" : "أخبار طبية",
 
 
 
@@ -61,7 +64,8 @@ class local implements Translations{
 
 
 
-},
+
+    },
 
     "eng" : {
       "title1" : "Good morning",
@@ -108,6 +112,12 @@ class local implements Translations{
       "donationStation" : "Donation Station",
       "qrDonate" : "Donate",
       "scanButton" : "Scan",
+      "Stations" : "Stations",
+      "Stationslocation" : "Your Location is",
+      "medicalNews" : "Medical News",
+
+
+
 
 
 
