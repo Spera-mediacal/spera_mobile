@@ -36,6 +36,8 @@ Future<void> checkPermissions() async {
   }
 }
 
+// Omar Adel
+
 void main() async {
   try {
     WidgetsFlutterBinding.ensureInitialized();
