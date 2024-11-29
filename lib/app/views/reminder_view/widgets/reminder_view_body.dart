@@ -25,8 +25,8 @@ class ReminderViewBody extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const Text(
-                'Reminder',
+               Text(
+                'Reminder'.tr,
                 style: AppTextStyles.textStyle35,
               ),
               (screenHeight(context) * 0.04).sh,
@@ -41,13 +41,13 @@ class ReminderViewBody extends StatelessWidget {
                         child: Column(
                           children: [
                             CustomTextField(
-                              hintText: 'Medicine name',
+                              hintText: 'medicineName'.tr,
                               prefixIcon: HugeIcons.strokeRoundedMedicine02,
                               controller: reminderController.medicineName,
                             ),
                             CustomTextField(
                               height: 60,
-                              hintText: 'Details',
+                              hintText: 'Details'.tr,
                               prefixIcon: HugeIcons.strokeRoundedProfile,
                               controller: reminderController.details,
                             ),
@@ -58,8 +58,8 @@ class ReminderViewBody extends StatelessWidget {
                                   Expanded(
                                     child: Text(
                                       reminderController.selectedTime.value.isEmpty
-                                          ? 'No time selected'
-                                          : 'Selected time: ${reminderController.selectedTime.value}',
+                                          ? 'noTime'.tr
+                                          : 'selectedTime: ${reminderController.selectedTime.value}'.tr,
                                       style: AppTextStyles.textStyle15,
                                     ),
                                   ),
@@ -72,7 +72,7 @@ class ReminderViewBody extends StatelessWidget {
                             }),
                             const Spacer(),
                             CustomButton(
-                              text: 'Add',
+                              text: 'Add'.tr,
                               onTap: () {
                                 if (reminderController.medicineName.text.isEmpty ||
                                     reminderController.details.text.isEmpty ||
@@ -108,13 +108,13 @@ class ReminderViewBody extends StatelessWidget {
                     ),
                     barrierDismissible: true,
                     titlePadding: const EdgeInsets.only(top: 25),
-                    title: 'Add Reminder',
+                    title: 'addReminder'.tr,
                     backgroundColor: AppColors.greyColor,
                     titleStyle: AppTextStyles.textStyle24,
                   );
                 },
-                title: "All Reminders",
-                action: "Add Reminder",
+                title: "allReminders".tr,
+                action: "addReminder".tr,
               ),
               (screenHeight(context) * 0.04).sh,
 

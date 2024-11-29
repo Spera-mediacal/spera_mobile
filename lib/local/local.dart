@@ -52,6 +52,15 @@ class local implements Translations{
       "Stations" : "المحطات",
       "Stationslocation" : "موقعك هو",
       "medicalNews" : "أخبار طبية",
+      "Reminder" : "تذكير",
+      "allReminders" : "جميع التذكيرات",
+      "addReminder" : "إضافة تذكير",
+      "medicineName" : "اسم الدواء",
+      "Details" : "التفاصيل",
+      "noTime" : "لم يتم تحديد الوقت",
+      "Add" : "إضافة",
+      "selectedTime" : "الوقت المحدد",
+
 
 
 
@@ -115,6 +124,21 @@ class local implements Translations{
       "Stations" : "Stations",
       "Stationslocation" : "Your Location is",
       "medicalNews" : "Medical News",
+      "Reminder" : "Reminder",
+      "allReminders" : "All Reminders",
+      "addReminder" : "Add Reminder",
+      "medicineName" : "Medicine name",
+      "Details" : "Details",
+      "noTime" : "No time selected",
+      "Add" : "Add",
+      "selectedTime" : "Selected time",
+
+
+
+
+
+
+
 
 
 
