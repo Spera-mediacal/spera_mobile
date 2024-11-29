@@ -36,7 +36,7 @@ class LoginViewBody extends StatelessWidget {
                 ),
                 (screenHeight(context) * 0.1).sh,
                 CustomTextField(
-                  hintText: 'Email',
+                  hintText: 'email'.tr,
                   prefixIcon: HugeIcons.strokeRoundedMail01,
                   controller: authController.loginEmailController,
                   validator: authController.validateEmail,
@@ -45,7 +45,7 @@ class LoginViewBody extends StatelessWidget {
                 ),
                 Obx(() {
                   return CustomTextField(
-                    hintText: 'Password',
+                    hintText: 'password'.tr,
                     isPassword: true,
                     prefixIcon: HugeIcons.strokeRoundedLockPassword,
                     controller: authController.loginPasswordController,
@@ -65,7 +65,7 @@ class LoginViewBody extends StatelessWidget {
 
                       },
                       child: Text(
-                        'Forgot Password ?',
+                        'forget'.tr,
                         style: AppTextStyles.textStyle15.copyWith(
                           color: AppColors.accentColor,
                         ),
@@ -78,7 +78,7 @@ class LoginViewBody extends StatelessWidget {
                   return authController.isLoading.value
                       ? const CircularProgressIndicator()
                       : CustomButton(
-                    text: 'Login',
+                    text: 'login'.tr,
                     onTap: _handleLogin,
                     width: screenWidth(context) * 0.5,
                     height: screenHeight(context) * 0.07,
@@ -89,8 +89,8 @@ class LoginViewBody extends StatelessWidget {
                   onPressed: () {
                     Get.toNamed(AppRoutes.registerViewPath);
                   },
-                  child: const Text(
-                    'Create New Account',
+                  child: Text(
+                    "createAcc".tr,
                     style: AppTextStyles.textStyle19,
                   ),
                 ),

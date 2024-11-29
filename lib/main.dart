@@ -7,6 +7,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:spera_mobile/app/routes/app_router.dart';
 import 'package:spera_mobile/app/services/envied_service/env.dart';
+import 'package:spera_mobile/local/local.dart';
 import 'package:spera_mobile/utils/colors.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:timezone/data/latest.dart' as tz;
@@ -136,6 +137,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: initialRoute,
+      locale: Get.deviceLocale,
+      translations: local(),
       getPages: AppRoutes.getRoutes(),
           theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(

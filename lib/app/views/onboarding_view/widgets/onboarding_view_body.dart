@@ -56,7 +56,7 @@ class OnboardingViewBody extends StatelessWidget {
                         ),
                         (screenHeight(context) * 0.05).sh,
                         CustomButton(
-                          text: 'Get Started',
+                          text: 'button'.tr,
                           onTap: () {
                             Get.toNamed(AppRoutes.loginViewPath);
                           },

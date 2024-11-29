@@ -1,0 +1,64 @@
+import 'package:get/get.dart';
+
+class local implements Translations{
+  @override
+  // TODO: implement keys
+  Map<String, Map<String, String>> get keys => {
+    "ar" : {
+      "title1" : "صباح الخير",
+      "desc1" : "انضم إلى مهمتنا لجعل الرعاية الصحية في متناول الجميع.تبرع بالدم، ابحث عن الصيدليات، واعتنِ بصحتك، كل ذلك في تطبيق واحد",
+      "title2" : "التبرع بالدم ببساطة",
+      "desc2" : "سجل كمتبرع بالدم أو اطلب الدم في حالات الطوارئ. معًا، يمكننا إنقاذ الأرواح ببضع نقرات فقط.",
+      "title3" : "مساعدك الشخصي",
+      "desc3" : "استخدم تحليل الأشعة السينية المدعوم بالذكاء الاصطناعي وروبوت الدردشة الطبي للحصول على رؤى صحية فورية ونصائح طبية.",
+      "title4" : "تحديد الموقع والخدمات القريبة",
+      "desc4" : "احجز مواعيد في العيادات القريبة أو اعثر على أقرب صيدلية بكل سهولة. الرعاية الصحية الآن على بُعد خطوات منك!",
+      "title5" : "كن منظمًا واحصل على نقاط!",
+      "desc5" : "قم بضبط التذكيرات، وتتبع المواعيد، واحصل على نقاط مقابل استخدام التطبيق لاستبدالها بمكافآت رائعة!",
+      "button" : "ابدأ الآن",
+      "login" : "تسجيل الدخول",
+      "email" : "البريد الإلكتروني",
+      "password" : "كلمة المرور",
+      "forget" : "هل نسيت كلمة المرور؟",
+      "createAcc" : "إنشاء حساب جديد",
+
+
+
+
+
+
+
+
+
+
+
+
+},
+
+    "eng" : {
+      "title1" : "Good morning",
+      "desc1" : "Join our mission to make healthcare accessible for everyone. Donate blood, find pharmacies, and manage your health all in one app",
+      "title2" : "Simplified Blood Donation",
+      "desc2" : "Register as a blood donor or request blood in emergencies. Together, we can save lives with just a few clicks",
+      "title3" : "Your Personal assistant",
+      "desc3" : "Use AI-powered X-ray analysis and a medical chat bot to get instant health insights and advice.",
+      "title4" : "Locate & Nearby Services",
+      "desc4" : "Book appointments at nearby clinics or locate the closest pharmacy with ease. Healthcare is now just around the corner!",
+      "title5" : "Stay Organized & Earn Points",
+      "desc5" : "Set reminders, track appointments, and earn points for app engagement to redeem exciting rewards!",
+      "button" : "Get Started",
+      "login" : "Login",
+      "email" : "Email",
+      "password" : "Password",
+      "forget" : "Forget password?",
+      "createAcc" : "Create New Acount",
+
+
+
+
+
+
+    }
+  };
+
+}
