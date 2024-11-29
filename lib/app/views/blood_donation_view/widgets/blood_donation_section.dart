@@ -21,7 +21,7 @@ class BloodDonationSection extends StatelessWidget {
             onTap: () {
               Get.toNamed(AppRoutes.bloodDonateQrViewPath);
             },
-            text: 'Donate',
+            text: 'donate'.tr,
             fontSize: 18,
             width: screenWidth(context) * 0.45,
             height: screenHeight(context) * 0.120,
@@ -31,7 +31,7 @@ class BloodDonationSection extends StatelessWidget {
             onTap: () {
               Get.toNamed(AppRoutes.stationsViewPath);
             },
-            text: 'Donation Station',
+            text: 'donationStation'.tr,
             fontSize: 18,
             width: screenWidth(context) * 0.45,
             height: screenHeight(context) * 0.120,

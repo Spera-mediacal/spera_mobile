@@ -42,6 +42,11 @@ class local implements Translations{
       "xRay" : "فحص الأشعة\nالسينية الخاصة\nبك",
       "chatBot" : "سبيرا بوت",
       "Medic" : "الأدوية",
+      "bloodDonation" : "التبرع بالدم",
+      "donationHistory" : "سجل التبرعات",
+      "noDonation" : "لا يوجد سجل للتبرعات",
+      "donate" : "تبرع",
+      "donationStation" : "محطة التبرع",
 
 
 
@@ -94,6 +99,12 @@ class local implements Translations{
       "xRay" : "Check\nYour\nX-Rays",
       "chatBot" : "Spera Bot",
       "Medic" : "Medicines",
+      "bloodDonation" : "Blood Donation",
+      "donationHistory" : "Donation History",
+      "noDonation" : "No donation history available",
+      "donate" : "Donate",
+      "donationStation" : "Donation Station",
+
 
 
 

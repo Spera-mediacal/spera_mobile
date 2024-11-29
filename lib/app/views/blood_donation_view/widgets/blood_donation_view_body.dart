@@ -51,9 +51,9 @@ class _BloodDonationViewBodyState extends State<BloodDonationViewBody> {
               : Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Center(
+               Center(
                 child: Text(
-                  'Blood Donation',
+                  'bloodDonation'.tr,
                   style: AppTextStyles.textStyle35,
                 ),
               ),
@@ -61,7 +61,7 @@ class _BloodDonationViewBodyState extends State<BloodDonationViewBody> {
               const BloodDonationSection(),
               (screenHeight(context) * 0.04).sh,
               Text(
-                'Donation History',
+                'donationHistory'.tr,
                 style: AppTextStyles.textStyle24.copyWith(
                   color: AppColors.whiteColor.withOpacity(0.6),
                   fontWeight: FontWeight.w300,
@@ -74,7 +74,7 @@ class _BloodDonationViewBodyState extends State<BloodDonationViewBody> {
                     padding: const EdgeInsets.only(top: 20),
                     child: Center(
                       child: Text(
-                        'No donation history available',
+                        'noDonation'.tr,
                         style: AppTextStyles.textStyle15.copyWith(
                           color: AppColors.whiteColor.withOpacity(0.6),
                         ),
