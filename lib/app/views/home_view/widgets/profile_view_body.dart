@@ -198,7 +198,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                 controller.logout();
               },
               child: Text(
-                'Logout',
+                'Logout'.tr,
                 style: AppTextStyles.textStyle19.copyWith(
                   color: Colors.red,
                 ),
@@ -235,13 +235,13 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        _buildStatColumn('Age', userSetupData?['age'] ?? 35),
+        _buildStatColumn('profAge'.tr, userSetupData?['age'] ?? 35),
         _buildVerticalDivider(context),
         _buildStatColumn(
-            'Points', donationController.donationHistory.length * 10),
+            'profPoints'.tr, donationController.donationHistory.length * 10),
         _buildVerticalDivider(context),
         _buildStatColumn(
-            'Donations', donationController.donationHistory.length),
+            'profDonations'.tr, donationController.donationHistory.length),
       ],
     );
   }
@@ -281,7 +281,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
           context,
           height: screenHeight(context) * 0.28,
           width: screenWidth(context) * 0.44,
-          title: 'BMI',
+          title: 'proBmi'.tr,
           value: userSetupData != null &&
                   userSetupData?['weight'] != null &&
                   userSetupData?['height'] != null &&
@@ -299,7 +299,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
           context,
           height: screenHeight(context) * 0.28,
           width: screenWidth(context) * 0.44,
-          title: 'Blood',
+          title: 'profBloodType'.tr,
           value: userSetupData?['blood_type'] ?? 'N/A',
           subtitle:
               userSetupData?['is_positive'] == 1 ? 'Positive' : 'Negative',
@@ -315,7 +315,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
           context,
           height: screenHeight(context) * 0.32,
           width: screenWidth(context) * 0.44,
-          title: 'Height',
+          title: 'profHeight'.tr,
           value: userSetupData?['weight'].toString() ?? 'N/A',
           subtitle: 'cm',
         ),
@@ -324,8 +324,8 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
           context,
           height: screenHeight(context) * 0.24,
           width: screenWidth(context) * 0.44,
-          title: userSetupData?['weight'].toString() ?? 'N/A',
-          value: '90',
+          title: 'profWeight'.tr,
+          value: userSetupData?['weight'].toString() ?? 'N/A',
           subtitle: 'kg',
         ),
       ],
