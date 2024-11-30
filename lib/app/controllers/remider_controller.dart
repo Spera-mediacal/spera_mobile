@@ -1,7 +1,10 @@
 import 'package:alarm/alarm.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:spera_mobile/utils/colors.dart';
+import 'package:spera_mobile/utils/global_widgets/custom_snack_bar.dart';
 
 import '../../data/local_database_helper/database_helper.dart';
 import '../models/reminder.dart';
@@ -27,21 +30,17 @@ class ReminderController extends GetxController {
 
       await fetchReminders();
 
-      Get.snackbar(
-        'Success',
-        'Reminder deleted successfully',
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.green,
-        colorText: Colors.white,
-      );
+      const CustomSnackBar(
+        title: 'Success',
+        message: 'Reminder deleted successfully',
+      ).show();
     } catch (e) {
-      Get.snackbar(
-        'Error',
-        'Failed to delete reminder',
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-      );
+      const CustomSnackBar(
+        title: 'Error',
+        message: 'Failed to delete reminder',
+        textColor: AppColors.wrongColor,
+        icon: HugeIcons.strokeRoundedAlert02,
+      ).show();
     }
   }
 
@@ -55,17 +54,17 @@ class ReminderController extends GetxController {
 
       await fetchReminders();
 
-      Get.snackbar(
-        'Success',
-        'All reminders deleted successfully',
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      const CustomSnackBar(
+        title: 'Success',
+        message: 'All reminders deleted successfully',
+      ).show();
     } catch (e) {
-      Get.snackbar(
-        'Error',
-        'Failed to delete reminders',
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      const CustomSnackBar(
+        title: 'Error',
+        message: 'Failed to delete reminders',
+        textColor: AppColors.wrongColor,
+        icon: HugeIcons.strokeRoundedAlert02,
+      ).show();
     }
   }
 

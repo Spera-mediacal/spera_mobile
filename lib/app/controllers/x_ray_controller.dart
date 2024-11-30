@@ -1,12 +1,17 @@
 import 'package:get/get.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:spera_mobile/utils/colors.dart';
+import 'package:spera_mobile/utils/global_widgets/custom_snack_bar.dart';
 
 class XRayController extends GetxController {
   final _imagePath = Rx<String?>(null);
   final _isAnalyzing = false.obs;
 
   String? get imagePath => _imagePath.value;
+
   bool get isAnalyzing => _isAnalyzing.value;
+
   bool get hasImage => _imagePath.value != null;
 
   final _picker = ImagePicker();
@@ -18,11 +23,12 @@ class XRayController extends GetxController {
         _imagePath.value = image.path;
       }
     } catch (e) {
-      Get.snackbar(
-        'Error',
-        'Failed to pick image',
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      const CustomSnackBar(
+        icon: HugeIcons.strokeRoundedAlert02,
+        title: 'Error',
+        message: 'Failed to pick image',
+        textColor: AppColors.wrongColor,
+      ).show();
     }
   }
 
@@ -32,17 +38,16 @@ class XRayController extends GetxController {
     try {
       _isAnalyzing.value = true;
       await Future.delayed(const Duration(seconds: 2));
-      Get.snackbar(
-        'Success',
-        'Image analyzed successfully',
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      const CustomSnackBar(
+              title: 'Success', message: 'Image analyzed successfully')
+          .show();
     } catch (e) {
-      Get.snackbar(
-        'Error',
-        'Failed to analyze image',
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      const CustomSnackBar(
+        title: 'Error',
+        message: 'Failed to analyze image',
+        textColor: AppColors.wrongColor,
+        icon: HugeIcons.strokeRoundedAlert02,
+      ).show();
     } finally {
       _isAnalyzing.value = false;
     }

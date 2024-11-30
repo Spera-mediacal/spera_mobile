@@ -7,4 +7,5 @@ class AppColors {
   static const secAccentColor = Color(0xffC09FF8);
   static const thirdAccentColor = Color(0xffFEC4DD);
   static const whiteColor = Colors.white;
+  static const wrongColor = Colors.red;
 }

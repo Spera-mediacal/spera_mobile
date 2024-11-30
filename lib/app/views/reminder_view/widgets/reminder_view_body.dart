@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:spera_mobile/utils/global_widgets/custom_button.dart';
-import 'package:spera_mobile/utils/global_widgets/custom_snackbar.dart';
+import 'package:spera_mobile/utils/global_widgets/custom_snack_bar.dart';
 import 'package:spera_mobile/utils/global_widgets/custom_text_field.dart';
 
 import '../../../../utils/colors.dart';
@@ -83,14 +83,13 @@ class ReminderViewBody extends StatelessWidget {
                                     reminderController.details.text.isEmpty ||
                                     reminderController
                                         .selectedTime.value.isEmpty) {
-                                  const CustomSnackbar(
-                                          icon: Icon(
-                                              HugeIcons.strokeRoundedAbacus,
-                                              color: AppColors.accentColor),
-                                          title: 'Error',
-                                          message:
-                                              'Please fill in all fields and select a time')
-                                      .show();
+                                  const CustomSnackBar(
+                                    icon: HugeIcons.strokeRoundedAlert02,
+                                    title: 'Error',
+                                    message:
+                                        'Please fill in all fields and select a time',
+                                    textColor: AppColors.wrongColor,
+                                  ).show();
                                   return;
                                 }
 

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hugeicons/hugeicons.dart';
+import 'package:spera_mobile/utils/colors.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../utils/global_widgets/custom_snackbar.dart';
+import '../../utils/global_widgets/custom_snack_bar.dart';
 import '../routes/app_router.dart';
 import '../services/shared_pref_service/sahred_pref_service.dart';
 
@@ -65,29 +67,28 @@ class AuthController extends GetxController {
 
           Get.toNamed(AppRoutes.loginViewPath);
 
-          const CustomSnackbar(
+          const CustomSnackBar(
                   title: 'Success',
                   message:
                       'Account created successfully! Please verify your email.')
               .show();
-
           clearControllers();
         }
       } else {
-        Get.snackbar(
-          'Error',
-          'Please correct the errors in the form',
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-        );
+        const CustomSnackBar(
+          title: 'Error',
+          message: 'Please correct the errors in the form',
+          icon: HugeIcons.strokeRoundedAlert02,
+          textColor: AppColors.wrongColor,
+        ).show();
       }
     } on AuthException catch (e) {
-      Get.snackbar(
-        'Error',
-        e.message,
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-      );
+      CustomSnackBar(
+        title: 'Error',
+        message: e.message,
+        icon: HugeIcons.strokeRoundedAlert02,
+        textColor: AppColors.wrongColor,
+      ).show();
     } finally {
       isLoading.value = false;
     }
@@ -114,38 +115,36 @@ class AuthController extends GetxController {
             id: userId,
           );
 
-          Get.snackbar(
-            'Success',
-            'Logged in successfully!',
-            backgroundColor: Colors.green,
-            colorText: Colors.white,
-          );
+          const CustomSnackBar(
+            title: 'Success',
+            message: 'Logged in successfully!',
+          ).show();
 
           clearControllers();
           Get.offAllNamed(AppRoutes.setUpViewPath);
         }
       } else {
-        Get.snackbar(
-          'Error',
-          'Please correct the errors in the form',
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-        );
+        const CustomSnackBar(
+          title: 'Error',
+          message: 'Please correct the errors in the form',
+          textColor: AppColors.wrongColor,
+          icon: HugeIcons.strokeRoundedAlert02,
+        ).show();
       }
     } on AuthException catch (e) {
-      Get.snackbar(
-        'Error',
-        e.message,
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-      );
+      CustomSnackBar(
+        title: 'Error',
+        message: e.message,
+        textColor: AppColors.wrongColor,
+        icon: HugeIcons.strokeRoundedAlert02,
+      ).show();
     } catch (e) {
-      Get.snackbar(
-        'Error',
-        'An unexpected error occurred',
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-      );
+      const CustomSnackBar(
+        title: 'Error',
+        message: 'An unexpected error occurred',
+        textColor: AppColors.wrongColor,
+        icon: HugeIcons.strokeRoundedAlert02,
+      ).show();
     } finally {
       isLoading.value = false;
     }
@@ -157,19 +156,17 @@ class AuthController extends GetxController {
       clearControllers();
       await supabase.auth.signOut();
       Get.offAllNamed(AppRoutes.loginViewPath);
-      Get.snackbar(
-        'Success',
-        'Logged out successfully',
-        backgroundColor: Colors.green,
-        colorText: Colors.white,
-      );
+      const CustomSnackBar(
+        title: 'Success',
+        message: 'Logged out successfully',
+      ).show();
     } catch (e) {
-      Get.snackbar(
-        'Error',
-        'Failed to logout',
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-      );
+      const CustomSnackBar(
+        title: 'Error',
+        message: 'Failed to logout',
+        textColor: AppColors.wrongColor,
+        icon: HugeIcons.strokeRoundedAlert02,
+      ).show();
     } finally {
       isLoading.value = false;
     }

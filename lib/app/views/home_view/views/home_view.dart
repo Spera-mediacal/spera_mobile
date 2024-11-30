@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:spera_mobile/app/views/home_view/widgets/home_view_body.dart';
 import 'package:spera_mobile/utils/colors.dart';
-import 'package:spera_mobile/utils/global_widgets/custom_snackbar.dart';
+import 'package:spera_mobile/utils/global_widgets/custom_snack_bar.dart';
 import 'package:spera_mobile/utils/global_widgets/glow_container.dart';
 import 'package:spera_mobile/utils/global_widgets/waves_background.dart';
 import 'package:spera_mobile/utils/size_config.dart';

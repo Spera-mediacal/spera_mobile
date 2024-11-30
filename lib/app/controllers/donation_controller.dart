@@ -1,20 +1,23 @@
-import 'package:get/get.dart';
-import 'package:spera_mobile/utils/constants.dart';
-import '../models/donation_model.dart';
 import 'package:dio/dio.dart';
+import 'package:get/get.dart';
+import 'package:hugeicons/hugeicons.dart';
+import 'package:spera_mobile/utils/colors.dart';
+import 'package:spera_mobile/utils/constants.dart';
+import 'package:spera_mobile/utils/global_widgets/custom_snack_bar.dart';
+
+import '../models/donation_model.dart';
 
 class DonationController extends GetxController {
   final Dio dio = Dio(
     BaseOptions(
       baseUrl: 'http://${Constants.localIP}/api/user/donate',
-
       headers: {'accept': 'application/json'},
     ),
   );
 
-   var donationHistory = <DonationModel>[].obs;
+  var donationHistory = <DonationModel>[].obs;
 
-   Future<void> addDonation({
+  Future<void> addDonation({
     required String userId,
     required int quantity,
     required String date,
@@ -33,16 +36,29 @@ class DonationController extends GetxController {
       );
 
       if (response.statusCode == 200) {
-        Get.snackbar('Success', response.data['message']);
+        CustomSnackBar(
+          title: 'Success',
+          message: response.data['message'],
+        ).show();
       } else {
-        Get.snackbar('Error', response.data['message']);
+        CustomSnackBar(
+          title: 'Error',
+          message: response.data['message'],
+          icon: HugeIcons.strokeRoundedAlert02,
+          textColor: AppColors.wrongColor,
+        ).show();
       }
     } catch (e) {
-      Get.snackbar('Error', 'Failed to add donation: $e');
+      CustomSnackBar(
+        title: 'Error',
+        message: 'Failed to add donation: $e',
+        textColor: AppColors.wrongColor,
+        icon: HugeIcons.strokeRoundedAlert02,
+      ).show();
     }
   }
 
-   Future<void> fetchDonationHistory(String userId) async {
+  Future<void> fetchDonationHistory(String userId) async {
     try {
       final response = await dio.get('/$userId', queryParameters: {
         'id': userId,
@@ -61,10 +77,20 @@ class DonationController extends GetxController {
               .toList());
         }
       } else {
-        Get.snackbar('Error', 'Failed to fetch donation history');
+        const CustomSnackBar(
+          title: 'Error',
+          message: 'Failed to fetch donation history',
+          textColor: AppColors.wrongColor,
+          icon: HugeIcons.strokeRoundedAlert02,
+        ).show();
       }
     } catch (e) {
-      Get.snackbar('Error', 'Failed to fetch donation history: $e');
+      CustomSnackBar(
+        title: 'Error',
+        message: 'Failed to fetch donation history: $e',
+        textColor: AppColors.wrongColor,
+        icon: HugeIcons.strokeRoundedAlert02,
+      ).show();
     }
   }
 }

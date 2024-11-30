@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hugeicons/hugeicons.dart';
+import 'package:spera_mobile/utils/colors.dart';
+import 'package:spera_mobile/utils/global_widgets/custom_snack_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
-import '../../../controllers/news_controller.dart';
 import '../../../../utils/size_config.dart';
 import '../../../../utils/text_styles.dart';
+import '../../../controllers/news_controller.dart';
 
 class MedicalNewsViewBody extends StatelessWidget {
   final NewsController _newsController = Get.put(NewsController());
 
   MedicalNewsViewBody({super.key});
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class MedicalNewsViewBody extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               Center(
+              Center(
                 child: Text(
                   'medicalNews'.tr,
                   style: AppTextStyles.textStyle35,
@@ -50,11 +50,15 @@ class MedicalNewsViewBody extends StatelessWidget {
 
                     return GestureDetector(
                       onTap: () {
-
                         if (article.url != null && article.url!.isNotEmpty) {
-                       _launchURL(article.url!);
+                          _launchURL(article.url!);
                         } else {
-                          Get.snackbar('Error', 'No URL available for this article.');
+                          const CustomSnackBar(
+                            title: 'Error',
+                            message: 'No URL available for this article.',
+                            textColor: AppColors.wrongColor,
+                            icon: HugeIcons.strokeRoundedAlert02,
+                          ).show();
                         }
                       },
                       child: Container(
@@ -64,10 +68,11 @@ class MedicalNewsViewBody extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           image: DecorationImage(
-                            image: article.urlToImage != null ? NetworkImage(
-                              article.urlToImage!,
-                            ) : const AssetImage('assets/media/noImage.png'),
-
+                            image: article.urlToImage != null
+                                ? NetworkImage(
+                                    article.urlToImage!,
+                                  )
+                                : const AssetImage('assets/media/noImage.png'),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -114,17 +119,16 @@ class MedicalNewsViewBody extends StatelessWidget {
                       ),
                     );
                   },
-
                 );
-
               }),
-              (screenHeight(context)*0.1).sh,
+              (screenHeight(context) * 0.1).sh,
             ],
           ),
         ),
       ),
     );
   }
+
   void _launchURL(String url) async {
     if (await canLaunch(url)) {
       await launch(url);

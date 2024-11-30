@@ -1,28 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
+
 import '../colors.dart';
 
-class CustomSnackbar extends StatelessWidget {
+class CustomSnackBar extends StatelessWidget {
   final String title;
   final String message;
-  final Color? backgroundColor;
   final Color? textColor;
   final double borderRadius;
-  final Icon? icon;
+  final IconData? icon;
   final Duration? duration;
 
-  const CustomSnackbar({
+  const CustomSnackBar({
     super.key,
     required this.title,
     required this.message,
-    this.backgroundColor,
     this.textColor,
     this.borderRadius = 15.0,
     this.icon,
     this.duration = const Duration(seconds: 3),
   });
-
 
   void show() {
     Get.snackbar(
@@ -30,13 +28,16 @@ class CustomSnackbar extends StatelessWidget {
       message,
       colorText: textColor ?? AppColors.accentColor,
       borderRadius: borderRadius,
-      icon: icon ??
-          const HugeIcon(
-            icon: HugeIcons.strokeRoundedAbacus,
-            color: AppColors.accentColor,
-          ),
+      icon: icon != null
+          ? Icon(
+              icon,
+              color: textColor ?? AppColors.accentColor,
+            )
+          : HugeIcon(
+              icon: HugeIcons.strokeRoundedAbacus,
+              color: textColor ?? AppColors.accentColor,
+            ),
       duration: duration,
-
     );
   }
 
