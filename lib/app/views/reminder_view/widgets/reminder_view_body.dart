@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:spera_mobile/utils/global_widgets/custom_button.dart';
+import 'package:spera_mobile/utils/global_widgets/custom_snackbar.dart';
 import 'package:spera_mobile/utils/global_widgets/custom_text_field.dart';
 
 import '../../../../utils/colors.dart';
@@ -25,7 +26,7 @@ class ReminderViewBody extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-               Text(
+              Text(
                 'Reminder'.tr,
                 style: AppTextStyles.textStyle35,
               ),
@@ -35,7 +36,7 @@ class ReminderViewBody extends StatelessWidget {
                   Get.defaultDialog(
                     content: SizedBox(
                       width: screenWidth(context) * 0.9,
-                      height: screenHeight(context) * 0.45,
+                      height: screenHeight(context) * 0.4,
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Column(
@@ -57,15 +58,18 @@ class ReminderViewBody extends StatelessWidget {
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      reminderController.selectedTime.value.isEmpty
+                                      reminderController
+                                              .selectedTime.value.isEmpty
                                           ? 'noTime'.tr
-                                          : 'selectedTime: ${reminderController.selectedTime.value}'.tr,
+                                          : 'selectedTime: ${reminderController.selectedTime.value}'
+                                              .tr,
                                       style: AppTextStyles.textStyle15,
                                     ),
                                   ),
                                   IconButton(
                                     icon: const Icon(Icons.access_time),
-                                    onPressed: () => reminderController.pickTime(context),
+                                    onPressed: () =>
+                                        reminderController.pickTime(context),
                                   ),
                                 ],
                               );
@@ -74,21 +78,25 @@ class ReminderViewBody extends StatelessWidget {
                             CustomButton(
                               text: 'Add'.tr,
                               onTap: () {
-                                if (reminderController.medicineName.text.isEmpty ||
+                                if (reminderController
+                                        .medicineName.text.isEmpty ||
                                     reminderController.details.text.isEmpty ||
-                                    reminderController.selectedTime.value.isEmpty) {
-                                  Get.snackbar(
-                                    'Error',
-                                    'Please fill in all fields and select a time',
-                                    snackPosition: SnackPosition.BOTTOM,
-                                    backgroundColor: Colors.red,
-                                    colorText: Colors.white,
-                                  );
+                                    reminderController
+                                        .selectedTime.value.isEmpty) {
+                                  const CustomSnackbar(
+                                          icon: Icon(
+                                              HugeIcons.strokeRoundedAbacus,
+                                              color: AppColors.accentColor),
+                                          title: 'Error',
+                                          message:
+                                              'Please fill in all fields and select a time')
+                                      .show();
                                   return;
                                 }
 
                                 final reminder = Reminder(
-                                  id: DateTime.now().millisecondsSinceEpoch, // temporary id generation
+                                  id: DateTime.now().millisecondsSinceEpoch,
+                                  // temporary id generation
                                   name: reminderController.medicineName.text,
                                   details: reminderController.details.text,
                                   time: reminderController.selectedTime.value,
@@ -101,7 +109,6 @@ class ReminderViewBody extends StatelessWidget {
                               height: (screenHeight(context) * 0.03),
                               borderRadius: 12,
                             )
-
                           ],
                         ),
                       ),
@@ -117,7 +124,6 @@ class ReminderViewBody extends StatelessWidget {
                 action: "addReminder".tr,
               ),
               (screenHeight(context) * 0.04).sh,
-
               Obx(() {
                 final reminders = reminderController.reminders;
                 return ListView.builder(
@@ -127,7 +133,8 @@ class ReminderViewBody extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final reminder = reminders[index];
                     return Dismissible(
-                      key: Key(reminder.id.toString()), // Make sure Reminder model has an id field
+                      key: Key(reminder.id.toString()),
+                      // Make sure Reminder model has an id field
                       background: Container(
                         color: Colors.red,
                         alignment: Alignment.centerRight,
@@ -140,27 +147,30 @@ class ReminderViewBody extends StatelessWidget {
                       direction: DismissDirection.endToStart,
                       confirmDismiss: (direction) async {
                         return await Get.dialog<bool>(
-                          AlertDialog(
-                            title: const Text('Delete Reminder'),
-                            content: const Text('Are you sure you want to delete this reminder?'),
-                            actions: [
-                              TextButton(
-                                onPressed: () => Get.back(result: false),
-                                child: const Text('Cancel'),
+                              AlertDialog(
+                                title: const Text('Delete Reminder'),
+                                content: const Text(
+                                    'Are you sure you want to delete this reminder?'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Get.back(result: false),
+                                    child: const Text('Cancel'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () => Get.back(result: true),
+                                    child: const Text(
+                                      'Delete',
+                                      style: TextStyle(color: Colors.red),
+                                    ),
+                                  ),
+                                ],
                               ),
-                              TextButton(
-                                onPressed: () => Get.back(result: true),
-                                child: const Text(
-                                  'Delete',
-                                  style: TextStyle(color: Colors.red),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ) ?? false;
+                            ) ??
+                            false;
                       },
                       onDismissed: (direction) {
-                        reminderController.deleteReminder(reminder.id ?? 1, index);
+                        reminderController.deleteReminder(
+                            reminder.id ?? 1, index);
                       },
                       child: AlarmContainer(
                         name: reminder.name,

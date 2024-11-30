@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spera_mobile/app/views/blood_donation_view/widgets/scan_code.dart';
+
 import '../../../../utils/colors.dart';
 import '../../../../utils/global_widgets/custom_button.dart';
 import '../../../../utils/size_config.dart';
@@ -37,7 +38,7 @@ class _BloodDonateQrViewBodyState extends State<BloodDonateQrViewBody> {
                   ),
                 ),
                 (screenWidth(context) * 0.15).sw,
-                 Text(
+                Text(
                   "qrDonate".tr,
                   style: AppTextStyles.textStyle40,
                 ),
@@ -46,10 +47,10 @@ class _BloodDonateQrViewBodyState extends State<BloodDonateQrViewBody> {
             (screenHeight(context) * 0.15).sh,
             scannedData == null
                 ? const Icon(
-              Icons.qr_code_2,
-              color: AppColors.accentColor,
-              size: 256,
-            )
+                    Icons.qr_code_2,
+                    color: AppColors.accentColor,
+                    size: 256,
+                  )
                 : _buildScannedDataCard(),
             (screenHeight(context) * 0.15).sh,
             CustomButton(
@@ -79,15 +80,17 @@ class _BloodDonateQrViewBodyState extends State<BloodDonateQrViewBody> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Name: ${scannedData!['name']}", style: AppTextStyles.textStyle24),
+            Text("Examiner Name: ${scannedData!['examiner']}",
+                style: AppTextStyles.textStyle24),
             const SizedBox(height: 10),
-            Text("Admin ID: ${scannedData!['admin_id']}", style: AppTextStyles.textStyle24),
+            Text("Blood Type: ${scannedData!['bloodType']}",
+                style: AppTextStyles.textStyle24),
             const SizedBox(height: 10),
-            Text("Phone: ${scannedData!['phone']}", style: AppTextStyles.textStyle24),
+            Text("Location: ${scannedData!['Station']}",
+                style: AppTextStyles.textStyle24),
             const SizedBox(height: 10),
-            Text("Location: ${scannedData!['location']}", style: AppTextStyles.textStyle24),
-            const SizedBox(height: 10),
-            Text("Quantity: ${scannedData!['quantity']}", style: AppTextStyles.textStyle24),
+            Text("Quantity: ${scannedData!['quantity']}",
+                style: AppTextStyles.textStyle24),
           ],
         ),
       ),

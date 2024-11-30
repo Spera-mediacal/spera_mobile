@@ -107,6 +107,9 @@ flutter:
     - family: Manjari
       fonts:
         - asset: assets/fonts/Manjari-Regular.ttf
+    - family: Beiruti
+      fonts:
+        - asset: assets/fonts/Beiruti-VariableFont_wght.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

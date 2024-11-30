@@ -11,6 +11,7 @@ import 'package:spera_mobile/local/local.dart';
 import 'package:spera_mobile/utils/colors.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:timezone/data/latest.dart' as tz;
+
 import 'app/services/notification_service/notification_helper.dart';
 
 Future<void> checkPermissions() async {
@@ -26,11 +27,12 @@ Future<void> checkPermissions() async {
     await Permission.location.request();
   }
 
-  if (notificationPermission.isDenied || notificationPermission.isPermanentlyDenied) {
+  if (notificationPermission.isDenied ||
+      notificationPermission.isPermanentlyDenied) {
     await Permission.notification.request();
   }
 
-   if (await Permission.camera.isPermanentlyDenied ||
+  if (await Permission.camera.isPermanentlyDenied ||
       await Permission.location.isPermanentlyDenied ||
       await Permission.notification.isPermanentlyDenied) {
     openAppSettings(); // Redirect user to app settings
@@ -49,10 +51,10 @@ void main() async {
     await Alarm.init();
 
     const AndroidInitializationSettings initializationSettingsAndroid =
-    AndroidInitializationSettings('@mipmap/ic_launcher');
+        AndroidInitializationSettings('@mipmap/ic_launcher');
 
     const InitializationSettings initializationSettings =
-    InitializationSettings(android: initializationSettingsAndroid);
+        InitializationSettings(android: initializationSettingsAndroid);
 
     try {
       await flutterLocalNotificationsPlugin.initialize(initializationSettings);
@@ -133,18 +135,18 @@ class MyApp extends StatelessWidget {
     final initialRoute = supabase.auth.currentUser != null
         ? AppRoutes.bottomViewPath
         : AppRoutes.onboardingViewPath;
-
+    print(Get.deviceLocale);
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: initialRoute,
       locale: Get.deviceLocale,
       translations: local(),
       getPages: AppRoutes.getRoutes(),
-          theme: ThemeData(
+      theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: AppColors.accentColor,
         ),
-        fontFamily: 'Manjari',
+        fontFamily: Get.deviceLocale.toString().contains('en')? 'Manjari' : 'Beiruti',
         scaffoldBackgroundColor: AppColors.bgColor,
       ),
     );
