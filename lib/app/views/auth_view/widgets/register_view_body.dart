@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:spera_mobile/app/routes/app_router.dart';
+
 import '../../../../utils/global_widgets/custom_button.dart';
 import '../../../../utils/global_widgets/custom_text_field.dart';
 import '../../../../utils/global_widgets/logo_widget.dart';
@@ -64,7 +65,8 @@ class RegisterViewBody extends StatelessWidget {
                     prefixIcon: HugeIcons.strokeRoundedSquareLock01,
                     controller: authController.passwordController,
                     validator: authController.validatePassword,
-                    onToggleObscureText: authController.toggleRegisterPasswordObscure,
+                    onToggleObscureText:
+                        authController.toggleRegisterPasswordObscure,
                     obscureText: authController.isRegisterPasswordObscure.value,
                     textInputAction: TextInputAction.next,
                   );
@@ -81,8 +83,10 @@ class RegisterViewBody extends StatelessWidget {
                       }
                       return authController.validatePassword(value);
                     },
-                    obscureText: authController.isRegisterConfirmPasswordObscure.value,
-                    onToggleObscureText: authController.toggleRegisterConfirmPasswordObscure,
+                    obscureText:
+                        authController.isRegisterConfirmPasswordObscure.value,
+                    onToggleObscureText:
+                        authController.toggleRegisterConfirmPasswordObscure,
                     textInputAction: TextInputAction.done,
                     onFieldSubmitted: (_) => _handleRegister(),
                   );
@@ -92,18 +96,18 @@ class RegisterViewBody extends StatelessWidget {
                   return authController.isLoading.value
                       ? const CircularProgressIndicator()
                       : CustomButton(
-                    text: 'regButton'.tr,
-                    onTap: _handleRegister,
-                    width: screenWidth(context) * 0.5,
-                    height: screenHeight(context) * 0.07,
-                  );
+                          text: 'regButton'.tr,
+                          onTap: _handleRegister,
+                          width: screenWidth(context) * 0.5,
+                          height: screenHeight(context) * 0.07,
+                        );
                 }),
                 (screenHeight(context) * 0.006).sh,
                 TextButton(
                   onPressed: () {
                     Get.offNamed(AppRoutes.loginViewPath);
                   },
-                  child:  Text(
+                  child: Text(
                     'HaveAccount'.tr,
                     style: AppTextStyles.textStyle19,
                   ),

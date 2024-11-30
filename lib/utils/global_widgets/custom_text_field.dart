@@ -29,7 +29,10 @@ class CustomTextField extends StatelessWidget {
     this.obscureText = true,
     this.onToggleObscureText,
     this.width,
-    this.height, this.keyboardType, this.textInputAction, this.onFieldSubmitted,
+    this.height,
+    this.keyboardType,
+    this.textInputAction,
+    this.onFieldSubmitted,
   });
 
   @override
@@ -41,7 +44,7 @@ class CustomTextField extends StatelessWidget {
         child: TextFormField(
           style: AppTextStyles.textStyle19,
           controller: controller,
-          obscureText: isPassword ? obscureText : false,
+          obscureText: isPassword ? !obscureText : false,
           validator: validator,
           keyboardType: keyboardType,
           textInputAction: textInputAction,
@@ -62,7 +65,7 @@ class CustomTextField extends StatelessWidget {
             suffixIcon: isPassword
                 ? IconButton(
                     icon: Icon(
-                      !obscureText
+                      obscureText
                           ? HugeIcons.strokeRoundedViewOff
                           : HugeIcons.strokeRoundedView,
                       color: AppColors.accentColor,
