@@ -27,11 +27,9 @@ class ProfileViewBody extends StatefulWidget {
 }
 
 class _ProfileViewBodyState extends State<ProfileViewBody> {
-
   final donationController = Get.put(DonationController());
   String userId = '';
   bool isLoading = true;
-
 
   Future<void> _loadInitialData() async {
     final id = await SharedPreferencesHelper.getId();
@@ -43,7 +41,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
   }
 
   String? userName;
-  Map<String, dynamic>? userSetupData;
+  Map<dynamic, dynamic>? userSetupData;
 
   @override
   void initState() {
@@ -135,7 +133,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
         children: [
           _buildTopSection(context),
           const SizedBox(height: 16),
-          _buildDetailsSection(context),
+           _buildDetailsSection(context),
         ],
       ),
     );
@@ -189,7 +187,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
               ],
             ),
             (screenHeight(context) * 0.03).sh,
-            _buildStatsRow(context),
+           _buildStatsRow(context),
             (screenHeight(context) * 0.03).sh,
             OutlinedButton(
               style: ButtonStyle(
@@ -233,14 +231,17 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
   }
 
   Widget _buildStatsRow(BuildContext context) {
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        _buildStatColumn('Age', userSetupData?['age'] ?? 'N/A'),
+        _buildStatColumn('Age', userSetupData?['age'] ?? 35),
         _buildVerticalDivider(context),
-        _buildStatColumn('Points', donationController.donationHistory.length*10),
+        _buildStatColumn(
+            'Points', donationController.donationHistory.length * 10),
         _buildVerticalDivider(context),
-        _buildStatColumn('Donations', donationController.donationHistory.length),
+        _buildStatColumn(
+            'Donations', donationController.donationHistory.length),
       ],
     );
   }

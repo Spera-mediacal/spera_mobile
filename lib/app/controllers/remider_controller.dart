@@ -19,7 +19,6 @@ class ReminderController extends GetxController {
     Alarm.init();
   }
 
-
   Future<void> deleteReminder(int id, int alarmId) async {
     try {
       await DatabaseHelper().deleteReminder(id);
@@ -78,6 +77,9 @@ class ReminderController extends GetxController {
   Future<void> addReminder(Reminder reminder) async {
     await DatabaseHelper().insertReminder(reminder);
     await fetchReminders();
+    medicineName.clear();
+    details.clear();
+    selectedTime.value = '';
   }
 
   Future<void> requestNotificationPermission() async {
@@ -101,8 +103,12 @@ class ReminderController extends GetxController {
       scheduledDateTime = scheduledDateTime.add(const Duration(days: 1));
     }
 
+    // Generate a valid id within the allowed range
+    final alarmId = now.millisecondsSinceEpoch % 2147483647;
+
     final alarmSettings = AlarmSettings(
-      id: reminders.length,
+      id: alarmId,
+      // Use a valid id
       dateTime: scheduledDateTime,
       assetAudioPath: 'assets/media/audio/alarm.mp3',
       loopAudio: true,

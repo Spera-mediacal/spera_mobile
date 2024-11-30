@@ -39,7 +39,7 @@ class local implements Translations{
       "GoodMorning" : "صباح الخير",
       "Doctors" : "الأطباء",
       "viewAll" : "عرض الكل",
-      "xRay" : "فحص الأشعة\nالسينية الخاصة\nبك",
+      "xRay" : "فحص الأشعة\nالخاصة بك",
       "chatBot" : "سبيرا بوت",
       "Medic" : "الأدوية",
       "bloodDonation" : "التبرع بالدم",
@@ -133,7 +133,7 @@ class local implements Translations{
     },
 
 
-    "eng" : {
+    "en" : {
       "title1" : "Good morning",
       "desc1" : "Join our mission to make healthcare accessible for everyone. Donate blood, find pharmacies, and manage your health all in one app",
       "title2" : "Simplified Blood Donation",

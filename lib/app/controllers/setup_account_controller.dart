@@ -40,34 +40,42 @@ class SetupAccountController extends GetxController {
   }
 
   Future<void> finishSetup() async {
-    await _loadInitailData();
+    try {
+      await _loadInitailData();
 
-    final user = User(
-      fullName: fullName.value,
-      id: userId.value,
-      phoneNumber: phoneNumber.value,
-      bloodType: selectedBloodType.value + (isPositive.value ? "+" : "-"),
-      weight: selectedWeight.value,
-      height: selectedHeight.value,
-      age: selectedAge.value,
-    );
+      final user = User(
+        fullName: fullName.value,
+        id: userId.value,
+        phoneNumber: phoneNumber.value,
+        bloodType: selectedBloodType.value + (isPositive.value ? "+" : "-"),
+        weight: selectedWeight.value,
+        height: selectedHeight.value,
+        age: selectedAge.value,
+      );
 
-    final dbHelper = DatabaseHelper();
-    await dbHelper.saveUserSetup(
-      fullName: user.fullName,
-      phoneNumber: user.phoneNumber,
-      userId: user.id,
-      bloodType: user.bloodType,
-      isPositive: isPositive.value,
-      weight: user.weight,
-      height: user.height,
-      age: user.age,
-    );
+      final dbHelper = DatabaseHelper();
+      await dbHelper.saveUserSetup(
+        fullName: user.fullName,
+        phoneNumber: user.phoneNumber,
+        userId: user.id,
+        bloodType: user.bloodType,
+        isPositive: isPositive.value,
+        weight: user.weight,
+        height: user.height,
+        age: user.age,
+      );
 
-    await submitUserData(user);
+      await submitUserData(user);
 
-    Get.offAllNamed(AppRoutes.bottomViewPath);
+      // Ensure navigation happens only if everything succeeds
+      print("Navigating to: ${AppRoutes.bottomViewPath}");
+      Get.offAllNamed(AppRoutes.bottomViewPath);
+
+    } catch (e) {
+      print("Error during finish setup: $e");
+    }
   }
+
 
   Future<void> submitUserData(User user) async {
     const String apiUrl = "http://${Constants.localIP}/api/user";
@@ -88,11 +96,14 @@ class SetupAccountController extends GetxController {
         print("User data submitted successfully: ${response.data}");
       } else {
         print("Failed to submit user data: ${response.statusCode}");
+        // Handle non-successful status codes
       }
     } catch (e) {
       print("Error occurred while submitting user data: $e");
+      // Optionally show a message to the user
     }
   }
+
 
   void updateWeight(int value) {
     selectedWeight.value = value;
