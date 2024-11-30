@@ -71,18 +71,67 @@ class local implements Translations{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     },
+
+
+    "de" : {
+      "title1" : "Guten Morgen",
+      "desc1" : "Schließe dich unserer Mission an, um Gesundheitsversorgung für alle zugänglich zu machen. Spende Blut, finde Apotheken und verwalte deine Gesundheit – alles in einer App.",
+      "title2" : "Vereinfachte Blutspende",
+      "desc2" : "Registriere dich als Blutspender oder fordere Blut in Notfällen an. Gemeinsam können wir mit nur wenigen Klicks Leben retten.",
+      "title3" : "Dein persönlicher Assistent",
+      "desc3" : "Nutze KI-gestützte Röntgenanalyse und einen medizinischen Chatbot, um sofortige Einblicke in deine Gesundheit und Ratschläge zu erhalten.",
+      "title4" : "Finde & Nahegelegene Dienste",
+      "desc4" : "Buche Termine in nahegelegenen Kliniken oder finde die nächste Apotheke ganz einfach. Gesundheitsversorgung ist jetzt in deiner Nähe!",
+      "title5" : "Bleibe organisiert & sammle Punkte",
+      "desc5" : "Setze Erinnerungen, verfolge Termine und sammle Punkte für die Nutzung der App, um spannende Belohnungen einzulösen!",
+      "button" : "Loslegen",
+      "login" : "Anmelden",
+      "email" : "E-Mail",
+      "password" : "Passwort",
+      "forget" : "Passwort vergessen?",
+      "createAcc" : "Neuen Account erstellen",
+      "regName" : "Name",
+      "regEmail" : "E-Mail",
+      "regPhone" : "Telefonnummer",
+      "regPassword" : "Passwort",
+      "regPassconfirm" : "Passwort bestätigen",
+      "regButton" : "Registrieren",
+      "HaveAccount" : "Hast du bereits einen Account?",
+      "setAccount" : "Richte deinen Account ein",
+      "BloodTyp" : "Blutgruppe",
+      "Weight" : "Gewicht",
+      "Height" : "Größe",
+      "Age" : "Alter",
+      "finishButton" : "Fertigstellen",
+      "Guest" : "Gast",
+      "GoodNight" : "Gute Nacht",
+      "GoodMorning" : "Guten Morgen",
+      "Doctors" : "Ärzte",
+      "viewAll" : "Alle ansehen",
+      "xRay" : "Überprüfe\nDeine\nRöntgenbilder",
+      "chatBot" : "Spera Bot",
+      "Medic" : "Medikamente",
+      "bloodDonation" : "Blutspende",
+      "donationHistory" : "Spendenverlauf",
+      "noDonation" : "Keine Spendenhistorie verfügbar",
+      "donate" : "Spenden",
+      "donationStation" : "Spendenstation",
+      "qrDonate" : "Spenden",
+      "scanButton" : "Scannen",
+      "Stations" : "Stationen",
+      "Stationslocation" : "Dein Standort ist",
+      "medicalNews" : "Medizinische Nachrichten",
+      "Reminder" : "Erinnerung",
+      "allReminders" : "Alle Erinnerungen",
+      "addReminder" : "Erinnerung hinzufügen",
+      "medicineName" : "Medikamentenname",
+      "Details" : "Details",
+      "noTime" : "Keine Zeit ausgewählt",
+      "Add" : "Hinzufügen",
+      "selectedTime" : "Ausgewählte Zeit"
+    },
+
 
     "eng" : {
       "title1" : "Good morning",
@@ -149,46 +198,10 @@ class local implements Translations{
       // "profWeight" : "Weight",
 
 
+    },
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    }
   };
 
 }
