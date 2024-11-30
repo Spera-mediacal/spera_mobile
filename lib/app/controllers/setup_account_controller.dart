@@ -11,8 +11,8 @@ class SetupAccountController extends GetxController {
   RxString fullName = ''.obs;
   RxString phoneNumber = ''.obs;
   RxString userId = ''.obs;
-  RxInt selectedWeight = 85.obs;
-  RxInt selectedHeight = 85.obs;
+  RxInt selectedWeight = 65.obs;
+  RxInt selectedHeight = 165.obs;
   RxInt selectedAge = 18.obs;
   var isPositive = true.obs;
   var selectedBloodType = ''.obs;
