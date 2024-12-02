@@ -26,10 +26,10 @@ class HomeAppBar extends StatelessWidget {
         InkWell(
           onTap: () {
             Get.toNamed(AppRoutes.profielViewPath);
-          },
-          child: CircleAvatar(
+            },
+          child: const CircleAvatar(
             radius: 20,
-            backgroundImage: NetworkImage(imageUrl),
+            backgroundImage: AssetImage('assets/media/avatar.png'),
           ),
         ),
         InkWell(

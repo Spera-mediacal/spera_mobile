@@ -23,7 +23,7 @@ class UserMessage extends StatelessWidget {
             maxWidth: screenWidth(context) * 0.7,
           ),
           child: Container(
-            alignment: Alignment.centerRight,
+            alignment: Alignment.centerLeft,
             margin: const EdgeInsets.symmetric(vertical: 10),
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
             decoration: BoxDecoration(

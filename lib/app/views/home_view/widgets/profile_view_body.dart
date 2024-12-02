@@ -166,8 +166,8 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
               children: [
                 const CircleAvatar(
                   radius: 70,
-                  backgroundImage: NetworkImage(
-                    Constants.avatarImage,
+                  backgroundImage: AssetImage(
+                    'assets/media/avatar.png',
                   ),
                 ),
                 Container(

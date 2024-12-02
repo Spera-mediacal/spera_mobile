@@ -23,7 +23,7 @@ class SperaBotView extends StatelessWidget {
         firstColor: AppColors.accentColor.withOpacity(0.1),
         bottomPosition: screenHeight(context) * 0.1,
         rightPosition: screenWidth(context) * 0.1,
-        child: const SperaBotViewBody(),
+        child:   SperaBotViewBody(),
       ),
     );
   }

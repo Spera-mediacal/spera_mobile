@@ -16,8 +16,9 @@ class DoctorsController extends GetxController {
     fetchDoctors();
   }
 
+  //localIP = 127.0.0.1:8000
   Future<void> fetchDoctors() async {
-    const String apiUrl = "http://${Constants.localIP}/api/doctor";
+      String apiUrl = "http://${Constants.localIP}/api/doctor";
     isLoading.value = true;
 
     try {

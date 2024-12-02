@@ -9,6 +9,7 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final IconData? prefixIcon;
   final bool isPassword;
+  final bool? enabled;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final bool obscureText;
@@ -32,7 +33,7 @@ class CustomTextField extends StatelessWidget {
     this.height,
     this.keyboardType,
     this.textInputAction,
-    this.onFieldSubmitted,
+    this.onFieldSubmitted, this.enabled,
   });
 
   @override
@@ -42,6 +43,7 @@ class CustomTextField extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 7.0),
         child: TextFormField(
+          enabled: enabled ?? true,
           style: AppTextStyles.textStyle19,
           controller: controller,
           obscureText: isPassword ? !obscureText : false,

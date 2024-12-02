@@ -18,6 +18,7 @@ class DoctorsHomeList extends StatelessWidget {
       }
 
       if (controller.errorMessage.isNotEmpty) {
+        print(controller.errorMessage);
         return Center(
           child: Text(
             controller.errorMessage.value,

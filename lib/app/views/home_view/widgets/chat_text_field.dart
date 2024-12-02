@@ -7,16 +7,21 @@ import '../../../../utils/global_widgets/glass_container.dart';
 import '../../../../utils/size_config.dart';
 
 class ChatTextField extends StatelessWidget {
-  const ChatTextField({
-    super.key, required this.send, required this.textEditingController,
-  });
-
   final Function() send;
   final TextEditingController textEditingController;
+  final bool isLoading;
+
+  const ChatTextField({
+    super.key,
+    required this.send,
+    required this.textEditingController,
+    this.isLoading = false,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:   EdgeInsets.only(bottom: screenHeight(context)*0.01),
+      padding: EdgeInsets.only(bottom: screenHeight(context) * 0.01),
       child: Align(
         alignment: Alignment.bottomCenter,
         child: Row(
@@ -26,12 +31,20 @@ class ChatTextField extends StatelessWidget {
               width: screenWidth(context) * 0.7,
               hintText: 'Message',
               controller: textEditingController,
+              // Disable text field when loading
+              enabled: !isLoading,
             ),
             GlassContainer(
               height: screenHeight(context) * 0.065,
               width: screenWidth(context) * 0.17,
-              onTap: send,
-              child: const HugeIcon(
+              // Disable tap when loading
+              onTap: isLoading ? null : send,
+              child: isLoading
+                  ? const CircularProgressIndicator(
+                color: AppColors.accentColor,
+                strokeWidth: 2,
+              )
+                  : const HugeIcon(
                 icon: HugeIcons.strokeRoundedSent,
                 color: AppColors.accentColor,
                 size: 24.0,

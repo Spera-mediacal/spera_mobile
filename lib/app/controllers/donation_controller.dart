@@ -40,7 +40,9 @@ class DonationController extends GetxController {
           title: 'Success',
           message: response.data['message'],
         ).show();
-      } else {
+      }else if (response.statusCode == 404) {
+        print('3aaaaaaaaaaaaaaaaaaaaaa3');
+        }else {
         CustomSnackBar(
           title: 'Error',
           message: response.data['message'],
@@ -76,6 +78,8 @@ class DonationController extends GetxController {
               .map((item) => DonationModel.fromJson(item))
               .toList());
         }
+      }else if (response.statusCode == 404) {
+        print('3aaaaaaaaaaaaaaaaaaaaaa3');
       } else {
         const CustomSnackBar(
           title: 'Error',
@@ -85,12 +89,7 @@ class DonationController extends GetxController {
         ).show();
       }
     } catch (e) {
-      CustomSnackBar(
-        title: 'Error',
-        message: 'Failed to fetch donation history: $e',
-        textColor: AppColors.wrongColor,
-        icon: HugeIcons.strokeRoundedAlert02,
-      ).show();
+      print('3aaaaaaaaaaaaaaaaaaaaaa3');
     }
   }
 }

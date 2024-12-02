@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:spera_mobile/app/controllers/donation_controller.dart';
  import 'package:spera_mobile/app/routes/app_router.dart';
 
 import 'package:spera_mobile/app/views/home_view/widgets/side_title.dart';
@@ -11,7 +12,9 @@ import 'home_app_bar.dart';
 import '../../../../utils/global_widgets/home_containers_section.dart';
 
 class HomeViewBody extends StatelessWidget {
-  const HomeViewBody({super.key});
+    HomeViewBody({super.key});
+
+  final DonationController donationController = Get.put(DonationController());
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +26,10 @@ class HomeViewBody extends StatelessWidget {
         child: Column(
           children: [
             (screenHeight(context) * 0.03).sh,
-              const HomeAppBar(
+                HomeAppBar(
               imageUrl:
               Constants.avatarImage,
-              points: 200,
+              points: donationController.donationHistory.length * 10,
             ),
             (screenHeight(context) * 0.035).sh,
             const WelcomeText(
