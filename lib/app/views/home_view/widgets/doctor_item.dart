@@ -82,13 +82,13 @@ class DoctorItem extends StatelessWidget {
                     child: Row(
                       children: [
                         for (var day in [
-                          'SA',
-                          'SU',
-                          'MO',
-                          'TU',
-                          'WE',
-                          'TH',
-                          'FR'
+                          'Sa',
+                          'Su',
+                          'Mo',
+                          'Tu',
+                          'We',
+                          'Th',
+                          'Fr'
                         ])
                           DayItem(
                             day: day,
