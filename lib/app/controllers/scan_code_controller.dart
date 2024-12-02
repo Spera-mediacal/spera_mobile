@@ -5,6 +5,7 @@ import 'dart:typed_data';
 import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:spera_mobile/app/controllers/auth_controller.dart';
 import 'package:spera_mobile/app/controllers/donation_controller.dart';
 import 'package:spera_mobile/utils/global_widgets/custom_snack_bar.dart';
 
@@ -17,6 +18,7 @@ class ScanCodeController extends GetxController {
     detectionSpeed: DetectionSpeed.noDuplicates,
     returnImage: true,
   );
+  final AuthController authController = Get.put(AuthController());
 
   final RxList<Barcode> barcodes = <Barcode>[].obs;
   final Rx<Uint8List?> scannedImage = Rx<Uint8List?>(null);
@@ -34,8 +36,11 @@ class ScanCodeController extends GetxController {
         try {
           final Map<String, dynamic> data = jsonDecode(rawValue);
           Get.back(result: data);
+          print('======================================================');
+          print('id from shared pref. $id');
+          print('id from supabase controller. ${authController.userID.value}');
           donationController.addDonation(
-            userId: id ?? '404',
+            userId: id ?? '1',
             quantity: 1,
             date: DateTime.now().toString(),
           );

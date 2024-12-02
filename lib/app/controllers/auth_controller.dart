@@ -19,6 +19,7 @@ class AuthController extends GetxController {
   var isLoginPasswordObscure = false.obs;
   var isRegisterPasswordObscure = false.obs;
   var isRegisterConfirmPasswordObscure = false.obs;
+  var userID = ''.obs;
 
   var isLoading = false.obs;
 
@@ -59,6 +60,7 @@ class AuthController extends GetxController {
 
         if (response.user != null) {
           final userId = response.user!.id; // Extract user ID
+          userID.value = response.user!.id;
           await saveUserData(
             name: nameController.text,
             phone: phoneController.text,
@@ -109,6 +111,7 @@ class AuthController extends GetxController {
 
         if (response.user != null) {
           final userId = response.user!.id;
+          userID.value = response.user!.id;
           await saveUserData(
             name: response.user!.userMetadata?['name'] ?? 'Unknown',
             phone: response.user!.userMetadata?['phoneNumber'] ?? 'Unknown',

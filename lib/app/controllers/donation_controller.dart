@@ -6,15 +6,18 @@ import 'package:spera_mobile/utils/constants.dart';
 import 'package:spera_mobile/utils/global_widgets/custom_snack_bar.dart';
 
 import '../models/donation_model.dart';
+import '../services/shared_pref_service/sahred_pref_service.dart';
 
 class DonationController extends GetxController {
   final Dio dio = Dio(
     BaseOptions(
-      baseUrl: 'http://${Constants.localIP}/api/user/donate',
-      headers: {'accept': 'application/json'},
+      baseUrl: 'http://${Constants.localIP}/api', // Updated base URL
+      headers: {
+        'accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
     ),
   );
-
   var donationHistory = <DonationModel>[].obs;
 
   Future<void> addDonation({
@@ -22,66 +25,63 @@ class DonationController extends GetxController {
     required int quantity,
     required String date,
   }) async {
+    final id = await SharedPreferencesHelper.getId();
     try {
       final response = await dio.post(
-        '',
+        '/donate', // Exact route from curl example
         data: {
           "id": userId,
           "quantity": quantity,
           "date": date,
         },
-        options: Options(
-          headers: {'Content-Type': 'application/json'},
-        ),
       );
 
       if (response.statusCode == 200) {
+        fetchDonationHistory(id??'1');
         CustomSnackBar(
           title: 'Success',
           message: response.data['message'],
         ).show();
-      }else if (response.statusCode == 404) {
-        print('3aaaaaaaaaaaaaaaaaaaaaa3');
-        }else {
+      } else {
         CustomSnackBar(
           title: 'Error',
-          message: response.data['message'],
+          message: response.data['message'] ?? 'Unknown error',
           icon: HugeIcons.strokeRoundedAlert02,
           textColor: AppColors.wrongColor,
         ).show();
       }
     } catch (e) {
+      print('Error adding donation: $e');
       CustomSnackBar(
         title: 'Error',
-        message: 'Failed to add donation: $e',
+        message: 'Failed to add donation: ${e.toString()}',
         textColor: AppColors.wrongColor,
         icon: HugeIcons.strokeRoundedAlert02,
       ).show();
     }
   }
 
+  // Similar updates for fetchDonationHistory method
   Future<void> fetchDonationHistory(String userId) async {
     try {
-      final response = await dio.get('/$userId', queryParameters: {
-        'id': userId,
-      });
+      final response = await dio.get(
+        '/donate/$userId', // Match the exact route pattern
+        queryParameters: {
+          'id': userId, // Include the query parameter as shown in curl
+        },
+      );
 
       if (response.statusCode == 200) {
         final data = response.data;
 
         if (data['message'] == 'found') {
-          // Clear the current donation history
           donationHistory.clear();
-
-          // Add new donation history from the response
           donationHistory.addAll((data['donate_history'] as List)
               .map((item) => DonationModel.fromJson(item))
               .toList());
         }
-      }else if (response.statusCode == 404) {
-        print('3aaaaaaaaaaaaaaaaaaaaaa3');
       } else {
-        const CustomSnackBar(
+        CustomSnackBar(
           title: 'Error',
           message: 'Failed to fetch donation history',
           textColor: AppColors.wrongColor,
@@ -89,7 +89,13 @@ class DonationController extends GetxController {
         ).show();
       }
     } catch (e) {
-      print('3aaaaaaaaaaaaaaaaaaaaaa3');
+      print('Error fetching donation history: $e');
+      CustomSnackBar(
+        title: 'Error',
+        message: 'Failed to fetch donation history: ${e.toString()}',
+        textColor: AppColors.wrongColor,
+        icon: HugeIcons.strokeRoundedAlert02,
+      ).show();
     }
   }
 }
